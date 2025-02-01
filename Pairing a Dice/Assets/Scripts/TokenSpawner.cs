@@ -61,7 +61,7 @@ public class TokenSpawner : MonoBehaviour
         IDContainerBehaviour idContainer = token.GetComponent<IDContainerBehaviour>();
         if (idContainer != null)
         {
-            idContainer.idObj = Resources.Load<ID>("ID_" + totalSum); // Load matching ID from Resources folder
+            idContainer.idObj = Resources.Load<ID>("CardNumberID/ID_" + totalSum); // Load matching ID from Resources folder
         }
     }
 }

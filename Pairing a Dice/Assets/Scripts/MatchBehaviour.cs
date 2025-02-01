@@ -1,23 +1,22 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class MatchBehaviour : MonoBehaviour
 {
-    public ID idObj;
+    public ID idObj;  // ID assigned to this card
     public UnityEvent matchEvent, noMatchEvent, noMatchDelayedEvent;
 
     private IEnumerator OnTriggerEnter(Collider other)
     {
         var tempObj = other.GetComponent<IDContainerBehaviour>();
-        if (tempObj == null) 
+        if (tempObj == null)
             yield break;
-        
+
         var otherID = tempObj.idObj;
         if (otherID == idObj)
         {
-            matchEvent.Invoke();
+            matchEvent.Invoke();  // Correct match, play animation
         }
         else
         {

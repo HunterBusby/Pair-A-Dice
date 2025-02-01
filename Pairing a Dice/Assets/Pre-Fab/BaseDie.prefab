@@ -502,6 +502,7 @@ MonoBehaviour:
   diceLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  checkDelay: 1
 --- !u!114 &2312507193840731802
 MonoBehaviour:
   m_ObjectHideFlags: 0
