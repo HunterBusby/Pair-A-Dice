@@ -61,3 +61,229 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+Pairing a Dice/Assets/Materials/RawPictures/
+
+Pairing a Dice/ProjectSettings/AudioManager.asset
+
+Pairing a Dice/ProjectSettings/ClusterInputManager.asset
+
+Pairing a Dice/ProjectSettings/DynamicsManager.asset
+
+Pairing a Dice/ProjectSettings/EditorBuildSettings.asset
+
+Pairing a Dice/ProjectSettings/EditorSettings.asset
+
+Pairing a Dice/ProjectSettings/GraphicsSettings.asset
+
+Pairing a Dice/ProjectSettings/InputManager.asset
+
+Pairing a Dice/ProjectSettings/MemorySettings.asset
+
+Pairing a Dice/ProjectSettings/MultiplayerManager.asset
+
+Pairing a Dice/ProjectSettings/NavMeshAreas.asset
+
+Pairing a Dice/ProjectSettings/PackageManagerSettings.asset
+
+Pairing a Dice/ProjectSettings/Physics2DSettings.asset
+
+Pairing a Dice/ProjectSettings/PresetManager.asset
+
+Pairing a Dice/ProjectSettings/ProjectSettings.asset
+
+Pairing a Dice/ProjectSettings/ProjectVersion.txt
+
+Pairing a Dice/ProjectSettings/QualitySettings.asset
+
+Pairing a Dice/ProjectSettings/SceneTemplateSettings.json
+
+Pairing a Dice/ProjectSettings/ShaderGraphSettings.asset
+
+Pairing a Dice/ProjectSettings/TagManager.asset
+
+Pairing a Dice/ProjectSettings/TimelineSettings.asset
+
+Pairing a Dice/ProjectSettings/TimeManager.asset
+
+Pairing a Dice/ProjectSettings/UnityConnectSettings.asset
+
+Pairing a Dice/ProjectSettings/URPProjectSettings.asset
+
+Pairing a Dice/ProjectSettings/VersionControlSettings.asset
+
+Pairing a Dice/ProjectSettings/VFXManager.asset
+
+Pairing a Dice/ProjectSettings/XRSettings.asset
+
+Pairing a Dice/UserSettings/EditorUserSettings.asset
+
+Pairing a Dice/UserSettings/Layouts/default-6000.dwlt
+
+Pairing a Dice/UserSettings/Search.index
+
+Pairing a Dice/UserSettings/Search.settings
+
+Pairing a Dice/Assets/Scripts/Vector3Data.cs.meta
+
+Pairing a Dice/Assets/Settings/DefaultVolumeProfile.asset
+
+Pairing a Dice/Assets/Settings/DefaultVolumeProfile.asset.meta
+
+Pairing a Dice/Assets/Settings/Mobile_Renderer.asset
+
+Pairing a Dice/Assets/Settings/Mobile_Renderer.asset.meta
+
+Pairing a Dice/Assets/Settings/Mobile_RPAsset.asset
+
+Pairing a Dice/Assets/Settings/Mobile_RPAsset.asset.meta
+
+Pairing a Dice/Assets/Settings/PC_Renderer.asset
+
+Pairing a Dice/Assets/Settings/PC_Renderer.asset.meta
+
+Pairing a Dice/Assets/Settings/PC_RPAsset.asset
+
+Pairing a Dice/Assets/Settings/PC_RPAsset.asset.meta
+
+Pairing a Dice/Assets/Settings/SampleSceneProfile.asset
+
+Pairing a Dice/Assets/Settings/SampleSceneProfile.asset.meta
+
+Pairing a Dice/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset
+
+Pairing a Dice/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset.meta
+
+Pairing a Dice/Assets/TutorialInfo.meta
+
+Pairing a Dice/Assets/TutorialInfo/Icons.meta
+
+Pairing a Dice/Assets/TutorialInfo/Icons/URP.png
+
+Pairing a Dice/Assets/TutorialInfo/Icons/URP.png.meta
+
+Pairing a Dice/Assets/TutorialInfo/Layout.wlt
+
+Pairing a Dice/Assets/TutorialInfo/Layout.wlt.meta
+
+Pairing a Dice/Assets/TutorialInfo/Scripts.meta
+
+Pairing a Dice/Assets/TutorialInfo/Scripts/Editor.meta
+
+Pairing a Dice/Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs
+
+Pairing a Dice/Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs.meta
+
+Pairing a Dice/Assets/TutorialInfo/Scripts/Readme.cs
+
+Pairing a Dice/Assets/TutorialInfo/Scripts/Readme.cs.meta
+
+Pairing a Dice/Packages/manifest.json
+
+Pairing a Dice/Packages/packages-lock.json
+
+Pairing a Dice/Assets/Scripts/ID.cs.meta
+
+Pairing a Dice/Assets/Scripts/IDContainerBehaviour.cs.meta
+
+Pairing a Dice/Assets/Scripts/IntData.cs.meta
+
+Pairing a Dice/Assets/Scripts/MatchBehaviour.cs.meta
+
+Pairing a Dice/Assets/Scripts/MonoEventsBehaviour.cs.meta
+
+Pairing a Dice/Assets/Scripts/MouseClick.cs.meta
+
+Pairing a Dice/Assets/Scripts/MouseEventsBehaviour.cs.meta
+
+Pairing a Dice/Assets/Scripts/SceneLoader.cs.meta
+
+Pairing a Dice/Assets/Scripts/DiceManager.cs.meta
+
+Pairing a Dice/Assets/Scripts/DiceRoll.cs.meta
+
+Pairing a Dice/Assets/Scripts/DragMove3D.cs.meta
+
+Pairing a Dice/Assets/Scripts/FloatData.cs.meta
+
+Pairing a Dice/Assets/Scripts/TokenSpawner.cs.meta
+
+Pairing a Dice/Assets/Scripts/TriggerEventBehaviour.cs.meta
+
+Pairing a Dice/Assets/ScriptableObj.meta
+
+Pairing a Dice/Assets/Scripts/CardColorDebug.cs.meta
+
+Pairing a Dice/Assets/Scripts/CardManager.cs.meta
+
+Pairing a Dice/Assets/Scripts/CardSpawner.cs.meta
+
+Pairing a Dice/Assets/Scripts/DiceFaceDetector.cs.meta
+
+Pairing a Dice/Assets/Readme.asset.meta
+
+Pairing a Dice/Assets/Resources.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_10.asset.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_11.asset.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_12.asset.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_2.asset.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_3.asset.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_4.asset.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_5.asset.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_6.asset.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_7.asset.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_8.asset.meta
+
+Pairing a Dice/Assets/Resources/CardNumberID/ID_9.asset.meta
+
+Pairing a Dice/Assets/InputSystem_Actions.inputactions.meta
+
+Pairing a Dice/Assets/Materials/Built Materials/TestDie_Mat.mat
+
+Pairing a Dice/Assets/Materials/Built Materials/TestDie_Mat.mat.meta
+
+Pairing a Dice/Assets/Materials/RawPictures.meta
+
+Pairing a Dice/Assets/Pre-Fab/BaseDie.prefab.meta
+
+Pairing a Dice/Assets/Pre-Fab/PlayCard (1).prefab.meta
+
+Pairing a Dice/Assets/Pre-Fab/Token.prefab.meta
+
+Pairing a Dice/Assets/Readme.asset
+
+Pairing a Dice/Assets/___res/Particles/hearts.meta
+
+Pairing a Dice/Assets/___res/Particles/hearts/color.png
+
+Pairing a Dice/Assets/___res/Particles/hearts/color.png.meta
+
+Pairing a Dice/Assets/___res/Particles/hearts/p_heart.mat
+
+Pairing a Dice/Assets/___res/Particles/hearts/p_heart.mat.meta
+
+Pairing a Dice/Assets/___res/Particles/hearts/p_heart.prefab
+
+Pairing a Dice/Assets/___res/Particles/hearts/p_heart.prefab.meta
+
+Pairing a Dice/Assets/InputSystem_Actions.inputactions
+
+Pairing a Dice/Assets/___res.meta
+
+Pairing a Dice/Assets/___res/Particles.meta
+
+Pairing a Dice/Assets/3D Models/Assets/BaseCard.fbx.meta
+
+Pairing a Dice/Assets/3D Models/Assets/BaseDie.fbx.meta

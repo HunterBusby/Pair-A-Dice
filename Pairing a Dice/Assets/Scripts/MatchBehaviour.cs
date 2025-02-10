@@ -1,28 +1,44 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections; 
 
 public class MatchBehaviour : MonoBehaviour
 {
-    public ID idObj;  // ID assigned to this card
+    public ID idObj;
     public UnityEvent matchEvent, noMatchEvent, noMatchDelayedEvent;
+    private DiceManager diceManager;
+    private CardManager cardManager;
 
-    private IEnumerator OnTriggerEnter(Collider other)
+    void Start()
     {
-        var tempObj = other.GetComponent<IDContainerBehaviour>();
-        if (tempObj == null)
-            yield break;
+        diceManager = FindFirstObjectByType<DiceManager>(); // Get DiceManager
+        cardManager = FindFirstObjectByType<CardManager>(); // Get CardManager
+    }
 
-        var otherID = tempObj.idObj;
-        if (otherID == idObj)
+    void OnMouseDown()
+    {
+        int latestRoll = diceManager.GetLatestDiceSum();
+
+        if (idObj != null && int.TryParse(idObj.name.Replace("ID_", ""), out int cardValue))
         {
-            matchEvent.Invoke();  // Correct match, play animation
+            if (cardValue == latestRoll) // If the card matches the dice sum
+            {
+                matchEvent.Invoke(); // Activate match event (e.g., animation/sound)
+                cardManager.TransferCard(transform, true); // Move card to enemy side
+                Debug.Log(gameObject.name + " matched and transferred!");
+            }
+            else // If the card does NOT match the dice sum
+            {
+                noMatchEvent.Invoke();
+                StartCoroutine(NoMatchDelay());
+                Debug.Log(gameObject.name + " does NOT match!");
+            }
         }
-        else
-        {
-            noMatchEvent.Invoke();
-            yield return new WaitForSeconds(0.5f);
-            noMatchDelayedEvent.Invoke();
-        }
+    }
+
+    private IEnumerator NoMatchDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        noMatchDelayedEvent.Invoke();
     }
 }
