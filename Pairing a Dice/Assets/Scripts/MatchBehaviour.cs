@@ -15,26 +15,25 @@ public class MatchBehaviour : MonoBehaviour
         cardManager = FindFirstObjectByType<CardManager>(); // Get CardManager
     }
 
-    void OnMouseDown()
-    {
-        int latestRoll = diceManager.GetLatestDiceSum();
+   void OnMouseDown()
+{
+    int latestRoll = diceManager.GetLatestDiceSum();
 
-        if (idObj != null && int.TryParse(idObj.name.Replace("ID_", ""), out int cardValue))
+    if (idObj != null && int.TryParse(idObj.name.Replace("ID_", ""), out int cardValue))
+    {
+        if (cardValue == latestRoll) // If the card matches the dice sum
         {
-            if (cardValue == latestRoll) // If the card matches the dice sum
-            {
-                matchEvent.Invoke(); // Activate match event (e.g., animation/sound)
-                cardManager.TransferCard(transform, true); // Move card to enemy side
-                Debug.Log(gameObject.name + " matched and transferred!");
-            }
-            else // If the card does NOT match the dice sum
-            {
-                noMatchEvent.Invoke();
-                StartCoroutine(NoMatchDelay());
-                Debug.Log(gameObject.name + " does NOT match!");
-            }
+            Debug.Log(gameObject.name + " player clicked and triggered matchEvent.");
+            matchEvent.Invoke(); // ✅ This is what AI also triggers
+            cardManager.TransferCard(transform, true); // ✅ Move card to enemy side
+        }
+        else
+        {
+            Debug.Log(gameObject.name + " does NOT match!");
         }
     }
+}
+
 
     private IEnumerator NoMatchDelay()
     {

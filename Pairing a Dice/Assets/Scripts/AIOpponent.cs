@@ -80,12 +80,19 @@ public class AIOpponent : MonoBehaviour
 }
 
 
-   private IEnumerator ActivateCard(MatchBehaviour card)
+
+private IEnumerator ActivateCard(MatchBehaviour card)
 {
     yield return new WaitForSeconds(moveSpeed); // ✅ AI delay before playing move
-    card.matchEvent.Invoke(); // ✅ Trigger the same event as when the player clicks the card
-    Debug.Log("AI activated and transferred card: " + card.idObj.name);
+
+    card.matchEvent.Invoke(); // ✅ Trigger same event as player
+    yield return new WaitForSeconds(0.1f); // ✅ Allow Unity event to process
+
+    // ✅ Manually move the card in case matchEvent fails
+    Debug.Log("AI manually calling TransferCard for: " + card.idObj.name);
+    cardManager.TransferCard(card.transform, false); // ✅ Move to player's side
 }
+
 
 
     private bool ShouldMakeMistake()
@@ -113,6 +120,7 @@ public class AIOpponent : MonoBehaviour
     }
     return null; // No match found
 }
+
 
 
 }
