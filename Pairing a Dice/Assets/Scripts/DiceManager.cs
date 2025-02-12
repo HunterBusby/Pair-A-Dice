@@ -3,53 +3,68 @@ using System.Collections;
 
 public class DiceManager : MonoBehaviour
 {
-    public DiceRoll[] dice;  // Assign both dice in the Inspector
-    public LayerMask diceLayerMask;  // Assign the "Dice" layer
-    public float checkDelay = 2f; // Wait time before checking dice value
-    private int latestDiceSum = 0; // Store the latest rolled sum
+    public DiceRoll[] dice;
+    private int latestDiceSum = 0;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))  // Left-click rolls dice
+        if (Input.GetMouseButtonDown(0))
         {
             TryRollDice();
         }
     }
 
     void TryRollDice()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+{
+    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    RaycastHit hit;
 
-        // Check if a dice was clicked before rolling
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, diceLayerMask))
+    // ✅ Only roll dice if the player clicks directly on a dice object
+    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+    {
+        DiceRoll clickedDie = hit.collider.GetComponent<DiceRoll>();
+        if (clickedDie != null) // ✅ Ensure a dice was clicked
         {
-            RollBothDice();
+            latestDiceSum = 0; // ✅ Reset sum before rolling
+
+            foreach (DiceRoll die in dice)
+            {
+                die.GetComponent<DiceFaceDetector>().hasStoppedRolling = false; // ✅ Reset stop state
+                die.Roll();
+            }
+
+            StartCoroutine(WaitForDiceToStop()); // ✅ Start checking when dice stop
         }
     }
+}
 
-    void RollBothDice()
+
+    private IEnumerator WaitForDiceToStop()
     {
-        foreach (DiceRoll die in dice)
+        bool allDiceStopped = false;
+        while (!allDiceStopped)
         {
-            die.Roll(); // Roll each die
+            allDiceStopped = true;
+            foreach (DiceRoll die in dice)
+            {
+                DiceFaceDetector detector = die.GetComponent<DiceFaceDetector>();
+                if (!detector.hasStoppedRolling) // ✅ Wait until both dice report they have stopped
+                {
+                    allDiceStopped = false;
+                    break;
+                }
+            }
+            yield return null;
         }
-
-        // Start coroutine to check the rolled value after a delay
-        StartCoroutine(CheckDiceAfterDelay());
-    }
-
-    IEnumerator CheckDiceAfterDelay()
-    {
-        yield return new WaitForSeconds(checkDelay); // Wait for dice to land
 
         int totalSum = 0;
         foreach (DiceRoll die in dice)
         {
             totalSum += die.GetComponent<DiceFaceDetector>().GetFaceUpValue();
         }
-        latestDiceSum = totalSum; // Store the latest dice roll result
-        Debug.Log("Latest Dice Sum: " + latestDiceSum);
+
+        latestDiceSum = totalSum;
+        Debug.Log("Final Dice Sum: " + latestDiceSum);
     }
 
     public int GetLatestDiceSum()

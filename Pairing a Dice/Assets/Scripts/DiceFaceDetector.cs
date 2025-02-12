@@ -2,25 +2,38 @@ using UnityEngine;
 
 public class DiceFaceDetector : MonoBehaviour
 {
-    private Transform[] faces;  // Will be automatically populated
+    private Transform[] faces;
     private int currentFaceValue = 1;
+    private Rigidbody rb;
+    private bool isRolling = false;
+    public bool hasStoppedRolling = false; // ✅ New flag to track rolling state
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         FindFacesAutomatically();
     }
 
     void Update()
     {
-        DetectFaceUp();
+        if (!isRolling && (rb.linearVelocity.magnitude > 0.1f || rb.angularVelocity.magnitude > 0.1f))
+        {
+            isRolling = true;
+            hasStoppedRolling = false; // ✅ Mark dice as rolling
+        }
+        else if (isRolling && rb.linearVelocity.magnitude < 0.1f && rb.angularVelocity.magnitude < 0.1f)
+        {
+            isRolling = false;
+            hasStoppedRolling = true; // ✅ Mark dice as stopped
+            DetectFaceUp(); // ✅ Detect face only once dice stop
+        }
     }
 
     private void FindFacesAutomatically()
     {
-        faces = new Transform[6];  // Initialize the array for six faces
+        faces = new Transform[6];  
         Transform[] allChildren = GetComponentsInChildren<Transform>();
 
-        // Search for child objects named "Face_1" to "Face_6"
         for (int i = 1; i <= 6; i++)
         {
             foreach (Transform child in allChildren)
@@ -30,15 +43,6 @@ public class DiceFaceDetector : MonoBehaviour
                     faces[i - 1] = child;
                     break;
                 }
-            }
-        }
-
-        // Debugging: Check if any face is missing
-        for (int i = 0; i < 6; i++)
-        {
-            if (faces[i] == null)
-            {
-                Debug.LogError("DiceFaceDetector: Face_" + (i + 1) + " not found on " + gameObject.name + "! Make sure each face is properly named.");
             }
         }
     }
@@ -54,7 +58,6 @@ public class DiceFaceDetector : MonoBehaviour
         float highestY = float.MinValue;
         int bestFaceIndex = -1;
 
-        // Find the highest face
         for (int i = 0; i < faces.Length; i++)
         {
             if (faces[i] != null && faces[i].position.y > highestY)
@@ -67,6 +70,7 @@ public class DiceFaceDetector : MonoBehaviour
         if (bestFaceIndex != -1)
         {
             currentFaceValue = bestFaceIndex + 1;
+            Debug.Log(gameObject.name + " final face-up value: " + currentFaceValue);
         }
     }
 
@@ -74,6 +78,4 @@ public class DiceFaceDetector : MonoBehaviour
     {
         return currentFaceValue;
     }
-
-    
 }

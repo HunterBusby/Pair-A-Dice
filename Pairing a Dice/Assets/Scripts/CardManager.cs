@@ -12,6 +12,7 @@ public class CardManager : MonoBehaviour
     public float liftHeight = 0.5f;
     public float moveSpeed = 2f;
     public int maxCardsPerRow = 5;
+
 public void TransferCard(Transform card, bool toEnemy)
 {
     Debug.Log("TransferCard Called for: " + card.name + " | To Enemy: " + toEnemy);
