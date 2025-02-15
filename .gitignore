@@ -297,3 +297,7 @@ Pairing a Dice/Assets/Scripts/AIOpponent.cs.meta
 Pairing a Dice/Assets/Pre-Fab/Physical Dice.prefab.meta
 
 Pairing a Dice/Assets/3D Models/Assets/Physical Dice.fbx.meta
+
+*.mat
+
+*.meta

@@ -1,6 +1,7 @@
+using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
@@ -13,19 +14,23 @@ public class CardManager : MonoBehaviour
     public float moveSpeed = 2f;
     public int maxCardsPerRow = 5;
 
-public void TransferCard(Transform card, bool toEnemy)
-{
-    Debug.Log("TransferCard Called for: " + card.name + " | To Enemy: " + toEnemy);
-    Transform targetSide = toEnemy ? enemySide : playerSide;
-    List<Transform> targetList = toEnemy ? enemyCards : playerCards;
+    // ✅ Events for game win conditions
+    public UnityEvent onPlayerWin;
+    public UnityEvent onAIWin;
 
-    playerCards.Remove(card);
-    enemyCards.Remove(card);
-    targetList.Add(card);
+    public void TransferCard(Transform card, bool toEnemy)
+    {
+        Debug.Log("TransferCard Called for: " + card.name + " | To Enemy: " + toEnemy);
+        Transform targetSide = toEnemy ? enemySide : playerSide;
+        List<Transform> targetList = toEnemy ? enemyCards : playerCards;
 
-    StartCoroutine(MoveCard(card, targetSide, targetList));
-}
+        playerCards.Remove(card);
+        enemyCards.Remove(card);
+        targetList.Add(card);
 
+        StartCoroutine(MoveCard(card, targetSide, targetList));
+        CheckForWin(); // ✅ Check if someone has won after every transfer
+    }
 
     private IEnumerator MoveCard(Transform card, Transform targetSide, List<Transform> targetList)
     {
@@ -50,46 +55,54 @@ public void TransferCard(Transform card, bool toEnemy)
         }
 
         card.position = targetPosition;
-
-        // ✅ Ensure final positioning is updated for all cards on this side
         RepositionCards(targetList, targetSide);
     }
 
-    public Vector3 GetCardPosition(Transform side, int index) 
-{
-    int row = index / maxCardsPerRow;
-    int column = index % maxCardsPerRow;
-    return side.position + new Vector3(column * spacing, 0, -row * spacing);
-}
-
-public void RepositionCards(List<Transform> cards, Transform side) 
-{
-    for (int i = 0; i < cards.Count; i++)
+    private void CheckForWin()
     {
-        Vector3 targetPosition = GetCardPosition(side, i);
-        StartCoroutine(SmoothMove(cards[i], targetPosition));
+        if (playerCards.Count == 0)
+        {
+            Debug.Log("Player Wins! 🎉");
+            onPlayerWin.Invoke(); // ✅ Trigger Player Win Event
+        }
+        else if (enemyCards.Count == 0)
+        {
+            Debug.Log("AI Wins! 🤖");
+            onAIWin.Invoke(); // ✅ Trigger AI Win Event
+        }
     }
-}
 
+    public void RepositionCards(List<Transform> cards, Transform side)
+    {
+        for (int i = 0; i < cards.Count; i++)
+        {
+            Vector3 targetPosition = GetCardPosition(side, i);
+            StartCoroutine(SmoothMove(cards[i], targetPosition));
+        }
+    }
+
+    public Vector3 GetCardPosition(Transform side, int index)
+    {
+        int row = index / maxCardsPerRow;
+        int column = index % maxCardsPerRow;
+        return side.position + new Vector3(column * spacing, 0, -row * spacing);
+    }
 
     private IEnumerator SmoothMove(Transform card, Vector3 targetPosition)
-{
-    Vector3 startPosition = card.position;
-    float elapsedTime = 0f;
-    float duration = moveSpeed; // ✅ Now moveSpeed directly controls duration
-
-    while (elapsedTime < duration)
     {
-        float t = elapsedTime / duration; // Normalize time (0 to 1)
-        card.position = Vector3.Lerp(startPosition, targetPosition, t); // Apply smooth movement
+        Vector3 startPosition = card.position;
+        float elapsedTime = 0f;
+        float duration = moveSpeed > 0 ? (1f / moveSpeed) : 0.5f;
 
-        elapsedTime += Time.deltaTime;
-        yield return null; // ✅ Ensures real-time updates
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            card.position = Vector3.Lerp(startPosition, targetPosition, t);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        card.position = targetPosition;
     }
-
-    card.position = targetPosition; // Ensure exact final position
-}
-
-
-
 }

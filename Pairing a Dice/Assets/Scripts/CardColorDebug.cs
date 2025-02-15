@@ -1,23 +1,11 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CardColorDebug : MonoBehaviour
 {
     public Renderer cardRenderer; // Assign the card's Renderer in the Inspector
-    public Color[] debugColors; // Assign colors in the Inspector (for sums 2-12)
     public ID idObj; // Reference to the card's ID
-    public UnityEvent onApplyColor; // ✅ Event for applying color
 
-    private void Start()
-    {
-        // Optional: Ensure the event exists so it doesn't cause errors
-        if (onApplyColor == null)
-        {
-            onApplyColor = new UnityEvent();
-        }
-    }
-
-    public void ApplyDebugColor()
+    public void ApplyMaterialBasedOnID() // ✅ Call this after ID is assigned
     {
         if (idObj == null)
         {
@@ -28,21 +16,17 @@ public class CardColorDebug : MonoBehaviour
         int idNumber;
         if (int.TryParse(idObj.name.Replace("ID_", ""), out idNumber))
         {
-            if (idNumber >= 2 && idNumber <= 12 && debugColors.Length >= (idNumber - 2))
-            {
-                if (cardRenderer != null)
-                {
-                    Color newColor = debugColors[idNumber - 2];
-                    newColor.a = 1f; // Ensure full opacity
-                    cardRenderer.material.color = newColor;
+            string materialPath = "Materials/CardMaterials/ID_" + idNumber + "_Mat"; // ✅ Path to materials
+            Material mat = Resources.Load<Material>(materialPath); // ✅ Load material
 
-                    Debug.Log(gameObject.name + " assigned debug color for ID_" + idNumber);
-                    onApplyColor.Invoke(); // ✅ Trigger event after assigning color
-                }
+            if (mat != null && cardRenderer != null)
+            {
+                cardRenderer.material = mat; // ✅ Apply material
+                Debug.Log(gameObject.name + " assigned material: " + mat.name);
             }
             else
             {
-                Debug.LogError("Debug color array is missing an entry for ID_" + idNumber);
+                Debug.LogError("Material not found for ID_" + idNumber);
             }
         }
         else
