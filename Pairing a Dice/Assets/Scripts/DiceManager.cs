@@ -19,8 +19,11 @@ public class DiceManager : MonoBehaviour
     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
     RaycastHit hit;
 
+    // ✅ Ignore the DiceZone layer
+    int layerMask = ~LayerMask.GetMask("DiceZone"); 
+
     // ✅ Only roll dice if the player clicks directly on a dice object
-    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+    if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
     {
         DiceRoll clickedDie = hit.collider.GetComponent<DiceRoll>();
         if (clickedDie != null) // ✅ Ensure a dice was clicked
@@ -37,6 +40,7 @@ public class DiceManager : MonoBehaviour
         }
     }
 }
+
 
 
     private IEnumerator WaitForDiceToStop()

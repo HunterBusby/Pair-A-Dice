@@ -4,16 +4,16 @@ using UnityEngine;
 public class AIOpponent : MonoBehaviour
 {
     [Header("AI Settings")]
-    public float moveSpeed = 2.0f; // Adjust AI move speed
     public float rollInterval = 3.0f; // Time between AI rolls
-    [Range(0f, 1f)] public float mistakeChance = 0.2f; // 0 = perfect AI, 1 = always fails
+    [Range(0f, 1f)] public float mistakeChance = 0.2f; // AI error rate (0 = perfect, 1 = always fails)
+    public float moveSpeed = 2.0f; // Delay before activating a match
 
     [Header("References")]
-    public DiceManagerAI diceManagerAI; // Reference to AI's separate Dice Manager
-    public CardManager cardManager; // Reference to the shared CardManager
+    public DiceFaceDetector aiDice1; // First AI dice
+    public DiceFaceDetector aiDice2; // Second AI dice
+    public CardManager cardManager; // Reference to card management system
 
-    private int diceSum;
-    private bool isRolling = false;
+    private int lastDiceSum;
 
     void Start()
     {
@@ -26,101 +26,116 @@ public class AIOpponent : MonoBehaviour
         {
             yield return new WaitForSeconds(rollInterval); // Wait before rolling again
 
-            RollAIDice(); // AI rolls dice
-            yield return new WaitUntil(() => !isRolling); // Wait for dice to stop rolling
+            RollBothDice(); // AI rolls dice
+            yield return new WaitUntil(() => aiDice1.hasStoppedRolling && aiDice2.hasStoppedRolling); // Wait for dice to stop
+
+            lastDiceSum = GetDiceSum();
+            Debug.Log("🎯 AI Dice Roll Sum: " + lastDiceSum);
 
             if (ShouldMakeMistake())
             {
                 Debug.Log("AI made a mistake and ignored a match.");
-                continue; // Skip this turn due to a mistake
+                continue; // Skip this turn due to mistake
             }
 
             AttemptMatch(); // Try to find and play a matching card
         }
     }
 
-    private void RollAIDice()
-    {
-        if (diceManagerAI == null)
-        {
-            Debug.LogError("DiceManagerAI not assigned to AIOpponent.");
-            return;
-        }
-
-        isRolling = true;
-        diceManagerAI.RollBothDice(); // AI rolls dice
-        StartCoroutine(WaitForDiceStop());
-    }
-
-    private IEnumerator WaitForDiceStop()
-    {
-        yield return new WaitForSeconds(1.5f); // Adjusted wait time for rolling to finish
-        diceSum = diceManagerAI.GetLastDiceSum(); // Get the sum of AI's dice
-        isRolling = false;
-    }
-
-  private void AttemptMatch()
+    private void RollBothDice()
 {
-    if (cardManager == null)
-    {
-        Debug.LogError("CardManager not assigned to AIOpponent.");
-        return;
-    }
+    Rigidbody rb1 = aiDice1.GetComponent<Rigidbody>();
+    Rigidbody rb2 = aiDice2.GetComponent<Rigidbody>();
 
-    MatchBehaviour matchingCard = FindCardByValue(diceSum);
-    if (matchingCard != null)
+    if (rb1 != null && rb2 != null)
     {
-        Debug.Log("AI found a matching card: " + matchingCard.idObj.name);
-        StartCoroutine(ActivateCard(matchingCard)); // ✅ Ensure this calls ActivateCard(MatchBehaviour)
+        // Reset velocity before applying new forces
+        rb1.linearVelocity = Vector3.zero;
+        rb1.angularVelocity = Vector3.zero;
+        rb2.linearVelocity = Vector3.zero;
+        rb2.angularVelocity = Vector3.zero;
+
+        // Randomized force directions
+        Vector3 forceDirection1 = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f)) * 8f;
+        Vector3 forceDirection2 = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f)) * 8f;
+
+        // Randomized torque (spin)
+        Vector3 torque1 = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f)) * 10f;
+        Vector3 torque2 = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f)) * 10f;
+
+        // Apply forces
+        rb1.AddForce(forceDirection1, ForceMode.Impulse);
+        rb1.AddTorque(torque1, ForceMode.Impulse);
+        rb2.AddForce(forceDirection2, ForceMode.Impulse);
+        rb2.AddTorque(torque2, ForceMode.Impulse);
+
+        Debug.Log("🎲 AI rolled the dice!");
     }
     else
     {
-        Debug.Log("AI did NOT find a matching card for value: " + diceSum);
+        Debug.LogError("One or both AI dice are missing a Rigidbody component!");
     }
 }
 
 
+    private int GetDiceSum()
+    {
+        int dice1Value = aiDice1.GetFaceUpValue();
+        int dice2Value = aiDice2.GetFaceUpValue();
+        int sum = dice1Value + dice2Value;
 
-private IEnumerator ActivateCard(MatchBehaviour card)
-{
-    yield return new WaitForSeconds(moveSpeed); // ✅ AI delay before playing move
+        Debug.Log("📝 AI Dice Face Values: " + dice1Value + " + " + dice2Value + " = " + sum);
+        return sum;
+    }
 
-    card.matchEvent.Invoke(); // ✅ Trigger same event as player
-    yield return new WaitForSeconds(0.1f); // ✅ Allow Unity event to process
+    private void AttemptMatch()
+    {
+        MatchBehaviour matchingCard = FindCardByValue(lastDiceSum);
+        if (matchingCard != null)
+        {
+            StartCoroutine(ActivateCard(matchingCard));
+        }
+        else
+        {
+            Debug.Log("AI did NOT find a matching card for value: " + lastDiceSum);
+        }
+    }
 
-    // ✅ Manually move the card in case matchEvent fails
-    Debug.Log("AI manually calling TransferCard for: " + card.idObj.name);
-    cardManager.TransferCard(card.transform, false); // ✅ Move to player's side
-}
+    private IEnumerator ActivateCard(MatchBehaviour card)
+    {
+        yield return new WaitForSeconds(moveSpeed); // AI delay before playing move
 
+        card.matchEvent.Invoke(); // ✅ Trigger same event as player
+        yield return new WaitForSeconds(0.1f); // ✅ Allow Unity event to process
 
+        // ✅ Manually move the card in case matchEvent fails
+        Debug.Log("AI manually calling TransferCard for: " + card.idObj.name);
+        cardManager.TransferCard(card.transform, false); // ✅ Move to player's side
+    }
 
     private bool ShouldMakeMistake()
     {
         return Random.value < mistakeChance; // Roll a random value, compare with mistake chance
     }
 
-  private MatchBehaviour FindCardByValue(int value)
-{
-    foreach (Transform card in cardManager.enemyCards) // ✅ AI only searches its side
+    private MatchBehaviour FindCardByValue(int value)
     {
-        MatchBehaviour matchBehaviour = card.GetComponent<MatchBehaviour>();
-        IDContainerBehaviour idContainer = card.GetComponent<IDContainerBehaviour>();
-
-        if (matchBehaviour != null && idContainer != null && idContainer.idObj != null)
+        foreach (Transform card in cardManager.enemyCards) // ✅ AI only searches its side
         {
-            if (int.TryParse(idContainer.idObj.name.Replace("ID_", ""), out int cardID))
+            MatchBehaviour matchBehaviour = card.GetComponent<MatchBehaviour>();
+            IDContainerBehaviour idContainer = card.GetComponent<IDContainerBehaviour>();
+
+            if (matchBehaviour != null && idContainer != null && idContainer.idObj != null)
             {
-                if (cardID == value) // ✅ AI correctly identifies card using ID name
+                if (int.TryParse(idContainer.idObj.name.Replace("ID_", ""), out int cardID))
                 {
-                    return matchBehaviour; // ✅ Return MatchBehaviour
+                    if (cardID == value) // ✅ AI correctly identifies card using ID name
+                    {
+                        return matchBehaviour; // ✅ Return MatchBehaviour
+                    }
                 }
             }
         }
+        return null; // No match found
     }
-    return null; // No match found
-}
-
-
-
 }
