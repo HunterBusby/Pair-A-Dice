@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 204469907}
   - component: {fileID: 204469908}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Player Zone Border 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 271284544}
   - component: {fileID: 271284545}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Player Zone Border 2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,17 +760,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &347324563 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6700603108897727493, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-  m_PrefabInstance: {fileID: 1794364759}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2960ec71922cf694787f10a3110d8248, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &384141434 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
@@ -788,7 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68a6ecc512e7bb4cba592e30360e812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeThreshold: 800
+  shakeThreshold: 500
   shakeDecay: 2
   forceMultiplier: 5
   torqueMultiplier: 10
@@ -1342,7 +1331,7 @@ Transform:
   m_GameObject: {fileID: 667162581}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.73, y: 0.21, z: -9.96}
+  m_LocalPosition: {x: 0.51, y: 0.21, z: -2.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1358,7 +1347,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.45
+      value: -4.91
       objectReference: {fileID: 0}
     - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1366,7 +1355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.62
+      value: -8.99
       objectReference: {fileID: 0}
     - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1410,8 +1399,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_Name
-      value: RollDice
+      value: ShakeDice
       objectReference: {fileID: 0}
+    - target: {fileID: 1598131855177676984, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e9ec2375a77d2644b1ccd2aeeb795cd, type: 2}
     - target: {fileID: 6603594874531070761, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_IsKinematic
       value: 0
@@ -1535,7 +1528,7 @@ PrefabInstance:
     - target: {fileID: 706415854225990113, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: 'dice.Array.data[1]'
       value: 
-      objectReference: {fileID: 1753949024}
+      objectReference: {fileID: 0}
     - target: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_Name
       value: AI_Dice_2
@@ -1791,8 +1784,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rollInterval: 3
-  mistakeChance: 0
-  moveSpeed: 0
+  mistakeChance: 0.5
+  moveSpeed: 10
   aiDice1: {fileID: 1501515290}
   aiDice2: {fileID: 594745678}
   cardManager: {fileID: 1495386829}
@@ -1820,7 +1813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1252911590}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1836,8 +1829,8 @@ Transform:
   m_GameObject: {fileID: 1252911589}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9962887, y: 0.18589154, z: -7.6443305}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.9963, y: -0.5, z: -7.6443305}
+  m_LocalScale: {x: 1, y: 1.95, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1941357830}
@@ -1907,79 +1900,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224cd24c4711a464a93d4c49bcb76e0e, type: 3}
---- !u!1001 &1340420691
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.292
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706415854225990113, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: 'dice.Array.data[0]'
-      value: 
-      objectReference: {fileID: 347324563}
-    - target: {fileID: 706415854225990113, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: 'dice.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1753949024}
-    - target: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_Name
-      value: Physical Dice (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598131855177676984, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 9e9ec2375a77d2644b1ccd2aeeb795cd, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
 --- !u!1 &1370205054 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
@@ -1997,7 +1917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68a6ecc512e7bb4cba592e30360e812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeThreshold: 800
+  shakeThreshold: 500
   shakeDecay: 2
   forceMultiplier: 5
   torqueMultiplier: 10
@@ -2050,8 +1970,8 @@ MonoBehaviour:
   playerSide: {fileID: 1890985884}
   enemySide: {fileID: 997465441}
   spacing: 1
-  liftHeight: 0.5
-  moveSpeed: 1
+  liftHeight: 2
+  moveSpeed: 0.5
   maxCardsPerRow: 4
   onPlayerWin:
     m_PersistentCalls:
@@ -2216,90 +2136,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224cd24c4711a464a93d4c49bcb76e0e, type: 3}
---- !u!114 &1753949024 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6700603108897727493, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-  m_PrefabInstance: {fileID: 1340420691}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2960ec71922cf694787f10a3110d8248, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &1794364759
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.292
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706415854225990113, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: 'dice.Array.data[0]'
-      value: 
-      objectReference: {fileID: 347324563}
-    - target: {fileID: 706415854225990113, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: 'dice.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1753949024}
-    - target: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_Name
-      value: Physical Dice
-      objectReference: {fileID: 0}
-    - target: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598131855177676984, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 9e9ec2375a77d2644b1ccd2aeeb795cd, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
 --- !u!1001 &1812388902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2310,7 +2146,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.4499998
+      value: -4.95
       objectReference: {fileID: 0}
     - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2318,7 +2154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.62
+      value: -8.99
       objectReference: {fileID: 0}
     - target: {fileID: 461223862664037335, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2362,8 +2198,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_Name
-      value: RollDice (2)
+      value: ShakeDice (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1598131855177676984, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e9ec2375a77d2644b1ccd2aeeb795cd, type: 2}
     m_RemovedComponents:
     - {fileID: 6700603108897727493, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
     - {fileID: 706415854225990113, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
@@ -2429,7 +2269,7 @@ PrefabInstance:
     - target: {fileID: 706415854225990113, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: 'dice.Array.data[1]'
       value: 
-      objectReference: {fileID: 1753949024}
+      objectReference: {fileID: 0}
     - target: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_Name
       value: AI_Dice_1
@@ -2485,6 +2325,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1870403699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1870403701}
+  - component: {fileID: 1870403700}
+  m_Layer: 0
+  m_Name: ShakeDiceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1870403700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870403699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5327c0daf05b94fa6308eb4b293e24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dice:
+  - {fileID: 1370205055}
+  - {fileID: 384141435}
+--- !u!4 &1870403701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870403699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6242337, y: -6.232377, z: -4.9670253}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1890985883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,7 +2413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1908417159}
   - component: {fileID: 1908417160}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Player Zone Border 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2542,7 +2429,7 @@ Transform:
   m_GameObject: {fileID: 1908417158}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3.05, y: 1.2641085, z: 3.37}
+  m_LocalPosition: {x: -3.05, y: 1.2641085, z: 1.68}
   m_LocalScale: {x: 0.35143998, y: 3.6139793, z: 4.2683177}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2579,7 +2466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941357830}
   - component: {fileID: 1941357829}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Player Zone Border 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2730,9 +2617,9 @@ MonoBehaviour:
   cardPrefab: {fileID: 5898251276857208763, guid: b4db46496c89db8488b56c87eca3c3ce, type: 3}
   playerSide: {fileID: 1890985884}
   enemySide: {fileID: 997465441}
-  predefinedPlayerCards: 07000000
-  predefinedEnemyCards: 07000000
-  useRandomCards: 1
+  predefinedPlayerCards: 07000000080000000600000009000000
+  predefinedEnemyCards: 0a000000050000000800000007000000
+  useRandomCards: 0
   minCardValue: 2
   maxCardValue: 12
   numCardsPerSide: 4
@@ -2938,7 +2825,7 @@ Transform:
   m_GameObject: {fileID: 2101054074}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.08, y: 0.21, z: -10.19}
+  m_LocalPosition: {x: -0.83, y: 0.21, z: -2.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2959,6 +2846,18 @@ MonoBehaviour:
   mouseDownEvent:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1147711629}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1147711629}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -3096,11 +2995,10 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1147711631}
+  - {fileID: 1870403701}
   - {fileID: 1977605567}
   - {fileID: 1495386828}
   - {fileID: 298917888}
-  - {fileID: 1794364759}
-  - {fileID: 1340420691}
   - {fileID: 704758972}
   - {fileID: 1812388902}
   - {fileID: 1819800462}

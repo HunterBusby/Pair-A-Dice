@@ -1,43 +1,67 @@
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections; 
+using System.Collections;
 
 public class MatchBehaviour : MonoBehaviour
 {
     public ID idObj;
     public UnityEvent matchEvent, noMatchEvent, noMatchDelayedEvent;
-    private DiceManager diceManager;
+    
+    private object diceManager; // ✅ Can hold either DiceManager or ShakeDiceManager
     private CardManager cardManager;
 
     void Start()
     {
-        diceManager = FindFirstObjectByType<DiceManager>(); // Get DiceManager
-        cardManager = FindFirstObjectByType<CardManager>(); // Get CardManager
+        // ✅ Try to find a DiceManager first
+        diceManager = FindFirstObjectByType<DiceManager>();
+        
+        // ✅ If no DiceManager exists, try to find ShakeDiceManager instead
+        if (diceManager == null)
+        {
+            diceManager = FindFirstObjectByType<ShakeDiceManager>();
+        }
+
+        cardManager = FindFirstObjectByType<CardManager>();
+
+        if (diceManager == null) Debug.LogError("❌ No valid Dice Manager found!");
+        if (cardManager == null) Debug.LogError("❌ CardManager not found in scene!");
     }
 
-   void OnMouseDown()
-{
-    int latestRoll = diceManager.GetLatestDiceSum();
-
-    if (idObj != null && int.TryParse(idObj.name.Replace("ID_", ""), out int cardValue))
+    void OnMouseDown()
     {
-        if (cardValue == latestRoll) // If the card matches the dice sum
+        if (idObj == null)
         {
-            Debug.Log(gameObject.name + " player clicked and triggered matchEvent.");
-            matchEvent.Invoke(); // ✅ This is what AI also triggers
-            cardManager.TransferCard(transform, true); // ✅ Move card to enemy side
+            Debug.LogError("❌ idObj is NULL on " + gameObject.name + "!");
+            return; // ✅ Prevents the game from freezing
         }
-        else
+
+        int latestRoll = GetLatestDiceSum(); // ✅ Get dice sum from either dice manager
+
+        if (int.TryParse(idObj.name.Replace("ID_", ""), out int cardValue))
         {
-            Debug.Log(gameObject.name + " does NOT match!");
+            if (cardValue == latestRoll)
+            {
+                matchEvent.Invoke();
+                cardManager.TransferCard(transform, true);
+                Debug.Log(gameObject.name + " matched and transferred!");
+            }
+            else
+            {
+                Debug.Log(gameObject.name + " does NOT match!");
+            }
         }
     }
-}
 
-
-    private IEnumerator NoMatchDelay()
+    private int GetLatestDiceSum()
     {
-        yield return new WaitForSeconds(0.5f);
-        noMatchDelayedEvent.Invoke();
+        if (diceManager is DiceManager dm) // ✅ If using normal DiceManager
+        {
+            return dm.GetLatestDiceSum();
+        }
+        else if (diceManager is ShakeDiceManager sdm) // ✅ If using ShakeDiceManager
+        {
+            return sdm.GetLatestDiceSum();
+        }
+        return 0; // Default to 0 if no dice manager is found
     }
 }
