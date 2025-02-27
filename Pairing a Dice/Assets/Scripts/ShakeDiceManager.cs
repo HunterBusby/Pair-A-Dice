@@ -16,7 +16,7 @@ public class ShakeDiceManager : MonoBehaviour
 
     void TryRollDice()
     {
-        latestDiceSum = 0; // ✅ Reset previous sum
+        
 
         foreach (ShakeToRoll die in dice)
         {
@@ -54,9 +54,16 @@ public class ShakeDiceManager : MonoBehaviour
         Debug.Log("🌀 Shake Dice Final Sum: " + latestDiceSum);
     }
 
+public void ResetDiceSum()
+{
+    latestDiceSum = 0;
+    Debug.Log("🔄 Dice Sum Reset to 0 after match!");
+}
+
     public int GetLatestDiceSum()
-    {
-        return latestDiceSum;
-    }
+{
+    return latestDiceSum;
+}
+
 }
 

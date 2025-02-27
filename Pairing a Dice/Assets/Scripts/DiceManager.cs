@@ -28,7 +28,6 @@ public class DiceManager : MonoBehaviour
         DiceRoll clickedDie = hit.collider.GetComponent<DiceRoll>();
         if (clickedDie != null) // ✅ Ensure a dice was clicked
         {
-            latestDiceSum = 0; // ✅ Reset sum before rolling
 
             foreach (DiceRoll die in dice)
             {
@@ -41,10 +40,9 @@ public class DiceManager : MonoBehaviour
     }
 }
 
-
-
     private IEnumerator WaitForDiceToStop()
     {
+
         bool allDiceStopped = false;
         while (!allDiceStopped)
         {

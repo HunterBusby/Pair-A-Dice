@@ -27,30 +27,44 @@ public class MatchBehaviour : MonoBehaviour
         if (cardManager == null) Debug.LogError("❌ CardManager not found in scene!");
     }
 
-    void OnMouseDown()
+ void OnMouseDown()
+{
+    if (idObj == null)
     {
-        if (idObj == null)
+        Debug.LogError("❌ idObj is NULL on " + gameObject.name + "!");
+        return; // ✅ Prevents errors if idObj is missing
+    }
+
+    int latestRoll = GetLatestDiceSum(); // ✅ Get dice sum from either dice manager
+
+    if (int.TryParse(idObj.name.Replace("ID_", ""), out int cardValue))
+    {
+        if (cardValue == latestRoll) // ✅ If card matches the dice roll
         {
-            Debug.LogError("❌ idObj is NULL on " + gameObject.name + "!");
-            return; // ✅ Prevents the game from freezing
+            matchEvent.Invoke(); // ✅ Trigger the match event
+            cardManager.TransferCard(transform, true); // ✅ Move card to enemy side
+
+            Debug.Log(gameObject.name + " matched and transferred!");
+
+            // ✅ Reset the dice sum to prevent multiple matches
+            ResetDiceSum();
         }
-
-        int latestRoll = GetLatestDiceSum(); // ✅ Get dice sum from either dice manager
-
-        if (int.TryParse(idObj.name.Replace("ID_", ""), out int cardValue))
+        else 
         {
-            if (cardValue == latestRoll)
-            {
-                matchEvent.Invoke();
-                cardManager.TransferCard(transform, true);
-                Debug.Log(gameObject.name + " matched and transferred!");
-            }
-            else
-            {
-                Debug.Log(gameObject.name + " does NOT match!");
-            }
+            Debug.Log(gameObject.name + " does NOT match!");
         }
     }
+}
+
+// ✅ Function to reset dice sum after a successful match
+private void ResetDiceSum()
+{
+    if (diceManager is ShakeDiceManager sdm)
+    {
+        sdm.ResetDiceSum(); // ✅ Call a reset function inside ShakeDiceManager
+    }
+}
+
 
     private int GetLatestDiceSum()
     {
