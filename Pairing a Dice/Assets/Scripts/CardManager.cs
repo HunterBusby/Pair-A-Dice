@@ -88,25 +88,34 @@ public class CardManager : MonoBehaviour
     }
 
     private IEnumerator SmoothMove(Transform card, Vector3 targetPosition)
+{
+    if (isMoving.ContainsKey(card) && isMoving[card])
+        yield break; // ✅ Prevent duplicate movement
+
+    isMoving[card] = true;
+
+    Vector3 startPosition = card.position;
+    float elapsedTime = 0f;
+
+    while (elapsedTime < moveSpeed)
     {
-        if (isMoving.ContainsKey(card) && isMoving[card])
-            yield break; // ✅ Don't reposition if it's already moving
-
-        isMoving[card] = true;
-
-        Vector3 startPosition = card.position;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < moveSpeed)
-        {
-            card.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / moveSpeed);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        card.position = targetPosition;
-        isMoving[card] = false; // ✅ Unlock movement
+        card.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / moveSpeed);
+        elapsedTime += Time.deltaTime;
+        yield return null;
     }
+
+    card.position = targetPosition;
+    isMoving[card] = false; // ✅ Unlock movement
+
+    // ✅ Check if there’s a pending move after repositioning
+    MatchBehaviour matchBehaviour = card.GetComponent<MatchBehaviour>();
+    if (matchBehaviour != null && matchBehaviour.isPendingMove)
+    {
+        Debug.Log("🔄 Processing queued move for " + card.name);
+        matchBehaviour.ExecuteCardTransfer();
+    }
+}
+
 
     private void CheckWinCondition()
     {
@@ -121,4 +130,10 @@ public class CardManager : MonoBehaviour
             onAIWin.Invoke();
         }
     }
+
+    public bool IsCardMoving(Transform card)
+{
+    return isMoving.ContainsKey(card) && isMoving[card];
+}
+
 }

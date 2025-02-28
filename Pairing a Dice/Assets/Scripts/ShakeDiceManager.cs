@@ -57,8 +57,9 @@ public class ShakeDiceManager : MonoBehaviour
 public void ResetDiceSum()
 {
     latestDiceSum = 0;
-    Debug.Log("🔄 Dice Sum Reset to 0 after match!");
+    Debug.Log("🎲 Dice sum manually reset.");
 }
+
 
     public int GetLatestDiceSum()
 {

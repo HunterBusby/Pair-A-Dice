@@ -27,34 +27,50 @@ public class MatchBehaviour : MonoBehaviour
         if (cardManager == null) Debug.LogError("❌ CardManager not found in scene!");
     }
 
- void OnMouseDown()
+ public bool isPendingMove = false; // ✅ Tracks if card should move after repositioning
+
+void OnMouseDown()
 {
-    if (idObj == null)
+    if (!cardManager.playerCards.Contains(transform))
     {
-        Debug.LogError("❌ idObj is NULL on " + gameObject.name + "!");
-        return; // ✅ Prevents errors if idObj is missing
+        Debug.Log("🚫 You cannot activate this card! It is not on your side.");
+        return; // ✅ Prevents interaction if the card is NOT on the player's side
     }
 
     int latestRoll = GetLatestDiceSum(); // ✅ Get dice sum from either dice manager
 
     if (int.TryParse(idObj.name.Replace("ID_", ""), out int cardValue))
     {
-        if (cardValue == latestRoll) // ✅ If card matches the dice roll
+        if (cardValue == latestRoll)
         {
-            matchEvent.Invoke(); // ✅ Trigger the match event
-            cardManager.TransferCard(transform, true); // ✅ Move card to enemy side
-
+            matchEvent.Invoke();
+            cardManager.TransferCard(transform, true);
             Debug.Log(gameObject.name + " matched and transferred!");
-
-            // ✅ Reset the dice sum to prevent multiple matches
-            ResetDiceSum();
         }
-        else 
+        else
         {
             Debug.Log(gameObject.name + " does NOT match!");
         }
     }
 }
+
+
+public void ExecuteCardTransfer()
+{
+    isPendingMove = false; // ✅ Move is no longer pending
+    matchEvent.Invoke();
+    cardManager.TransferCard(transform, true);
+    Debug.Log(gameObject.name + " matched and transferred!");
+
+    // ✅ Reset the dice sum AFTER a successful move
+    ShakeDiceManager shakeDiceManager = FindFirstObjectByType<ShakeDiceManager>();
+    if (shakeDiceManager != null)
+    {
+        shakeDiceManager.ResetDiceSum();
+        Debug.Log("🎲 Dice sum reset after successful match!");
+    }
+}
+
 
 // ✅ Function to reset dice sum after a successful match
 private void ResetDiceSum()

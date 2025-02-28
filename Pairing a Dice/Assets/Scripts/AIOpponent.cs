@@ -6,7 +6,6 @@ public class AIOpponent : MonoBehaviour
     [Header("AI Settings")]
     public float rollInterval = 3.0f; // Time between AI rolls
     [Range(0f, 1f)] public float mistakeChance = 0.2f; // AI error rate (0 = perfect, 1 = always fails)
-    public float moveSpeed = 2.0f; // Delay before activating a match
 
     [Header("References")]
     public DiceFaceDetector aiDice1; // First AI dice
@@ -90,6 +89,7 @@ public class AIOpponent : MonoBehaviour
 
     private void AttemptMatch()
     {
+
         MatchBehaviour matchingCard = FindCardByValue(lastDiceSum);
         if (matchingCard != null)
         {
@@ -103,8 +103,6 @@ public class AIOpponent : MonoBehaviour
 
     private IEnumerator ActivateCard(MatchBehaviour card)
     {
-        yield return new WaitForSeconds(moveSpeed); // AI delay before playing move
-
         card.matchEvent.Invoke(); // ✅ Trigger same event as player
         yield return new WaitForSeconds(0.1f); // ✅ Allow Unity event to process
 
