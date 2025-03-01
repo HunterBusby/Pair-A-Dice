@@ -14,11 +14,20 @@ public class CardManager : MonoBehaviour
     public float moveSpeed = 2f;
     public int maxCardsPerRow = 5;
 
-    private Dictionary<Transform, bool> isMoving = new Dictionary<Transform, bool>(); // ✅ Tracks card movement status
+    private Dictionary<Transform, bool> isMoving = new Dictionary<Transform, bool>();
 
     [Header("Win Condition Events")]
-    public UnityEvent onPlayerWin; // ✅ Fires when player wins
-    public UnityEvent onAIWin; // ✅ Fires when AI wins
+    public UnityEvent onPlayerWin;
+    public UnityEvent onAIWin;
+
+    [Header("UNO Alert Events")]
+    public UnityEvent onPlayerUnoStart;  // 🔹 NEW: Fires when Player reaches UNO
+    public UnityEvent onPlayerUnoStop;   // 🔹 NEW: Fires when Player gets more than 1 card
+    public UnityEvent onEnemyUnoStart;   // 🔹 NEW: Fires when Enemy reaches UNO
+    public UnityEvent onEnemyUnoStop;    // 🔹 NEW: Fires when Enemy gets more than 1 card
+
+    private bool playerUnoTriggered = false;
+    private bool enemyUnoTriggered = false;
 
     public Vector3 GetCardPosition(Transform side, int index)
     {
@@ -32,7 +41,7 @@ public class CardManager : MonoBehaviour
         if (isMoving.ContainsKey(card) && isMoving[card])
         {
             Debug.Log("🚫 Cannot move card: " + card.name + " is still animating!");
-            return; // ✅ Prevents teleporting if animation is already running
+            return;
         }
 
         Transform targetSide = toEnemy ? enemySide : playerSide;
@@ -44,13 +53,13 @@ public class CardManager : MonoBehaviour
 
         StartCoroutine(MoveCard(card, targetSide, targetList));
 
-        // ✅ Check win conditions after transferring the card
+        CheckUnoCondition(); // 🔹 Updated to handle looping sound
         CheckWinCondition();
     }
 
     private IEnumerator MoveCard(Transform card, Transform targetSide, List<Transform> targetList)
     {
-        isMoving[card] = true; // ✅ Mark as moving
+        isMoving[card] = true;
 
         Vector3 startPosition = card.position;
         Vector3 liftedPosition = startPosition + Vector3.up * liftHeight;
@@ -73,7 +82,7 @@ public class CardManager : MonoBehaviour
         }
 
         card.position = targetPosition;
-        isMoving[card] = false; // ✅ Allow interaction again
+        isMoving[card] = false;
 
         RepositionCards(targetList, targetSide);
     }
@@ -88,34 +97,25 @@ public class CardManager : MonoBehaviour
     }
 
     private IEnumerator SmoothMove(Transform card, Vector3 targetPosition)
-{
-    if (isMoving.ContainsKey(card) && isMoving[card])
-        yield break; // ✅ Prevent duplicate movement
-
-    isMoving[card] = true;
-
-    Vector3 startPosition = card.position;
-    float elapsedTime = 0f;
-
-    while (elapsedTime < moveSpeed)
     {
-        card.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / moveSpeed);
-        elapsedTime += Time.deltaTime;
-        yield return null;
+        if (isMoving.ContainsKey(card) && isMoving[card])
+            yield break;
+
+        isMoving[card] = true;
+
+        Vector3 startPosition = card.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < moveSpeed)
+        {
+            card.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / moveSpeed);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        card.position = targetPosition;
+        isMoving[card] = false;
     }
-
-    card.position = targetPosition;
-    isMoving[card] = false; // ✅ Unlock movement
-
-    // ✅ Check if there’s a pending move after repositioning
-    MatchBehaviour matchBehaviour = card.GetComponent<MatchBehaviour>();
-    if (matchBehaviour != null && matchBehaviour.isPendingMove)
-    {
-        Debug.Log("🔄 Processing queued move for " + card.name);
-        matchBehaviour.ExecuteCardTransfer();
-    }
-}
-
 
     private void CheckWinCondition()
     {
@@ -131,9 +131,34 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    public bool IsCardMoving(Transform card)
-{
-    return isMoving.ContainsKey(card) && isMoving[card];
-}
+    private void CheckUnoCondition()
+    {
+        // 🔹 Player UNO check
+        if (playerCards.Count == 1 && !playerUnoTriggered)
+        {
+            Debug.Log("⚠️ Player UNO! Starting looped sound.");
+            onPlayerUnoStart.Invoke(); // 🔹 Start looping UNO sound
+            playerUnoTriggered = true;
+        }
+        else if (playerCards.Count > 1 && playerUnoTriggered)
+        {
+            Debug.Log("✅ Player no longer at UNO. Stopping sound.");
+            onPlayerUnoStop.Invoke(); // 🔹 Stop looping sound
+            playerUnoTriggered = false;
+        }
 
+        // 🔹 Enemy UNO check
+        if (enemyCards.Count == 1 && !enemyUnoTriggered)
+        {
+            Debug.Log("⚠️ Enemy UNO! Starting looped sound.");
+            onEnemyUnoStart.Invoke(); // 🔹 Start looping UNO sound
+            enemyUnoTriggered = true;
+        }
+        else if (enemyCards.Count > 1 && enemyUnoTriggered)
+        {
+            Debug.Log("✅ Enemy no longer at UNO. Stopping sound.");
+            onEnemyUnoStop.Invoke(); // 🔹 Stop looping sound
+            enemyUnoTriggered = false;
+        }
+    }
 }
