@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events; // ✅ Required for Unity Events
 
 public class DiceManagerAI : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class DiceManagerAI : MonoBehaviour
 
     private int lastDiceSum;
     public bool isRolling = false; // ✅ Track if AI is currently rolling dice
+
+    [Header("Doubles Event")]
+    public UnityEvent onAIDoublesRolled; // ✅ Event triggered when AI rolls doubles
 
     void Start()
     {
@@ -34,8 +38,15 @@ public class DiceManagerAI : MonoBehaviour
             lastDiceSum = GetDiceSum();
             Debug.Log("🎯 AI Dice Roll Sum: " + lastDiceSum);
 
-            isRolling = false; // ✅ AI is done rolling
-            yield return null; // ✅ No extra wait, AI moves instantly after rolling
+            // ✅ Check if AI rolled doubles
+            if (DidRollDoubles())
+            {
+                Debug.Log("🎉 AI ROLLED DOUBLES!");
+                onAIDoublesRolled.Invoke(); // ✅ Triggers event if doubles occur
+            }
+
+            isRolling = false;
+            yield return null;
         }
     }
 
@@ -92,5 +103,14 @@ public class DiceManagerAI : MonoBehaviour
     public int GetLastDiceSum()
     {
         return lastDiceSum;
+    }
+
+    private bool DidRollDoubles()
+    {
+        if (aiDice1 != null && aiDice2 != null)
+        {
+            return aiDice1.GetFaceUpValue() == aiDice2.GetFaceUpValue();
+        }
+        return false;
     }
 }

@@ -21,13 +21,16 @@ public class CardManager : MonoBehaviour
     public UnityEvent onAIWin;
 
     [Header("UNO Alert Events")]
-    public UnityEvent onPlayerUnoStart;  // 🔹 NEW: Fires when Player reaches UNO
-    public UnityEvent onPlayerUnoStop;   // 🔹 NEW: Fires when Player gets more than 1 card
-    public UnityEvent onEnemyUnoStart;   // 🔹 NEW: Fires when Enemy reaches UNO
-    public UnityEvent onEnemyUnoStop;    // 🔹 NEW: Fires when Enemy gets more than 1 card
-
+    public UnityEvent onPlayerUnoStart;  
+    public UnityEvent onPlayerUnoStop;   
+    public UnityEvent onEnemyUnoStart;   
+    public UnityEvent onEnemyUnoStop;    
+    private bool sixtyNineTriggered = false; // ✅ Prevents multiple activations
     private bool playerUnoTriggered = false;
     private bool enemyUnoTriggered = false;
+
+    [Header("Nice! (69 Detection)")]
+    public UnityEvent onSixtyNineDetected; // ✅ Event triggered when "69" appears
 
     public Vector3 GetCardPosition(Transform side, int index)
     {
@@ -37,25 +40,27 @@ public class CardManager : MonoBehaviour
     }
 
     public void TransferCard(Transform card, bool toEnemy)
+{
+    if (isMoving.ContainsKey(card) && isMoving[card])
     {
-        if (isMoving.ContainsKey(card) && isMoving[card])
-        {
-            Debug.Log("🚫 Cannot move card: " + card.name + " is still animating!");
-            return;
-        }
-
-        Transform targetSide = toEnemy ? enemySide : playerSide;
-        List<Transform> targetList = toEnemy ? enemyCards : playerCards;
-
-        playerCards.Remove(card);
-        enemyCards.Remove(card);
-        targetList.Add(card);
-
-        StartCoroutine(MoveCard(card, targetSide, targetList));
-
-        CheckUnoCondition(); // 🔹 Updated to handle looping sound
-        CheckWinCondition();
+        Debug.Log("🚫 Cannot move card: " + card.name + " is still animating!");
+        return;
     }
+
+    Transform targetSide = toEnemy ? enemySide : playerSide;
+    List<Transform> targetList = toEnemy ? enemyCards : playerCards;
+
+    playerCards.Remove(card);
+    enemyCards.Remove(card);
+    targetList.Add(card);
+
+    StartCoroutine(MoveCard(card, targetSide, targetList));
+
+    CheckUnoCondition();
+    CheckWinCondition();
+    CheckForSixtyNine(targetList); // ✅ Check for 69 every transfer
+}
+
 
     private IEnumerator MoveCard(Transform card, Transform targetSide, List<Transform> targetList)
     {
@@ -88,13 +93,16 @@ public class CardManager : MonoBehaviour
     }
 
     public void RepositionCards(List<Transform> cards, Transform side)
+{
+    for (int i = 0; i < cards.Count; i++)
     {
-        for (int i = 0; i < cards.Count; i++)
-        {
-            Vector3 targetPosition = GetCardPosition(side, i);
-            StartCoroutine(SmoothMove(cards[i], targetPosition));
-        }
+        Vector3 targetPosition = GetCardPosition(side, i);
+        StartCoroutine(SmoothMove(cards[i], targetPosition));
     }
+
+    CheckForSixtyNine(cards); // ✅ Check for 69 after repositioning
+}
+
 
     private IEnumerator SmoothMove(Transform card, Vector3 targetPosition)
     {
@@ -133,32 +141,68 @@ public class CardManager : MonoBehaviour
 
     private void CheckUnoCondition()
     {
-        // 🔹 Player UNO check
         if (playerCards.Count == 1 && !playerUnoTriggered)
         {
             Debug.Log("⚠️ Player UNO! Starting looped sound.");
-            onPlayerUnoStart.Invoke(); // 🔹 Start looping UNO sound
+            onPlayerUnoStart.Invoke();
             playerUnoTriggered = true;
         }
         else if (playerCards.Count > 1 && playerUnoTriggered)
         {
             Debug.Log("✅ Player no longer at UNO. Stopping sound.");
-            onPlayerUnoStop.Invoke(); // 🔹 Stop looping sound
+            onPlayerUnoStop.Invoke();
             playerUnoTriggered = false;
         }
 
-        // 🔹 Enemy UNO check
         if (enemyCards.Count == 1 && !enemyUnoTriggered)
         {
             Debug.Log("⚠️ Enemy UNO! Starting looped sound.");
-            onEnemyUnoStart.Invoke(); // 🔹 Start looping UNO sound
+            onEnemyUnoStart.Invoke();
             enemyUnoTriggered = true;
         }
         else if (enemyCards.Count > 1 && enemyUnoTriggered)
         {
             Debug.Log("✅ Enemy no longer at UNO. Stopping sound.");
-            onEnemyUnoStop.Invoke(); // 🔹 Stop looping sound
+            onEnemyUnoStop.Invoke();
             enemyUnoTriggered = false;
         }
+    }
+private void CheckForSixtyNine(List<Transform> cards)
+{
+    if (cards.Count < 2) return; // ✅ Need at least 2 cards to check
+
+    for (int i = 0; i < cards.Count - 1; i++) // ✅ Check only adjacent pairs
+    {
+        int leftCardValue = GetCardValue(cards[i]);
+        int rightCardValue = GetCardValue(cards[i + 1]);
+
+        if (leftCardValue == 6 && rightCardValue == 9)
+        {
+            if (!sixtyNineTriggered) // ✅ Only trigger once
+            {
+                Debug.Log("🎉 NICE! 69 DETECTED!");
+                onSixtyNineDetected.Invoke();
+                sixtyNineTriggered = true;
+            }
+            return;
+        }
+    }
+
+    // ✅ Reset if "69" no longer exists
+    sixtyNineTriggered = false;
+}
+
+
+    private int GetCardValue(Transform card)
+    {
+        IDContainerBehaviour idContainer = card.GetComponent<IDContainerBehaviour>();
+        if (idContainer != null && idContainer.idObj != null)
+        {
+            if (int.TryParse(idContainer.idObj.name.Replace("ID_", ""), out int value))
+            {
+                return value;
+            }
+        }
+        return -1;
     }
 }

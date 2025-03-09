@@ -1,10 +1,14 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Events; // ✅ Required for Unity Events
 
 public class ShakeDiceManager : MonoBehaviour
 {
     public ShakeToRoll[] dice; // ✅ Assign Shake Dice in the Inspector
     private int latestDiceSum = 0;
+
+    [Header("Doubles Event")]
+    public UnityEvent onDoublesRolled; // ✅ Event triggered when doubles are rolled
 
     void Update()
     {
@@ -16,8 +20,6 @@ public class ShakeDiceManager : MonoBehaviour
 
     void TryRollDice()
     {
-        
-
         foreach (ShakeToRoll die in dice)
         {
             die.GetComponent<DiceFaceDetector>().hasStoppedRolling = false; // ✅ Reset rolling status
@@ -45,26 +47,35 @@ public class ShakeDiceManager : MonoBehaviour
         }
 
         int totalSum = 0;
-        foreach (ShakeToRoll die in dice)
-        {
-            totalSum += die.GetComponent<DiceFaceDetector>().GetFaceUpValue();
-        }
+        int dice1Value = dice[0].GetComponent<DiceFaceDetector>().GetFaceUpValue();
+        int dice2Value = dice[1].GetComponent<DiceFaceDetector>().GetFaceUpValue();
 
+        totalSum = dice1Value + dice2Value;
         latestDiceSum = totalSum;
+
         Debug.Log("🌀 Shake Dice Final Sum: " + latestDiceSum);
+
+        // ✅ Check if doubles were rolled
+        if (DidRollDoubles(dice1Value, dice2Value))
+        {
+            Debug.Log("🎉 DOUBLES ROLLED!");
+            onDoublesRolled.Invoke(); // ✅ Trigger the event
+        }
     }
 
-public void ResetDiceSum()
-{
-    latestDiceSum = 0;
-    Debug.Log("🎲 Dice sum manually reset.");
-}
-
+    public void ResetDiceSum()
+    {
+        latestDiceSum = 0;
+        Debug.Log("🎲 Dice sum manually reset.");
+    }
 
     public int GetLatestDiceSum()
-{
-    return latestDiceSum;
-}
+    {
+        return latestDiceSum;
+    }
 
+    private bool DidRollDoubles(int value1, int value2)
+    {
+        return value1 == value2;
+    }
 }
-
