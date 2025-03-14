@@ -7,6 +7,8 @@ public class ShakeDiceManager : MonoBehaviour
     public ShakeToRoll[] dice; // ✅ Assign Shake Dice in the Inspector
     private int latestDiceSum = 0;
 
+    public DoubleRollMeter doubleRollMeter; // ✅ Reference to the meter
+
     [Header("Doubles Event")]
     public UnityEvent onDoublesRolled; // ✅ Event triggered when doubles are rolled
 
@@ -78,4 +80,14 @@ public class ShakeDiceManager : MonoBehaviour
     {
         return value1 == value2;
     }
+    private void CheckForDoubles(int dice1, int dice2)
+{
+    if (dice1 == dice2)
+    {
+        Debug.Log("🎉 Doubles Rolled! Increasing Meter.");
+        doubleRollMeter.IncreaseMeter();
+    }
+}
+
+    
 }

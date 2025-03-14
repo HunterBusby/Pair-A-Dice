@@ -32,4 +32,5 @@ public class IntData : ScriptableObject
     {
         value += num;
     }
+    
 }
