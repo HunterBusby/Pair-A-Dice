@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayCard (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 97a088067cd3fc74ebb5978dc6b51932, type: 3}
+      propertyPath: m_TagString
+      value: Card
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104,18 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardRenderer: {fileID: 5393676525365022318}
-  debugColors:
-  - {r: 1, g: 1, b: 1, a: 0}
-  - {r: 1, g: 0, b: 0.14841366, a: 0}
-  - {r: 1, g: 0.6897315, b: 0, a: 0}
-  - {r: 1, g: 0.9990684, b: 0, a: 0}
-  - {r: 0.5619831, g: 1, b: 0, a: 0}
-  - {r: 0, g: 0.6226415, b: 0.07011513, a: 0}
-  - {r: 0, g: 1, b: 0.79330516, a: 0}
-  - {r: 0.026268005, g: 0, b: 1, a: 0}
-  - {r: 0.513772, g: 0, b: 1, a: 0}
-  - {r: 1, g: 0, b: 0.96040726, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
   idObj: {fileID: 11400000, guid: 08a1ae82cefd0f242ba7b07291317ddc, type: 2}
 --- !u!65 &2762605145435358312
 BoxCollider:
@@ -160,6 +152,7 @@ MonoBehaviour:
   noMatchDelayedEvent:
     m_PersistentCalls:
       m_Calls: []
+  isPendingMove: 0
 --- !u!114 &-1086799633686397528
 MonoBehaviour:
   m_ObjectHideFlags: 0

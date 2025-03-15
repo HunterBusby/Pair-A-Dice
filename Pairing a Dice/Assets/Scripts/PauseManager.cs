@@ -5,6 +5,8 @@ public class PauseManager : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject exitConfirmationUI; // Assign in Inspector
+    public GameObject settingsMenuUI; // Assign in Inspector
 
     // Public UnityEvent to trigger when pausing/unpausing
     public UnityEvent<bool> OnPauseStateON;
@@ -14,10 +16,26 @@ public class PauseManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
+            if (exitConfirmationUI.activeSelf) 
+            {
+                // Close exit confirmation instead of resuming
+                exitConfirmationUI.SetActive(false);
+                pauseMenuUI.SetActive(true); // Bring back main pause menu
+            }
+            else if (settingsMenuUI.activeSelf)
+            {
+                // Close settings menu instead of resuming
+                settingsMenuUI.SetActive(false);
+                pauseMenuUI.SetActive(true);
+            }
+            else if (isPaused)
+            {
                 ResumeGame();
+            }
             else
+            {
                 PauseGame();
+            }
         }
     }
 
@@ -36,21 +54,19 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         pauseMenuUI.SetActive(false);
+        exitConfirmationUI.SetActive(false); // Ensure exit menu closes
+        settingsMenuUI.SetActive(false); // Ensure settings menu closes
         
         Debug.Log("Game Resumed - Event Triggered");
         OnPauseStateOFF.Invoke(true); // Trigger event for resume
     }
-public void ExitGame()
-{
-    Debug.Log("Quitting Game..."); // Logs when quitting (for testing)
-    Application.Quit(); // Closes the game
+    public void ExitGame()
+    {
+        Debug.Log("Quitting Game...");
+        Application.Quit();
 
-    // If testing in the Unity Editor:
-    #if UNITY_EDITOR
-    UnityEditor.EditorApplication.isPlaying = false;
-    #endif
-}
-
-
-    
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+    }
 }
