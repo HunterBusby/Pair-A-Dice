@@ -1,0 +1,8 @@
+{
+    "entries": [
+      { "key": "intro_1", "value": "Bienvenue à Pair-A-Dice!" },
+      { "key": "intro_2", "value": "Cliquez sur les dés pour commencer." },
+      { "key": "intro_3", "value": "Tu oses défier le destin ?" },
+      { "key": "introLong", "value": "Ceci est un exemple d'une ligne de dialogue qui est très longue. Nous voulons voir combien de la dialogue prendra l'écran ainsi que la patience du joueur. Vont-ils vraiment cliquer sur le bouton Suivant alors qu'ils pourraient plutôt prendre le temps de regarder toute la ligne ? Quelle est la vitesse de la frappe ? Si vous n'avez pas déjà sauté cette partie, je suis surpris. En fait, ça doit probablement sortir de l'écran à ce stade." }
+    ]
+}

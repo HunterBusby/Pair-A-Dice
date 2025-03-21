@@ -1,0 +1,8 @@
+{
+    "entries": [
+      { "key": "intro_1", "value": "Welcome to Pair-A-Dice!" },
+      { "key": "intro_2", "value": "Click the dice to begin." },
+      { "key": "intro_3", "value": "You dare challenge fate?" },
+      { "key": "introLong", "value": "This is an example of a line of dialogue that is very long. We want to see how much of the dialogue will take up the screen as well as how patient the player is. will they really click the Next button when they could instead take the time to watch the entire line go out? How fast does the typing work? If you haven't already skipped this bit I'm surprised. Heck, it's probably moving off the screen at this point." }
+    ]
+  }

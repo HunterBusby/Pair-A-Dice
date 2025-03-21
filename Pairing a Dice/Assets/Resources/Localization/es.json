@@ -1,0 +1,8 @@
+{
+    "entries": [
+      { "key": "intro_1", "value": "Bienvenido a Pair-A-Dice!" },
+      { "key": "intro_2", "value": "Haz clic en los dados para comenzar." },
+      { "key": "intro_3", "value": "¿Te atreves a desafiar al destino?" },
+      { "key": "introLong", "value": "Este es un ejemplo de una línea de diálogo que es muy larga. Queremos ver cuánto de la conversación ocupará la pantalla, así como cuán paciente es el jugador. ¿Realmente harán clic en el botón Siguiente cuando podrían tomarse el tiempo para ver toda la línea? ¿Qué tan rápido funciona la escritura? Si no has saltado esta parte ya, me sorprende. De hecho, probablemente ya se esté moviendo fuera de la pantalla en este momento." }
+    ]
+}
