@@ -48,57 +48,64 @@ public class CardSpawner : MonoBehaviour
     }
 
     private void SpawnSideCards(List<int> cardValues, Transform side, bool isPlayer)
+{
+    List<Transform> spawnedCards = new List<Transform>();
+
+    for (int i = 0; i < cardValues.Count; i++)
     {
-        List<Transform> spawnedCards = new List<Transform>();
+        Vector3 cardPosition = cardManager.GetCardPosition(side, i);
+        GameObject card = Instantiate(cardPrefab, cardPosition, Quaternion.identity);
+        card.transform.SetParent(side, false);
 
-        for (int i = 0; i < cardValues.Count; i++)
+        int cardValue = cardValues[i]; // ✅ Get the value for this card
+
+        IDContainerBehaviour idContainer = card.GetComponent<IDContainerBehaviour>();
+        CardBehaviour cardBehaviour = card.GetComponent<CardBehaviour>(); // ✅ Get the CardBehaviour
+        if (idContainer != null)
         {
-            Vector3 cardPosition = cardManager.GetCardPosition(side, i);
-            GameObject card = Instantiate(cardPrefab, cardPosition, Quaternion.identity);
-            card.transform.SetParent(side, false);
+            idContainer.idObj = Resources.Load<ID>("CardNumberID/ID_" + cardValue);
+        }
 
-            int cardValue = cardValues[i];
+        if (cardBehaviour != null)
+        {
+            cardBehaviour.cardValue = cardValue; // ✅ Set the card's value to match the assigned ID
+        }
 
-            IDContainerBehaviour idContainer = card.GetComponent<IDContainerBehaviour>();
-            if (idContainer != null)
-            {
-                idContainer.idObj = Resources.Load<ID>("CardNumberID/ID_" + cardValue);
-            }
+        MatchBehaviour matchBehaviour = card.GetComponent<MatchBehaviour>();
+        if (matchBehaviour != null && idContainer != null)
+        {
+            matchBehaviour.idObj = idContainer.idObj;
+        }
 
-            MatchBehaviour matchBehaviour = card.GetComponent<MatchBehaviour>();
-            if (matchBehaviour != null && idContainer != null)
-            {
-                matchBehaviour.idObj = idContainer.idObj;
-            }
-
-            CardColorDebug colorDebug = card.GetComponent<CardColorDebug>();
-            if (colorDebug != null && idContainer != null)
-            {
-                colorDebug.idObj = idContainer.idObj;
-                colorDebug.ApplyMaterialBasedOnID();
-            }
-
-            if (isPlayer)
-            {
-                cardManager.playerCards.Add(card.transform);
-            }
-            else
-            {
-                cardManager.enemyCards.Add(card.transform);
-            }
-
-            spawnedCards.Add(card.transform);
+        CardColorDebug colorDebug = card.GetComponent<CardColorDebug>();
+        if (colorDebug != null && idContainer != null)
+        {
+            colorDebug.idObj = idContainer.idObj;
+            colorDebug.ApplyMaterialBasedOnID();
         }
 
         if (isPlayer)
         {
-            cardManager.RepositionCards(cardManager.playerCards, playerSide);
+            cardManager.playerCards.Add(card.transform);
         }
         else
         {
-            cardManager.RepositionCards(cardManager.enemyCards, enemySide);
+            cardManager.enemyCards.Add(card.transform);
         }
+
+        spawnedCards.Add(card.transform);
     }
+
+    if (isPlayer)
+    {
+        cardManager.RepositionCards(cardManager.playerCards, playerSide);
+    }
+    else
+    {
+        cardManager.RepositionCards(cardManager.enemyCards, enemySide);
+    }
+}
+
 
     private List<int> GenerateRandomCards()
     {

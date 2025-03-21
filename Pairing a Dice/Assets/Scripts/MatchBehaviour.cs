@@ -9,6 +9,7 @@ public class MatchBehaviour : MonoBehaviour
     
     private object diceManager; // ✅ Can hold either DiceManager or ShakeDiceManager
     private CardManager cardManager;
+    private IDContainerBehaviour idContainer; // ✅ Reference to the updated ID system
 
     void Start()
     {
@@ -22,65 +23,73 @@ public class MatchBehaviour : MonoBehaviour
         }
 
         cardManager = FindFirstObjectByType<CardManager>();
+        idContainer = GetComponent<IDContainerBehaviour>(); // ✅ Get ID reference
 
         if (diceManager == null) Debug.LogError("❌ No valid Dice Manager found!");
         if (cardManager == null) Debug.LogError("❌ CardManager not found in scene!");
+        if (idContainer == null) Debug.LogError("❌ IDContainerBehaviour missing on " + gameObject.name);
     }
 
- public bool isPendingMove = false; // ✅ Tracks if card should move after repositioning
+    public bool isPendingMove = false; // ✅ Tracks if card should move after repositioning
 
-void OnMouseDown()
-{
-    if (!cardManager.playerCards.Contains(transform))
+    void OnMouseDown()
     {
-        Debug.Log("🚫 You cannot activate this card! It is not on your side.");
-        return; // ✅ Prevents interaction if the card is NOT on the player's side
-    }
-
-    int latestRoll = GetLatestDiceSum(); // ✅ Get dice sum from either dice manager
-
-    if (int.TryParse(idObj.name.Replace("ID_", ""), out int cardValue))
-    {
-        if (cardValue == latestRoll)
+        if (!cardManager.playerCards.Contains(transform))
         {
-            matchEvent.Invoke();
-            cardManager.TransferCard(transform, true);
-            Debug.Log(gameObject.name + " matched and transferred!");
+            Debug.Log("🚫 You cannot activate this card! It is not on your side.");
+            return; // ✅ Prevents interaction if the card is NOT on the player's side
         }
-        else
+
+        int latestRoll = GetLatestDiceSum(); // ✅ Get dice sum from either dice manager
+        UpdateID(); // ✅ Ensure we check the latest ID before comparing
+
+        if (int.TryParse(idObj.name.Replace("ID_", ""), out int cardValue))
         {
-            Debug.Log(gameObject.name + " does NOT match!");
+            if (cardValue == latestRoll)
+            {
+                matchEvent.Invoke();
+                cardManager.TransferCard(transform, true);
+                Debug.Log(gameObject.name + " matched and transferred!");
+            }
+            else
+            {
+                Debug.Log(gameObject.name + " does NOT match!");
+            }
         }
     }
-}
 
-
-public void ExecuteCardTransfer()
-{
-    isPendingMove = false; // ✅ Move is no longer pending
-    matchEvent.Invoke();
-    cardManager.TransferCard(transform, true);
-    Debug.Log(gameObject.name + " matched and transferred!");
-
-    // ✅ Reset the dice sum AFTER a successful move
-    ShakeDiceManager shakeDiceManager = FindFirstObjectByType<ShakeDiceManager>();
-    if (shakeDiceManager != null)
+    public void UpdateID()
     {
-        shakeDiceManager.ResetDiceSum();
-        Debug.Log("🎲 Dice sum reset after successful match!");
+        if (idContainer != null && idContainer.idObj != null)
+        {
+            idObj = idContainer.idObj; // ✅ Update the match behavior's ID
+            Debug.Log($"🔄 {gameObject.name} MatchBehaviour ID updated to {idObj.name}");
+        }
     }
-}
 
-
-// ✅ Function to reset dice sum after a successful match
-private void ResetDiceSum()
-{
-    if (diceManager is ShakeDiceManager sdm)
+    public void ExecuteCardTransfer()
     {
-        sdm.ResetDiceSum(); // ✅ Call a reset function inside ShakeDiceManager
-    }
-}
+        isPendingMove = false; // ✅ Move is no longer pending
+        matchEvent.Invoke();
+        cardManager.TransferCard(transform, true);
+        Debug.Log(gameObject.name + " matched and transferred!");
 
+        // ✅ Reset the dice sum AFTER a successful move
+        ShakeDiceManager shakeDiceManager = FindFirstObjectByType<ShakeDiceManager>();
+        if (shakeDiceManager != null)
+        {
+            shakeDiceManager.ResetDiceSum();
+            Debug.Log("🎲 Dice sum reset after successful match!");
+        }
+    }
+
+    private void ResetDiceSum()
+    {
+        if (diceManager is ShakeDiceManager sdm)
+        {
+            sdm.ResetDiceSum(); // ✅ Call a reset function inside ShakeDiceManager
+        }
+    }
 
     private int GetLatestDiceSum()
     {

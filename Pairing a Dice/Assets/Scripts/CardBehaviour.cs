@@ -19,23 +19,29 @@ public class CardBehaviour : MonoBehaviour
         SetArrowsActive(false); // ✅ Ensure they start hidden
     }
 
-    public void ModifyCardValue(int amount)
+public void ModifyCardValue(int amount)
 {
-    Debug.Log($"🔄 Before Change: {gameObject.name} cardValue = {cardValue} (Adding {amount})");
-
-    int newValue = cardValue + amount; // ✅ Should increase/decrease correctly
+    int newValue = cardValue + amount;
 
     // ✅ Keep values within valid range (adjustable if needed)
-    if (newValue < 2) newValue = 2; 
+    if (newValue < 1) newValue = 1; 
     if (newValue > 12) newValue = 12;
 
     cardValue = newValue;
-    Debug.Log($"✅ After Change: {gameObject.name} cardValue = {cardValue}");
+    Debug.Log($"🔄 Card {gameObject.name} changed to {cardValue}!");
 
     UpdateCardID();  // ✅ Update the ID system
     UpdateCardVisual(); // ✅ Update text on the card
     UpdateCardMaterial(); // ✅ Apply new material
+
+    // ✅ Ensure MatchBehaviour also updates its ID
+    MatchBehaviour matchBehaviour = GetComponent<MatchBehaviour>();
+    if (matchBehaviour != null)
+    {
+        matchBehaviour.UpdateID();
+    }
 }
+
 
 
     private void UpdateCardID()
