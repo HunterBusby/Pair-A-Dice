@@ -5,6 +5,11 @@ using System.Collections.Generic;
 
 public class CardManager : MonoBehaviour
 {
+
+    [Header("Robot Arm Visual Sync")]
+public Transform followProxy; // Assign this in Inspector
+public RobotArmController robotArm; // Assign this too
+
     public List<Transform> playerCards = new List<Transform>();
     public List<Transform> enemyCards = new List<Transform>();
     public Transform playerSide;
@@ -39,13 +44,16 @@ public class CardManager : MonoBehaviour
         return side.position + new Vector3(column * spacing, 0, -row * spacing);
     }
 
-    public void TransferCard(Transform card, bool toEnemy)
+    public void TransferCard(Transform card, bool toEnemy, bool triggerRobotArm = false)
+
 {
     if (isMoving.ContainsKey(card) && isMoving[card])
     {
         Debug.Log("🚫 Cannot move card: " + card.name + " is still animating!");
         return;
     }
+    isMoving[card] = true; // Set immediately to ensure accurate proxy behavior
+
 
     Transform targetSide = toEnemy ? enemySide : playerSide;
     List<Transform> targetList = toEnemy ? enemyCards : playerCards;
@@ -54,12 +62,28 @@ public class CardManager : MonoBehaviour
     enemyCards.Remove(card);
     targetList.Add(card);
 
+    // 🎵 Update music based on current player card count
+    BossMusicManager musicManager = FindFirstObjectByType<BossMusicManager>();
+    if (musicManager != null)
+    {
+        musicManager.OnCardCountChanged(playerCards.Count);
+    }
+
+    if (triggerRobotArm && robotArm != null && followProxy != null)
+{
+    followProxy.position = card.position;
+    StartCoroutine(FollowProxyDuringMove(card));
+}
+
+
+    // 🟢 Now start moving the actual card
     StartCoroutine(MoveCard(card, targetSide, targetList));
 
     CheckUnoCondition();
     CheckWinCondition();
-    CheckForSixtyNine(targetList); // ✅ Check for 69 every transfer
+    CheckForSixtyNine(targetList);
 }
+
 
 
     private IEnumerator MoveCard(Transform card, Transform targetSide, List<Transform> targetList)
@@ -205,4 +229,37 @@ private void CheckForSixtyNine(List<Transform> cards)
         }
         return -1;
     }
+
+    public Vector3 GetPlayerSideDropPosition()
+{
+    // Return the position where cards land on the player side
+    // This can be the center point or average position of player cards
+    if (playerCards.Count > 0)
+        return playerCards[playerCards.Count - 1].position;
+    else
+        return playerSide.position + Vector3.right * 2f; // Fallback position
+}
+
+public bool IsCardMoving(Transform card)
+{
+    return isMoving.ContainsKey(card) && isMoving[card];
+}
+
+private IEnumerator FollowProxyDuringMove(Transform card)
+{
+    if (robotArm != null && followProxy != null)
+        robotArm.FollowProxy(followProxy);
+
+    while (isMoving.ContainsKey(card) && isMoving[card])
+    {
+        followProxy.position = card.position + Vector3.up * 0.2f; // slight lift
+        yield return null;
+    }
+
+    yield return new WaitForSeconds(0.3f);
+    robotArm.ReturnToRest();
+}
+
+
+
 }

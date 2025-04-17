@@ -11,6 +11,8 @@ public class AIOpponent : MonoBehaviour
     public DiceFaceDetector aiDice1; // First AI dice
     public DiceFaceDetector aiDice2; // Second AI dice
     public CardManager cardManager; // Reference to card management system
+    public RobotArmController robotArmController; // Reference to robot arm controller
+
 
     private int lastDiceSum;
 
@@ -102,14 +104,16 @@ public class AIOpponent : MonoBehaviour
     }
 
     private IEnumerator ActivateCard(MatchBehaviour card)
-    {
-        card.matchEvent.Invoke(); // ✅ Trigger same event as player
-        yield return new WaitForSeconds(0.1f); // ✅ Allow Unity event to process
+{
+    card.matchEvent.Invoke(); // Card moves using its own animation
+    yield return new WaitForSeconds(1f);  // Allow time for card movement before arm resets (optional fallback)
 
-        // ✅ Manually move the card in case matchEvent fails
-        Debug.Log("AI manually calling TransferCard for: " + card.idObj.name);
-        cardManager.TransferCard(card.transform, false); // ✅ Move to player's side
-    }
+    cardManager.TransferCard(card.transform, false, true); // ✅ tells the arm to activate
+
+}
+
+
+
 
     private bool ShouldMakeMistake()
     {

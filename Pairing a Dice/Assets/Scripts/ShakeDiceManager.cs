@@ -53,7 +53,7 @@ public class ShakeDiceManager : MonoBehaviour
         totalSum = dice1Value + dice2Value;
         latestDiceSum = totalSum;
 
-        Debug.Log("🌀 Shake Dice Final Sum: " + latestDiceSum);
+        Debug.Log("Dice Final Sum: " + latestDiceSum);
 
         // ✅ Check if doubles were rolled
         if (DidRollDoubles(dice1Value, dice2Value))
