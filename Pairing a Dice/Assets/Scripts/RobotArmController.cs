@@ -9,9 +9,11 @@ public class RobotArmController : MonoBehaviour
 
     public CardManager cardManager;  // Needed to check if the card is still moving
 
-    public float moveSpeed = 6f; // Higher speed to keep up with card
-
     private Coroutine trackingRoutine;
+
+     [Header("Speeds")]
+public float followSpeed = 100f;     // For tracking the moving card
+public float grabSpeed = 6f;   
 
   public void FollowProxy(Transform followTarget)
 {
@@ -25,7 +27,8 @@ private IEnumerator FollowTransform(Transform target)
 {
     while (target != null)
     {
-        ikTarget.position = Vector3.Lerp(ikTarget.position, target.position, moveSpeed * Time.deltaTime);
+        ikTarget.position = Vector3.Lerp(ikTarget.position, target.position, followSpeed * Time.deltaTime);
+
         yield return null;
     }
 
@@ -50,7 +53,7 @@ private IEnumerator FollowTransform(Transform target)
     // Follow the card while CardManager says it's still moving
     while (card != null && cardManager.IsCardMoving(card))
     {
-        ikTarget.position = Vector3.Lerp(ikTarget.position, card.position, moveSpeed * Time.deltaTime);
+        ikTarget.position = Vector3.Lerp(ikTarget.position, card.position, grabSpeed * Time.deltaTime);
         yield return null;
     }
 
@@ -68,8 +71,29 @@ private IEnumerator FollowTransform(Transform target)
     {
         while (Vector3.Distance(ikTarget.position, target) > 0.05f)
         {
-            ikTarget.position = Vector3.Lerp(ikTarget.position, target, moveSpeed * Time.deltaTime);
+            ikTarget.position = Vector3.Lerp(ikTarget.position, target, grabSpeed * Time.deltaTime);
             yield return null;
         }
     }
+
+    public IEnumerator MoveProxyToHome(Transform proxy)
+{
+    if (restPosition == null || proxy == null)
+        yield break;
+
+    Vector3 start = proxy.position;
+    Vector3 target = restPosition.position;
+    float duration = 0.4f;
+    float elapsed = 0f;
+
+    while (elapsed < duration)
+    {
+        elapsed += Time.deltaTime;
+        proxy.position = Vector3.Lerp(start, target, elapsed / duration);
+        yield return null;
+    }
+
+    proxy.position = target;
+}
+
 }

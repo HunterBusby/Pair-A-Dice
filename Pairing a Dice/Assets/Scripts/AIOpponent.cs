@@ -103,16 +103,52 @@ public class AIOpponent : MonoBehaviour
         }
     }
 
-    private IEnumerator ActivateCard(MatchBehaviour card)
+ private IEnumerator SmoothMoveProxyToCard(Transform card)
 {
-    card.matchEvent.Invoke(); // Card moves using its own animation
-    yield return new WaitForSeconds(1f);  // Allow time for card movement before arm resets (optional fallback)
+    float duration = 0.4f; // How long the proxy should take to reach the card
+    float elapsed = 0f;
 
-    cardManager.TransferCard(card.transform, false, true); // ✅ tells the arm to activate
+    Vector3 start = cardManager.followProxy.position;
+    Vector3 target = card.position + Vector3.up * 0.2f; // Hover slightly above
 
+    while (elapsed < duration)
+    {
+        elapsed += Time.deltaTime;
+        cardManager.followProxy.position = Vector3.Lerp(start, target, elapsed / duration);
+        yield return null;
+    }
+
+    cardManager.followProxy.position = target;
 }
 
 
+
+
+    private IEnumerator ActivateCard(MatchBehaviour card)
+{
+    // Step 1: Move proxy to card smoothly
+    if (cardManager.followProxy != null)
+    {
+        Vector3 startPosition = cardManager.followProxy.position;
+        Vector3 targetPosition = card.transform.position + Vector3.up * 0.2f;
+        cardManager.followProxy.position = startPosition;
+
+        if (robotArmController != null)
+            robotArmController.FollowProxy(cardManager.followProxy);
+
+        yield return StartCoroutine(SmoothMoveProxyToCard(card.transform));
+    }
+
+    // Step 2: Trigger the card to animate toward the player
+    card.matchEvent.Invoke();
+    yield return new WaitForSeconds(0.1f);
+
+    // Step 3: Mark card as moving + begin animation
+    cardManager.TransferCard(card.transform, false);
+
+    // ✅ Step 4: Now that the card is marked "moving", track it
+    StartCoroutine(cardManager.FollowProxyDuringMove(card.transform));
+}
 
 
     private bool ShouldMakeMistake()
@@ -140,4 +176,9 @@ public class AIOpponent : MonoBehaviour
         }
         return null; // No match found
     }
+
+
+
+   
+
 }

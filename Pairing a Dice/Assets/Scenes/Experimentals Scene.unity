@@ -1224,6 +1224,7 @@ Transform:
   m_Children:
   - {fileID: 1097363575}
   - {fileID: 1833429550}
+  - {fileID: 1268493666}
   - {fileID: 1131949981}
   m_Father: {fileID: 1129974499}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3084,15 +3085,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7b1b30228ed1ac945b09c21690810793, type: 3}
       propertyPath: m_LocalScale.x
-      value: 9.946388
+      value: 13.463431
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1b30228ed1ac945b09c21690810793, type: 3}
       propertyPath: m_LocalScale.y
-      value: 9.946388
+      value: 13.463431
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1b30228ed1ac945b09c21690810793, type: 3}
       propertyPath: m_LocalScale.z
-      value: 9.946388
+      value: 13.463431
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1b30228ed1ac945b09c21690810793, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3100,11 +3101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1b30228ed1ac945b09c21690810793, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.27
+      value: -1.45
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1b30228ed1ac945b09c21690810793, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.04
+      value: -0.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1b30228ed1ac945b09c21690810793, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3140,7 +3141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7b1b30228ed1ac945b09c21690810793, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3534,27 +3535,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.0835
+      value: 11.194375
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.0835
+      value: 11.194375
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5.0835
+      value: 11.194375
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.2
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07
+      value: -1.4745
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.44
+      value: -1.43
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3590,7 +3591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3605,6 +3606,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1129974500}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1129974502}
   m_SourcePrefab: {fileID: 100100000, guid: 6b3847e07c6c9694ea185a0796685777, type: 3}
 --- !u!1 &731872203
 GameObject:
@@ -5120,7 +5124,7 @@ Transform:
   m_GameObject: {fileID: 997465440}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.36, y: 0, z: -3.66}
+  m_LocalPosition: {x: -2.36, y: 0, z: -4.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5791,7 +5795,7 @@ Transform:
   m_GameObject: {fileID: 1097363574}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.18, y: 1.83, z: -4.94}
+  m_LocalPosition: {x: -2.856, y: 1.297, z: -3.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5918,6 +5922,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1129974502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129974498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed353397c36e994584e30bbe5822032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ikTarget: {fileID: 1097363575}
+  restPosition: {fileID: 1268493666}
+  cardManager: {fileID: 1495386829}
+  followSpeed: 100
+  grabSpeed: 4
 --- !u!1 &1131949980
 GameObject:
   m_ObjectHideFlags: 0
@@ -6182,7 +6203,8 @@ MonoBehaviour:
   ikTarget: {fileID: 858149996}
   restPosition: {fileID: 1268493666}
   cardManager: {fileID: 1495386829}
-  moveSpeed: 10
+  followSpeed: 100
+  grabSpeed: 6
 --- !u!1 &1147711629
 GameObject:
   m_ObjectHideFlags: 0
@@ -6212,12 +6234,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e102576501c3b4a84ef38f81d03435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollInterval: 2
+  rollInterval: 3
   mistakeChance: 0
   aiDice1: {fileID: 1501515290}
   aiDice2: {fileID: 594745678}
   cardManager: {fileID: 1495386829}
-  robotArmController: {fileID: 1141724313}
+  robotArmController: {fileID: 1129974502}
 --- !u!4 &1147711631
 Transform:
   m_ObjectHideFlags: 0
@@ -6419,7 +6441,7 @@ Transform:
   m_GameObject: {fileID: 1206562716}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.233412, y: 2.0825353, z: -4.0013504}
+  m_LocalPosition: {x: -0.45, y: 3.77, z: -7.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6719,11 +6741,11 @@ Transform:
   m_GameObject: {fileID: 1268493665}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 3.51, z: -4.79}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.856, y: 1.297, z: -3.77}
+  m_LocalScale: {x: 0.6146861, y: 0.6146861, z: 0.6146861}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1979172560}
+  m_Father: {fileID: 221871462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1268617626
 GameObject:
@@ -7103,7 +7125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followProxy: {fileID: 1206562717}
-  robotArm: {fileID: 1141724313}
+  robotArm: {fileID: 1129974502}
   playerCards: []
   enemyCards: []
   playerSide: {fileID: 1890985884}
@@ -8716,7 +8738,7 @@ Transform:
   m_GameObject: {fileID: 1833429549}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.98, y: 1.36, z: -0.96}
+  m_LocalPosition: {x: -2.963, y: 2.456, z: -0.506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9337,8 +9359,8 @@ MonoBehaviour:
   playerSide: {fileID: 1890985884}
   enemySide: {fileID: 997465441}
   predefinedPlayerCards: 07000000070000000700000007000000
-  predefinedEnemyCards: 07000000070000000700000007000000
-  useRandomCards: 1
+  predefinedEnemyCards: 070000000600000008000000090000000a000000050000000400000003000000
+  useRandomCards: 0
   minCardValue: 2
   maxCardValue: 12
   numCardsPerSide: 4
@@ -9402,7 +9424,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 858149996}
-  - {fileID: 1268493666}
   - {fileID: 1760983726}
   - {fileID: 1425914719}
   m_Father: {fileID: 1141724312}

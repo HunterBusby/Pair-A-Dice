@@ -69,11 +69,7 @@ public RobotArmController robotArm; // Assign this too
         musicManager.OnCardCountChanged(playerCards.Count);
     }
 
-    if (triggerRobotArm && robotArm != null && followProxy != null)
-{
-    followProxy.position = card.position;
-    StartCoroutine(FollowProxyDuringMove(card));
-}
+    
 
 
     // 🟢 Now start moving the actual card
@@ -245,7 +241,7 @@ public bool IsCardMoving(Transform card)
     return isMoving.ContainsKey(card) && isMoving[card];
 }
 
-private IEnumerator FollowProxyDuringMove(Transform card)
+public IEnumerator FollowProxyDuringMove(Transform card)
 {
     if (robotArm != null && followProxy != null)
         robotArm.FollowProxy(followProxy);
@@ -256,8 +252,9 @@ private IEnumerator FollowProxyDuringMove(Transform card)
         yield return null;
     }
 
-    yield return new WaitForSeconds(0.3f);
-    robotArm.ReturnToRest();
+        yield return new WaitForSeconds(0.3f);
+    StartCoroutine(robotArm.MoveProxyToHome(followProxy)); // ✅ New clean method call
+
 }
 
 
