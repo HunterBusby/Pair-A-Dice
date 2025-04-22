@@ -5,14 +5,12 @@ public class AIOpponent : MonoBehaviour
 {
     [Header("AI Settings")]
     public float rollInterval = 3.0f; // Time between AI rolls
-    [Range(0f, 1f)] public float mistakeChance = 0.2f; // AI error rate (0 = perfect, 1 = always fails)
+    [Range(0f, 1f)] public float mistakeChance = 0.2f; // AI error rate
 
     [Header("References")]
-    public DiceFaceDetector aiDice1; // First AI dice
-    public DiceFaceDetector aiDice2; // Second AI dice
-    public CardManager cardManager; // Reference to card management system
-    public RobotArmController robotArmController; // Reference to robot arm controller
-
+    public DiceFaceDetector aiDice1; // First AI die
+    public DiceFaceDetector aiDice2; // Second AI die
+    public CardManager cardManager;  // Manages cards in the scene
 
     private int lastDiceSum;
 
@@ -25,73 +23,70 @@ public class AIOpponent : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(rollInterval); // Wait before rolling again
+            yield return new WaitForSeconds(rollInterval);
 
-            RollBothDice(); // AI rolls dice
-            yield return new WaitUntil(() => aiDice1.hasStoppedRolling && aiDice2.hasStoppedRolling); // Wait for dice to stop
+            RollBothDice();
+            yield return new WaitUntil(() => aiDice1.hasStoppedRolling && aiDice2.hasStoppedRolling);
 
             lastDiceSum = GetDiceSum();
             Debug.Log("🎯 AI Dice Roll Sum: " + lastDiceSum);
 
             if (ShouldMakeMistake())
             {
-                Debug.Log("AI made a mistake and ignored a match.");
-                continue; // Skip this turn due to mistake
+                Debug.Log("😵 AI made a mistake and ignored a match.");
+                continue;
             }
 
-            AttemptMatch(); // Try to find and play a matching card
+            AttemptMatch();
         }
     }
 
     private void RollBothDice()
-{
-    Rigidbody rb1 = aiDice1.GetComponent<Rigidbody>();
-    Rigidbody rb2 = aiDice2.GetComponent<Rigidbody>();
-
-    if (rb1 != null && rb2 != null)
     {
-        // Reset velocity before applying new forces
-        rb1.linearVelocity = Vector3.zero;
-        rb1.angularVelocity = Vector3.zero;
-        rb2.linearVelocity = Vector3.zero;
-        rb2.angularVelocity = Vector3.zero;
+        Rigidbody rb1 = aiDice1.GetComponent<Rigidbody>();
+        Rigidbody rb2 = aiDice2.GetComponent<Rigidbody>();
 
-        // Randomized force directions
-        Vector3 forceDirection1 = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f)) * 8f;
-        Vector3 forceDirection2 = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f)) * 8f;
+        if (rb1 != null && rb2 != null)
+        {
+            rb1.linearVelocity = rb2.linearVelocity = Vector3.zero;
+            rb1.angularVelocity = rb2.angularVelocity = Vector3.zero;
 
-        // Randomized torque (spin)
-        Vector3 torque1 = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f)) * 10f;
-        Vector3 torque2 = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f)) * 10f;
+            rb1.AddForce(RandomDirection() * 8f, ForceMode.Impulse);
+            rb1.AddTorque(RandomTorque(), ForceMode.Impulse);
 
-        // Apply forces
-        rb1.AddForce(forceDirection1, ForceMode.Impulse);
-        rb1.AddTorque(torque1, ForceMode.Impulse);
-        rb2.AddForce(forceDirection2, ForceMode.Impulse);
-        rb2.AddTorque(torque2, ForceMode.Impulse);
+            rb2.AddForce(RandomDirection() * 8f, ForceMode.Impulse);
+            rb2.AddTorque(RandomTorque(), ForceMode.Impulse);
 
-        Debug.Log("🎲 AI rolled the dice!");
+            Debug.Log("🎲 AI rolled the dice!");
+        }
+        else
+        {
+            Debug.LogError("❌ One or both AI dice are missing Rigidbody components.");
+        }
     }
-    else
+
+    private Vector3 RandomDirection()
     {
-        Debug.LogError("One or both AI dice are missing a Rigidbody component!");
+        return new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f));
     }
-}
 
+    private Vector3 RandomTorque()
+    {
+        return new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f)) * 10f;
+    }
 
     private int GetDiceSum()
     {
-        int dice1Value = aiDice1.GetFaceUpValue();
-        int dice2Value = aiDice2.GetFaceUpValue();
-        int sum = dice1Value + dice2Value;
+        int v1 = aiDice1.GetFaceUpValue();
+        int v2 = aiDice2.GetFaceUpValue();
+        int sum = v1 + v2;
 
-        Debug.Log("📝 AI Dice Face Values: " + dice1Value + " + " + dice2Value + " = " + sum);
+        Debug.Log($"📝 AI Dice Values: {v1} + {v2} = {sum}");
         return sum;
     }
 
     private void AttemptMatch()
     {
-
         MatchBehaviour matchingCard = FindCardByValue(lastDiceSum);
         if (matchingCard != null)
         {
@@ -99,86 +94,46 @@ public class AIOpponent : MonoBehaviour
         }
         else
         {
-            Debug.Log("AI did NOT find a matching card for value: " + lastDiceSum);
+            Debug.Log($"❌ No matching card found for value {lastDiceSum}");
         }
     }
 
- private IEnumerator SmoothMoveProxyToCard(Transform card)
-{
-    float duration = 0.4f; // How long the proxy should take to reach the card
-    float elapsed = 0f;
-
-    Vector3 start = cardManager.followProxy.position;
-    Vector3 target = card.position + Vector3.up * 0.2f; // Hover slightly above
-
-    while (elapsed < duration)
-    {
-        elapsed += Time.deltaTime;
-        cardManager.followProxy.position = Vector3.Lerp(start, target, elapsed / duration);
-        yield return null;
-    }
-
-    cardManager.followProxy.position = target;
-}
-
-
-
-
     private IEnumerator ActivateCard(MatchBehaviour card)
 {
-    // Step 1: Move proxy to card smoothly
-    if (cardManager.followProxy != null)
-    {
-        Vector3 startPosition = cardManager.followProxy.position;
-        Vector3 targetPosition = card.transform.position + Vector3.up * 0.2f;
-        cardManager.followProxy.position = startPosition;
+    // 🔔 Fire visual responders (robot arm, etc.)
+    AIOpponentEvents.OnCardMatched?.Invoke(card.transform);
 
-        if (robotArmController != null)
-            robotArmController.FollowProxy(cardManager.followProxy);
+    // ⏱ Wait before letting the card animate
+    yield return new WaitForSeconds(0.35f); // <- tweak this
 
-        yield return StartCoroutine(SmoothMoveProxyToCard(card.transform));
-    }
-
-    // Step 2: Trigger the card to animate toward the player
+    // ✅ Trigger animation & transfer
     card.matchEvent.Invoke();
     yield return new WaitForSeconds(0.1f);
-
-    // Step 3: Mark card as moving + begin animation
     cardManager.TransferCard(card.transform, false);
-
-    // ✅ Step 4: Now that the card is marked "moving", track it
-    StartCoroutine(cardManager.FollowProxyDuringMove(card.transform));
 }
 
 
     private bool ShouldMakeMistake()
     {
-        return Random.value < mistakeChance; // Roll a random value, compare with mistake chance
+        return Random.value < mistakeChance;
     }
 
     private MatchBehaviour FindCardByValue(int value)
     {
-        foreach (Transform card in cardManager.enemyCards) // ✅ AI only searches its side
+        foreach (Transform card in cardManager.enemyCards)
         {
-            MatchBehaviour matchBehaviour = card.GetComponent<MatchBehaviour>();
-            IDContainerBehaviour idContainer = card.GetComponent<IDContainerBehaviour>();
+            MatchBehaviour mb = card.GetComponent<MatchBehaviour>();
+            IDContainerBehaviour id = card.GetComponent<IDContainerBehaviour>();
 
-            if (matchBehaviour != null && idContainer != null && idContainer.idObj != null)
+            if (mb != null && id != null && id.idObj != null)
             {
-                if (int.TryParse(idContainer.idObj.name.Replace("ID_", ""), out int cardID))
+                if (int.TryParse(id.idObj.name.Replace("ID_", ""), out int idValue) && idValue == value)
                 {
-                    if (cardID == value) // ✅ AI correctly identifies card using ID name
-                    {
-                        return matchBehaviour; // ✅ Return MatchBehaviour
-                    }
+                    return mb;
                 }
             }
         }
-        return null; // No match found
+
+        return null;
     }
-
-
-
-   
-
 }
