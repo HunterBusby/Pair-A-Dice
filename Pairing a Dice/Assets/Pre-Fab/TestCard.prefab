@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2303568704796701317}
   - component: {fileID: 5891491266588874423}
   - component: {fileID: 449898778343936416}
+  - component: {fileID: -4977945660506000868}
   m_Layer: 0
   m_Name: TestCard
   m_TagString: Card
@@ -196,6 +197,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2fe93354d6a724c9d023c2d8389c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4977945660506000868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3063343381937731517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4214a5170f0a8b42b50890b4632360d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0.15979885, g: 0.5943396, b: 0.26158735, a: 1}
+  idleGlowIntensity: 0
+  hoverGlowIntensity: 2
 --- !u!1 &8660564142107972777
 GameObject:
   m_ObjectHideFlags: 0

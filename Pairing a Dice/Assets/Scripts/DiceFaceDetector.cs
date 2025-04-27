@@ -6,7 +6,12 @@ public class DiceFaceDetector : MonoBehaviour
     private int currentFaceValue = 1;
     private Rigidbody rb;
     private bool isRolling = false;
-    public bool hasStoppedRolling = false; // ✅ New flag to track rolling state
+    public bool hasStoppedRolling = false; // ✅ Flag to track rolling state
+
+    [Header("Machine Connection")]
+    public BrandonMachine brandonMachine; // 🔥 New: Connect this in Inspector
+
+    private bool notifiedMachine = false; // 🔥 New: Prevent double notifications
 
     void Start()
     {
@@ -19,19 +24,26 @@ public class DiceFaceDetector : MonoBehaviour
         if (!isRolling && (rb.linearVelocity.magnitude > 0.1f || rb.angularVelocity.magnitude > 0.1f))
         {
             isRolling = true;
-            hasStoppedRolling = false; // ✅ Mark dice as rolling
+            hasStoppedRolling = false;
+            notifiedMachine = false; // 🔥 Reset notification when dice starts rolling again
         }
         else if (isRolling && rb.linearVelocity.magnitude < 0.1f && rb.angularVelocity.magnitude < 0.1f)
         {
             isRolling = false;
-            hasStoppedRolling = true; // ✅ Mark dice as stopped
-            DetectFaceUp(); // ✅ Detect face only once dice stop
+            hasStoppedRolling = true;
+            DetectFaceUp(); // Detect face only once dice stop
+
+            if (!notifiedMachine && brandonMachine != null)
+            {
+                brandonMachine.OnSingleDiceStopped(this);
+                notifiedMachine = true; // 🔥 Mark as notified
+            }
         }
     }
 
     private void FindFacesAutomatically()
     {
-        faces = new Transform[6];  
+        faces = new Transform[6];
         Transform[] allChildren = GetComponentsInChildren<Transform>();
 
         for (int i = 1; i <= 6; i++)
