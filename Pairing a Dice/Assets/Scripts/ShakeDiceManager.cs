@@ -55,6 +55,13 @@ public class ShakeDiceManager : MonoBehaviour
 
         Debug.Log("Dice Final Sum: " + latestDiceSum);
 
+    // 🔥 Trigger printer card NOW
+    BrandonCardPrinter printer = FindFirstObjectByType<BrandonCardPrinter>();
+    if (printer != null)
+    {
+        printer.PrintCard();
+    }
+
         // ✅ Check if doubles were rolled
         if (DidRollDoubles(dice1Value, dice2Value))
         {
