@@ -367,3 +367,23 @@ Pairing a Dice/Assets/3D Models/Assets/Casino table of play 2.3 .fbx
 Pairing a Dice/Assets/3D Models/Assets/PlusMinusButton.fbx
 
 Pairing a Dice/Assets/Materials/Shaders/FresnelGlow.shadergraph
+
+Missed Calls/.vscode/
+
+Missed Calls/Assets/3dModels/
+
+Missed Calls/Assets/Animation/
+
+*.wav
+
+*.mp3
+
+Missed Calls/Assets/Font/
+
+Missed Calls/Assets/
+
+Missed Calls/Packages/
+
+Missed Calls/ProjectSettings/
+
+Missed Calls/UserSettings/
