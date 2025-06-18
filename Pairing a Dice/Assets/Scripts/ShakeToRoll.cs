@@ -1,32 +1,30 @@
 using UnityEngine;
-using UnityEngine.Events; // ✅ Required for Unity Events
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class ShakeToRoll : MonoBehaviour
 {
     private Rigidbody rb;
     private Camera mainCamera;
-    private float cameraZDistance;
     private Vector3 lastMousePosition;
     private float shakeIntensity = 0f;
-    
+
     [Header("Shake Settings")]
-    public float shakeThreshold = 8f;  
-    public float shakeDecay = 2f;  
-    public float forceMultiplier = 5f;  
-    public float torqueMultiplier = 10f;  
+    public float shakeThreshold = 8f;
+    public float shakeDecay = 2f;
+    public float forceMultiplier = 5f;
+    public float torqueMultiplier = 10f;
 
     private bool isShaking = false;
-    private static ShakeToRoll[] allDice; 
+    private static ShakeToRoll[] allDice;
 
     [Header("Events")]
-    public UnityEvent onDiceRolled; // ✅ Unity Event to trigger when dice roll
+    public UnityEvent onDiceRolled;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
-        cameraZDistance = mainCamera.WorldToScreenPoint(transform.position).z;
 
         if (allDice == null || allDice.Length == 0)
         {
@@ -41,7 +39,6 @@ public class ShakeToRoll : MonoBehaviour
             Vector3 mouseDelta = Input.mousePosition - lastMousePosition;
             shakeIntensity += mouseDelta.magnitude;
             shakeIntensity = Mathf.Clamp(shakeIntensity, 0, shakeThreshold * 2);
-
             lastMousePosition = Input.mousePosition;
 
             if (shakeIntensity >= shakeThreshold)
@@ -57,22 +54,16 @@ public class ShakeToRoll : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    // 🔹 Called externally from ShakeDiceManager
+    public void StartShakingFromZone()
     {
         isShaking = true;
         lastMousePosition = Input.mousePosition;
     }
 
-    private void OnMouseUp()
+    public void StopShakingFromZone()
     {
         isShaking = false;
-
-    }
-
-    public void AdjustShakeThreshold(float amount)
-    {
-        shakeThreshold += amount;
-        shakeThreshold = Mathf.Max(1f, shakeThreshold);
     }
 
     private void RollAllDice()
@@ -81,18 +72,48 @@ public class ShakeToRoll : MonoBehaviour
         {
             die.RollDice();
         }
-        onDiceRolled.Invoke(); // ✅ Trigger event when dice roll
+
+        onDiceRolled.Invoke();
+
+        // Reset detectors and trigger result collection
+        ShakeDiceManager manager = FindObjectOfType<ShakeDiceManager>();
+        if (manager != null)
+        {
+            foreach (ShakeToRoll die in allDice)
+            {
+                var detector = die.GetComponent<DiceFaceDetector>();
+                if (detector != null)
+                    detector.hasStoppedRolling = false;
+            }
+
+            manager.StartCoroutine("WaitForDiceToStop");
+        }
     }
 
     private void RollDice()
     {
-        rb.linearVelocity = Vector3.zero;  
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
         Vector3 rollForce = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f)) * forceMultiplier;
-        Vector3 rollTorque = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f)) * torqueMultiplier;
+        Vector3 rollTorque = new Vector3(
+            Random.Range(-5f, 5f),
+            Random.Range(-5f, 5f),
+            Random.Range(-5f, 5f)
+        ) * torqueMultiplier;
 
         rb.AddForce(rollForce, ForceMode.Impulse);
         rb.AddTorque(rollTorque, ForceMode.Impulse);
+    }
+
+    // Optional if you still want manual shaking by clicking directly on dice
+    private void OnMouseDown()
+    {
+        StartShakingFromZone();
+    }
+
+    private void OnMouseUp()
+    {
+        StopShakingFromZone();
     }
 }

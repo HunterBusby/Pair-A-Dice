@@ -35,4 +35,10 @@ public class CardGlowOnHover : MonoBehaviour
         Color finalColor = glowColor * intensity;
         mat.SetColor("_EmissionColor", finalColor);
     }
+
+    public void SetGlowExternally(bool isHovering)
+{
+    SetGlow(isHovering ? hoverGlowIntensity : idleGlowIntensity);
+}
+
 }

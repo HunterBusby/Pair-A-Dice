@@ -1,73 +1,119 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Events; // ✅ Required for Unity Events
+using UnityEngine.Events;
 
 public class ShakeDiceManager : MonoBehaviour
 {
-    public ShakeToRoll[] dice; // ✅ Assign Shake Dice in the Inspector
+    public ShakeToRoll[] dice;
     private int latestDiceSum = 0;
 
     [Header("Doubles Event")]
-    public UnityEvent onDoublesRolled; // ✅ Event triggered when doubles are rolled
+    public UnityEvent onDoublesRolled;
+
+    [Header("Roll Zone Settings")]
+    public Collider diceRollZone; // Assign in Inspector
+
+    private bool isCursorInZone = false;
+    private bool hasInitiatedShake = false;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // ✅ Roll dice when clicked
-        {
-            TryRollDice();
-        }
-    }
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-    void TryRollDice()
-    {
-        foreach (ShakeToRoll die in dice)
-        {
-            die.GetComponent<DiceFaceDetector>().hasStoppedRolling = false; // ✅ Reset rolling status
-        }
+        bool currentlyHoveringZone = false;
 
-        StartCoroutine(WaitForDiceToStop()); // ✅ Wait for new values
-    }
-
-    private IEnumerator WaitForDiceToStop()
-    {
-        bool allDiceStopped = false;
-        while (!allDiceStopped)
+        if (Physics.Raycast(ray, out hit))
         {
-            allDiceStopped = true;
-            foreach (ShakeToRoll die in dice)
+            if (hit.collider == diceRollZone)
             {
-                DiceFaceDetector detector = die.GetComponent<DiceFaceDetector>();
-                if (!detector.hasStoppedRolling) // ✅ Wait until both dice report they have stopped
+                currentlyHoveringZone = true;
+
+                if (!isCursorInZone)
                 {
-                    allDiceStopped = false;
-                    break;
+                    EnterZone(); // Trigger glow
+                }
+
+                // ✅ Clicked while in zone → start shake
+                if (Input.GetMouseButtonDown(0))
+                {
+                    hasInitiatedShake = true;
+
+                    foreach (ShakeToRoll die in dice)
+                    {
+                        die.StartShakingFromZone();
+                    }
                 }
             }
-            yield return null;
         }
 
-        int totalSum = 0;
-        int dice1Value = dice[0].GetComponent<DiceFaceDetector>().GetFaceUpValue();
-        int dice2Value = dice[1].GetComponent<DiceFaceDetector>().GetFaceUpValue();
+        // ✅ Stop shaking anywhere on screen if mouse released
+        if (hasInitiatedShake && Input.GetMouseButtonUp(0))
+        {
+            hasInitiatedShake = false;
 
-        totalSum = dice1Value + dice2Value;
-        latestDiceSum = totalSum;
+            foreach (ShakeToRoll die in dice)
+            {
+                die.StopShakingFromZone();
+            }
+        }
 
-        Debug.Log("Dice Final Sum: " + latestDiceSum);
-
-    // 🔥 Trigger printer card NOW
-    BrandonCardPrinter printer = FindFirstObjectByType<BrandonCardPrinter>();
-    if (printer != null)
-    {
-        printer.PrintCard();
+        // ✅ If mouse leaves zone, stop glow but not shaking
+        if (!currentlyHoveringZone && isCursorInZone)
+        {
+            ExitZone();
+        }
     }
 
-        // ✅ Check if doubles were rolled
-        if (DidRollDoubles(dice1Value, dice2Value))
+    void EnterZone()
+    {
+        isCursorInZone = true;
+
+        foreach (ShakeToRoll die in dice)
+        {
+            var glow = die.GetComponent<CardGlowOnHover>();
+            if (glow != null)
+                glow.SetGlowExternally(true);
+        }
+    }
+
+    void ExitZone()
+    {
+        isCursorInZone = false;
+
+        foreach (ShakeToRoll die in dice)
+        {
+            var glow = die.GetComponent<CardGlowOnHover>();
+            if (glow != null)
+                glow.SetGlowExternally(false);
+        }
+    }
+
+    public void NotifyRollComplete(int sum)
+    {
+        latestDiceSum = sum;
+        Debug.Log("Dice Final Sum: " + latestDiceSum);
+
+        // Optional: trigger printer card
+        BrandonCardPrinter printer = FindFirstObjectByType<BrandonCardPrinter>();
+        if (printer != null)
+        {
+            printer.PrintCard();
+        }
+
+        // Handle doubles
+        int v1 = dice[0].GetComponent<DiceFaceDetector>().GetFaceUpValue();
+        int v2 = dice[1].GetComponent<DiceFaceDetector>().GetFaceUpValue();
+        if (v1 == v2)
         {
             Debug.Log("🎉 DOUBLES ROLLED!");
-            onDoublesRolled.Invoke(); // ✅ Trigger the event
+            onDoublesRolled.Invoke();
         }
+    }
+
+    public int GetLatestDiceSum()
+    {
+        return latestDiceSum;
     }
 
     public void ResetDiceSum()
@@ -76,14 +122,35 @@ public class ShakeDiceManager : MonoBehaviour
         Debug.Log("🎲 Dice sum manually reset.");
     }
 
-    public int GetLatestDiceSum()
+    private IEnumerator WaitForDiceToStop()
+{
+    bool allDiceStopped = false;
+
+    while (!allDiceStopped)
     {
-        return latestDiceSum;
+        allDiceStopped = true;
+
+        foreach (ShakeToRoll die in dice)
+        {
+            DiceFaceDetector detector = die.GetComponent<DiceFaceDetector>();
+            if (!detector.hasStoppedRolling)
+            {
+                allDiceStopped = false;
+                break;
+            }
+        }
+
+        yield return null;
     }
 
-    private bool DidRollDoubles(int value1, int value2)
+    // Once all dice have stopped
+    int sum = 0;
+    foreach (ShakeToRoll die in dice)
     {
-        return value1 == value2;
+        sum += die.GetComponent<DiceFaceDetector>().GetFaceUpValue();
     }
-    
+
+    NotifyRollComplete(sum);
+}
+
 }
