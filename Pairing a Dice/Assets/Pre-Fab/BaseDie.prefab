@@ -49,7 +49,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -102,7 +102,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -155,7 +155,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -208,7 +208,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -261,7 +261,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -291,7 +291,7 @@ Transform:
   m_GameObject: {fileID: 8776309730528998349}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.00494, z: 0.000000028822}
+  m_LocalPosition: {x: 0, y: 0.00516, z: 0.000000028822}
   m_LocalScale: {x: 0.0031254198, y: 0.0031254198, z: 0.0031254198}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -314,7 +314,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -352,11 +352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7a58e163960ca240a03d87578391f73, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.6979156
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7a58e163960ca240a03d87578391f73, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.7161801
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7a58e163960ca240a03d87578391f73, type: 3}
       propertyPath: m_LocalRotation.y
@@ -368,7 +368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7a58e163960ca240a03d87578391f73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -451.48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7a58e163960ca240a03d87578391f73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -499,10 +499,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dice: []
-  diceLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  checkDelay: 1
 --- !u!114 &2312507193840731802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,3 +525,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6948120d75526834ba200ef06a3e2f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasStoppedRolling: 0

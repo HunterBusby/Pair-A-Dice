@@ -73,11 +73,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 97a088067cd3fc74ebb5978dc6b51932, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 5297432940907578613}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 97a088067cd3fc74ebb5978dc6b51932, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2762605145435358312}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 97a088067cd3fc74ebb5978dc6b51932, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5297432940907578613}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 97a088067cd3fc74ebb5978dc6b51932, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3235418538592744512}
@@ -95,20 +95,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 97a088067cd3fc74ebb5978dc6b51932, type: 3}
   m_PrefabInstance: {fileID: 6709138145861718762}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5297432940907578613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5898251276857208763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 384e0032005edc7448c27efad35e5a9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardRenderer: {fileID: 5393676525365022318}
-  idObj: {fileID: 11400000, guid: 08a1ae82cefd0f242ba7b07291317ddc, type: 2}
 --- !u!65 &2762605145435358312
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -130,6 +116,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.14000003, y: 0.005, z: 0.10000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5297432940907578613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5898251276857208763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384e0032005edc7448c27efad35e5a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardRenderer: {fileID: 5393676525365022318}
+  idObj: {fileID: 11400000, guid: 08a1ae82cefd0f242ba7b07291317ddc, type: 2}
 --- !u!114 &3235418538592744512
 MonoBehaviour:
   m_ObjectHideFlags: 0

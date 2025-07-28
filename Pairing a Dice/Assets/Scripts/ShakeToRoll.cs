@@ -106,6 +106,14 @@ public class ShakeToRoll : MonoBehaviour
         rb.AddTorque(rollTorque, ForceMode.Impulse);
     }
 
+
+    public void AdjustShakeThreshold(float amount)
+{
+    shakeThreshold += amount;
+    shakeThreshold = Mathf.Max(1f, shakeThreshold); // Prevent it from going below 1
+}
+
+
     // Optional if you still want manual shaking by clicking directly on dice
     private void OnMouseDown()
     {

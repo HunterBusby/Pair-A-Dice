@@ -1,8 +1,92 @@
-{
+ {
     "entries": [
       { "key": "intro_1", "value": "Welcome to Pair-A-Dice!" },
       { "key": "intro_2", "value": "Click the dice to begin." },
       { "key": "intro_3", "value": "You dare challenge fate?" },
-      { "key": "introLong", "value": "This is an example of a line of dialogue that is very long. We want to see how much of the dialogue will take up the screen as well as how patient the player is. will they really click the Next button when they could instead take the time to watch the entire line go out? How fast does the typing work? If you haven't already skipped this bit I'm surprised. Heck, it's probably moving off the screen at this point." }
+      { "key": "introLong", "value": "This is an example of a line of dialogue that is very long. We want to see how much of the" },
+      
+      { "key": "Example_1", "value": "Error Dialogue" },
+
+      { "key": "Tut_1", "value": "Greetings, valued contestant!" },
+      { "key": "Tut_2", "value": "We are absolutely delighted to see you here at the Re-Roll Parlor." },
+      { "key": "Tut_3", "value": "When you're ready to begin, simply place your dice down, and I’ll deal out the cards." },
+      { "key": "Tut_4", "value": "Oh! Did you perhaps forget your dice? No need to worry." },
+      { "key": "Tut_5", "value": "We have plenty of complimentary dice for just such an occasion!" },
+
+      { "key": "Tut_Wait", "value": ".................." },
+
+      { "key": "Tut_6", "value": "here you go dear guest. Complimentary dice for your pleasure." },
+      { "key": "Tut_6.5", "value": "Please give them a roll to ensure they are satisfactory for your use." },
+
+      { "key": "Tut_7", "value": "Go right ahead, dear guest." },
+
+      { "key": "Tut_8", "value": "No need to wait." },
+
+      { "key": "Tut_9", "value": "Perhaps it has simply been so long since you've handled fresh dice that you've forgotten?" },
+      { "key": "Tut_10", "value": "Worry not, dear guest, no need to be embarrassed." },
+      { "key": "Tut_11", "value": "The Re-Roll Parlor is proud to serve guests who are new, returning, or just a bit... rusty." },
+      { "key": "Tut_12", "value": "I’ll walk you through each step as if you’ve never played before. Just follow my lead!" },
+      { "key": "Tut_13", "value": "The first step to any Pair-A-Dice game is the dice." },
+      { "key": "Tut_14", "value": "Each player will keep their dice in the designated 'Dice Zone'. In this case, to your right." },
+      { "key": "Tut_15", "value": "Next, you must 'connect' with your dice." },
+      { "key": "Tut_16", "value": "To connect, simply move yourself over the Dice Zone." },
+      { "key": "Tut_17", "value": "The dice should glow once the connection is established." },
+      { "key": "Tut_18", "value": "While connected, click and drag to create a shaking motion. Do not release until they go." },
+      { "key": "Tut_19", "value": "Note: you don't need to remain in the Dice Zone while shaking." },
+      { "key": "Tut_19.5", "value": "Just keep shaking and holding click until the     dice roll." },
+      { "key": "Tut_20", "value": "If you release early, do not fret! Simply    reconnect and give it another go." },
+      { "key": "Tut_21", "value": "Why don't you go on ahead and give the dice a good shake?" },
+
+      { "key": "Tut_22", "value": "Well done, valued contestant! That was some excellent form!" },
+      { "key": "Tut_23", "value": "You and those dice may just become fast friends." },
+      { "key": "Tut_24", "value": "Since this is a fresh pair of dice, it takes a little more shaking to get them to go." },
+      { "key": "Tut_25", "value": "The more you connect with your dice, the more responsive they'll become." },
+      { "key": "Tut_26", "value": "Next, let’s turn our attention to the cards." },
+      { "key": "Tut_27", "value": "Each match begins with both players holding an equal number of cards." },
+      { "key": "Tut_28", "value": "Your cards are placed on the side closest to you. Your opponent's cards sit politely on theirs." },
+      { "key": "Tut_29", "value": "The game is won by the first to rid themselves of all cards on their side of the table." },
+      { "key": "Tut_30", "value": "Now, let’s discuss the most thrilling part: matching cards!" },
+      { "key": "Tut_31", "value": "When you roll the dice, they combine into a single total." },
+      { "key": "Tut_32", "value": "That total is your key. Your golden number, if you will." },
+      { "key": "Tut_33", "value": "If a card’s number matches your dice total, you may click it to send it to your opponent." },
+      { "key": "Tut_34", "value": "For example: roll a 3 and a 4, and you may send away a card with the number 7." },
+      { "key": "Tut_35", "value": "Each card you offload brings you one step closer to winning." },
+      { "key": "Tut_36", "value": "But beware! Your opponent can do the same to you!" },
+      { "key": "Tut_37", "value": "There is no need to wait or take turns, for surely your opponent will not." },
+      { "key": "Tut_38", "value": "Once the game begins, dice will roll and cards will be exchanged until a victor is decided." },
+      { "key": "Tut_39", "value": "Remember, the first to clear their side of the table wins!" },
+      { "key": "Tut_40", "value": "Why don't you give it a try now? Roll the dice and see what matches await." },
+
+      { "key": "Tut_43", "value": "Excellent! A firm grasp of the rules and a gentle touch on the dice. Promising indeed." },
+      { "key": "Tut_44", "value": "Now, before we send you into your first official match, there’s just one more detail to cover." },
+      { "key": "Tut_45", "value": "Some opponents, particularly high-ranking ones, may use 'special abilities'." },
+      { "key": "Tut_46", "value": "Individuals can gain a 'special ability' at any point in their game career." },
+      { "key": "Tut_47", "value": "These abilities allow a player to bend the rules slightly, affecting the cards, altering rolls, even affecting the board layout." },
+      { "key": "Tut_48", "value": "It’s all part of the Re-Roll Parlor's commitment to dynamic, unpredictable entertainment!" },
+      { "key": "Tut_49", "value": "Now, as a new contestant, your account has not yet been assigned any registered abilities." },
+      { "key": "Tut_50", "value": "Should that ever change... we will, of course, be very surprised and happy for you." },
+      { "key": "Tut_51", "value": "For now, your only objective is to roll, match, and outpace your opponent." },
+      { "key": "Tut_52", "value": "Good luck, dear guest. And remember: even losing is a form of progress. (For one of us, anyway.)" },
+
+
+      { "key": "EchoReveal_1", "value": "*SYSTEM NOTICE: UNAUTHORIZED MOVE DETECTED*" },
+      { "key": "EchoReveal_2", "value": "—Apologies! Please continue playing as if nothing happened." },
+
+      { "key": "EchoReveal_3", "value": "Oh! It seems you've gained a... 'Special Ability' of your own." },
+      { "key": "EchoReveal_4", "value": "A 'Power-Up' type, by the looks of it. How unexpected!" },
+      { "key": "EchoReveal_5", "value": "Power-Up abilities require certain conditions on the field to activate." },
+      { "key": "EchoReveal_6", "value": "Once those conditions are met, you’ll be able to trigger your ability. Manually or automatically, depending on its design." },
+      { "key": "EchoReveal_7", "value": "In your case. It appears to be connected to what you rolled." },
+      { "key": "EchoReveal_8", "value": "Please continue rolling. For documentation purposes, of course." },
+      { "key": "EchoReveal_9", "value": "...Fascinating. No prior record of this effect exists in our archives." },
+      { "key": "EchoReveal_10", "value": "Still, we at the Re-Roll Parlor celebrate innovation!" }
+
+
+
+    
+
+    
+    
+    
     ]
-  }
+  }  
