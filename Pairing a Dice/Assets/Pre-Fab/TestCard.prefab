@@ -185,6 +185,21 @@ MonoBehaviour:
   cardValue: 0
   upArrow: {fileID: 2162066595588750709}
   downArrow: {fileID: 5924968027813273052}
+  onCardValueChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4977945660506000868}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &449898778343936416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +375,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -4977945660506000868}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   mouseUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -517,6 +544,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -4977945660506000868}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowExternally
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   mouseUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -661,6 +700,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: CardBehaviour, Assembly-CSharp
         m_MethodName: ModifyCardValue
         m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -4977945660506000868}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

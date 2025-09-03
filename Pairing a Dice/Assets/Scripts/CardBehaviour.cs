@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class CardBehaviour : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class CardBehaviour : MonoBehaviour
     
     private IDContainerBehaviour idContainer;  // ✅ Reference to ID system
     private CardColorDebug cardColorDebug;  // ✅ Reference to material system
+
+    public UnityEvent onCardValueChanged; // ✅ Event for value changes (bb)
 
     void Start()
     {
@@ -55,6 +59,8 @@ public void ModifyCardValue(int amount)
         {
             idContainer.idObj = newID; // ✅ Update the ID
             Debug.Log($"🆔 {gameObject.name} updated ID to: {idContainer.idObj.name}");
+
+            onCardValueChanged?.Invoke(); // ✅ Trigger event for any listeners (bb)
 
             UpdateCardMaterial(); // ✅ Immediately update material
         }

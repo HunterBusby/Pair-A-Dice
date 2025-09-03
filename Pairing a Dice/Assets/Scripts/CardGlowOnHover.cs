@@ -37,8 +37,13 @@ public class CardGlowOnHover : MonoBehaviour
     }
 
     public void SetGlowExternally(bool isHovering)
-{
-    SetGlow(isHovering ? hoverGlowIntensity : idleGlowIntensity);
-}
+    {
+        SetGlow(isHovering ? hoverGlowIntensity : idleGlowIntensity);
+    }
+    
+    public void rerunStart() // ✅ Public method to re-run Start logic (bb)
+    {
+        Start();
+    }
 
 }
