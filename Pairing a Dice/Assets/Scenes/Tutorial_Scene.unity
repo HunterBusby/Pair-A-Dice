@@ -4822,63 +4822,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &819607956
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2893184959639619060, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.511
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893184959639619060, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.00187397
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893184959639619060, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.301
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893184959639619060, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893184959639619060, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893184959639619060, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893184959639619060, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893184959639619060, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893184959639619060, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893184959639619060, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3063343381937731517, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
-      propertyPath: m_Name
-      value: TestCard
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
 --- !u!1 &824209248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7166,8 +7109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e102576501c3b4a84ef38f81d03435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollInterval: 3
-  mistakeChance: 0
+  rollInterval: 6
+  mistakeChance: 0.75
   aiDice1: {fileID: 1501515290}
   aiDice2: {fileID: 594745678}
   cardManager: {fileID: 1495386829}
@@ -8147,6 +8090,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 558589361}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: PlayDialogue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10768,8 +10723,8 @@ MonoBehaviour:
   cardPrefab: {fileID: 3063343381937731517, guid: c74f90487b4e4e94ab1588c491a76edc, type: 3}
   playerSide: {fileID: 1890985884}
   enemySide: {fileID: 997465441}
-  predefinedPlayerCards: 02000000090000000c00000004000000
-  predefinedEnemyCards: 07000000080000000700000006000000
+  predefinedPlayerCards: 07000000080000000700000006000000
+  predefinedEnemyCards: 02000000090000000c00000004000000
   useRandomCards: 0
   minCardValue: 2
   maxCardValue: 12
@@ -11667,4 +11622,3 @@ SceneRoots:
   - {fileID: 1478942840}
   - {fileID: 1653009835}
   - {fileID: 833616978}
-  - {fileID: 819607956}
