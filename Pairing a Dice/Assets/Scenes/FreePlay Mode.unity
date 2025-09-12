@@ -2701,11 +2701,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97a088067cd3fc74ebb5978dc6b51932, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.85
+      value: 8.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97a088067cd3fc74ebb5978dc6b51932, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.07
+      value: 3.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97a088067cd3fc74ebb5978dc6b51932, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3525,6 +3525,9 @@ MonoBehaviour:
   - intro_2
   - intro_3
   - introLong
+  onDialogueFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &579613383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8315,6 +8318,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedValue: {fileID: 11400000, guid: 77aad555adb64c24babe614ca49f9ca0, type: 2}
   threshold: 5
+  resetOnThreshold: 1
+  rearmWhenBelowThreshold: 1
   onThresholdReached:
     m_PersistentCalls:
       m_Calls:
@@ -8401,6 +8406,9 @@ MonoBehaviour:
   dialogueText: {fileID: 1768926184}
   nextButton: {fileID: 2065834630}
   typingSpeed: 0.02
+  OnDialogueComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1502500647
 Transform:
   m_ObjectHideFlags: 0

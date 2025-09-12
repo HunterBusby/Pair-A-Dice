@@ -23,7 +23,7 @@ public RobotArmController robotArm; // Assign this too
 
     [Header("Win Condition Events")]
     public UnityEvent onPlayerWin;
-    public UnityEvent onAIWin;
+    public UnityEvent onPlayerLose;
 
     [Header("UNO Alert Events")]
     public UnityEvent onPlayerUnoStart;  
@@ -154,8 +154,8 @@ public RobotArmController robotArm; // Assign this too
         }
         else if (enemyCards.Count == 0)
         {
-            Debug.Log("💀 AI Wins! Triggering onAIWin Event.");
-            onAIWin.Invoke();
+            Debug.Log("💀 AI Wins! Triggering onPlayerLose Event.");
+            onPlayerLose.Invoke();
         }
     }
 

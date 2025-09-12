@@ -4,7 +4,7 @@ using UnityEngine;
 public class AIOpponent : MonoBehaviour
 {
     [Header("AI Settings")]
-    public float rollInterval = 3.0f; // Time between AI rolls
+    public float rollInterval = 3.0f;         // Time between AI rolls
     [Range(0f, 1f)] public float mistakeChance = 0.2f; // AI error rate
 
     [Header("References")]
@@ -13,6 +13,24 @@ public class AIOpponent : MonoBehaviour
     public CardManager cardManager;  // Manages cards in the scene
 
     private int lastDiceSum;
+
+    // ---- Pause control (Approach #1) ----
+    private bool isPaused = false;
+
+    /// <summary>Call this when your tutorial double-roll line starts.</summary>
+    public void PauseAI()
+    {
+        isPaused = true;
+        StopDiceMotion(); // freeze dice if they were mid-roll
+        // Debug.Log("[AI] Paused");
+    }
+
+    /// <summary>Call this when the line / ability finishes.</summary>
+    public void ResumeAI()
+    {
+        isPaused = false;
+        // Debug.Log("[AI] Resumed");
+    }
 
     void Start()
     {
@@ -23,41 +41,59 @@ public class AIOpponent : MonoBehaviour
     {
         while (true)
         {
+            // If paused, park the loop here until we resume.
+            yield return new WaitUntil(() => !isPaused);
+
+            // Wait for the next roll interval (unless paused during the wait)
             yield return new WaitForSeconds(rollInterval);
+            if (isPaused) continue; // if paused during the interval, skip this cycle
 
+            // Roll dice (guard again)
+            if (isPaused) continue;
             RollBothDice();
-            yield return new WaitUntil(() => aiDice1.hasStoppedRolling && aiDice2.hasStoppedRolling);
 
+            // Wait for dice to stop, but also bail out if we get paused mid-wait
+            yield return new WaitUntil(() =>
+                !isPaused && aiDice1.hasStoppedRolling && aiDice2.hasStoppedRolling);
+            if (isPaused) continue;
+
+            // Read results
             lastDiceSum = GetDiceSum();
-            Debug.Log("🎯 AI Dice Roll Sum: " + lastDiceSum);
+            if (isPaused) continue;
 
+            // Optional: mistake behavior
             if (ShouldMakeMistake())
             {
-                Debug.Log("😵 AI made a mistake and ignored a match.");
+                // Debug.Log("😵 AI made a mistake and ignored a match.");
                 continue;
             }
 
+            // Attempt to match a card
             AttemptMatch();
         }
     }
 
     private void RollBothDice()
     {
-        Rigidbody rb1 = aiDice1.GetComponent<Rigidbody>();
-        Rigidbody rb2 = aiDice2.GetComponent<Rigidbody>();
+        Rigidbody rb1 = aiDice1 ? aiDice1.GetComponent<Rigidbody>() : null;
+        Rigidbody rb2 = aiDice2 ? aiDice2.GetComponent<Rigidbody>() : null;
 
         if (rb1 != null && rb2 != null)
         {
-            rb1.linearVelocity = rb2.linearVelocity = Vector3.zero;
-            rb1.angularVelocity = rb2.angularVelocity = Vector3.zero;
+            // Zero current motion
+            rb1.linearVelocity = Vector3.zero;
+            rb2.linearVelocity = Vector3.zero;
+            rb1.angularVelocity = Vector3.zero;
+            rb2.angularVelocity = Vector3.zero;
 
+            // Add randomized impulses/torques
             rb1.AddForce(RandomDirection() * 8f, ForceMode.Impulse);
             rb1.AddTorque(RandomTorque(), ForceMode.Impulse);
 
             rb2.AddForce(RandomDirection() * 8f, ForceMode.Impulse);
             rb2.AddTorque(RandomTorque(), ForceMode.Impulse);
 
-            Debug.Log("🎲 AI rolled the dice!");
+            // Debug.Log("🎲 AI rolled the dice!");
         }
         else
         {
@@ -72,7 +108,11 @@ public class AIOpponent : MonoBehaviour
 
     private Vector3 RandomTorque()
     {
-        return new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f)) * 10f;
+        return new Vector3(
+            Random.Range(-5f, 5f),
+            Random.Range(-5f, 5f),
+            Random.Range(-5f, 5f)
+        ) * 10f;
     }
 
     private int GetDiceSum()
@@ -81,7 +121,7 @@ public class AIOpponent : MonoBehaviour
         int v2 = aiDice2.GetFaceUpValue();
         int sum = v1 + v2;
 
-        Debug.Log($"📝 AI Dice Values: {v1} + {v2} = {sum}");
+        // Debug.Log($"📝 AI Dice Values: {v1} + {v2} = {sum}");
         return sum;
     }
 
@@ -94,24 +134,28 @@ public class AIOpponent : MonoBehaviour
         }
         else
         {
-            Debug.Log($"❌ No matching card found for value {lastDiceSum}");
+            // Debug.Log($"❌ No matching card found for value {lastDiceSum}");
         }
     }
 
     private IEnumerator ActivateCard(MatchBehaviour card)
-{
-    // 🔔 Fire visual responders (robot arm, etc.)
-    AIOpponentEvents.OnCardMatched?.Invoke(card.transform);
+    {
+        // 🔔 Fire visual responders (robot arm, etc.)
+        AIOpponentEvents.OnCardMatched?.Invoke(card.transform);
 
-    // ⏱ Wait before letting the card animate
-    yield return new WaitForSeconds(0.35f); // <- tweak this
+        // ⏱ Small pre-animation delay
+        yield return new WaitForSeconds(0.35f);
+        if (isPaused) yield break; // if paused in the middle, don't continue
 
-    // ✅ Trigger animation & transfer
-    card.matchEvent.Invoke();
-    yield return new WaitForSeconds(0.1f);
-    cardManager.TransferCard(card.transform, false);
-}
+        // ✅ Trigger animation & transfer
+        card.matchEvent?.Invoke();
 
+        // Give a short moment for the event to propagate
+        yield return new WaitForSeconds(0.1f);
+        if (isPaused) yield break;
+
+        cardManager.TransferCard(card.transform, false);
+    }
 
     private bool ShouldMakeMistake()
     {
@@ -122,6 +166,8 @@ public class AIOpponent : MonoBehaviour
     {
         foreach (Transform card in cardManager.enemyCards)
         {
+            if (!card) continue;
+
             MatchBehaviour mb = card.GetComponent<MatchBehaviour>();
             IDContainerBehaviour id = card.GetComponent<IDContainerBehaviour>();
 
@@ -133,7 +179,33 @@ public class AIOpponent : MonoBehaviour
                 }
             }
         }
-
         return null;
+    }
+
+    /// <summary>
+    /// Safety: immediately stop dice drift (called when pausing).
+    /// </summary>
+    private void StopDiceMotion()
+    {
+        if (aiDice1)
+        {
+            Rigidbody rb = aiDice1.GetComponent<Rigidbody>();
+            if (rb)
+            {
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.Sleep();
+            }
+        }
+        if (aiDice2)
+        {
+            Rigidbody rb = aiDice2.GetComponent<Rigidbody>();
+            if (rb)
+            {
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.Sleep();
+            }
+        }
     }
 }

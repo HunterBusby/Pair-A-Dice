@@ -70,11 +70,26 @@
       { "key": "Tut_51", "value": "For now, your only objective is to roll, match, and outpace your opponent." },
       { "key": "Tut_52", "value": "Good luck, dear guest. I will now be your opponent to finish out this round." },
 
+      { "key": "Tut_Win_1", "value": "Congratulations!" },
+      { "key": "Tut_Win_2", "value": "You have successfully completed your first match at the Re-Roll Parlor!" },
+      { "key": "Tut_Win_3", "value": "We hope you found it exhilarating." },
+      { "key": "Tut_Win_4", "value": "Feel free to go to the 'Free Play' table to test your new skills to the absolute limit." },
+      { "key": "Tut_Win_5", "value": "Each match is a new opportunity to test your skills and discover new abilities of your own!" },
+      { "key": "Tut_Win_6", "value": "Thank you for playing Pair-A-Dice at the Re-Roll Parlor. We look forward to seeing you again soon!" },
 
-      { "key": "EchoReveal_1", "value": "*SYSTEM NOTICE: UNAUTHORIZED MOVE DETECTED*" },
-      { "key": "EchoReveal_2", "value": "Apologies! Please continue playing as if nothing happened." },
+      { "key": "Tut_Lose_1", "value": "That's too bad." },
+      { "key": "Tut_Lose_2", "value": "But don't be discouraged! Every great player has faced defeat." },
+      { "key": "Tut_Lose_3", "value": "Feel free to go to the 'Free Play' table to practice and hone your skills." },
+      { "key": "Tut_Lose_4", "value": "Each match is a new opportunity to test your skills and discover new abilities of your own!" },
+      { "key": "Tut_Lose_5", "value": "Don't worry, this was simple instructions. there was nothing on the line." },
+      { "key": "Tut_Lose_6", "value": "Thank you for playing Pair-A-Dice at the Re-Roll Parlor. We look forward to seeing you again soon!" },
+    
 
-      { "key": "EchoReveal_3", "value": "Oh! It seems you've gained a... 'Special Ability' of your own." },
+      { "key": "EchoReveal_0", "value": "*SYSTEM NOTICE: UNAUTHORIZED MOVE DETECTED*" },
+
+      { "key": "EchoReveal_1", "value": "Apologies! Please continue playing as if nothing happened." },
+
+      { "key": "EchoReveal_3", "value": "Oh! It seems you've gained a 'Special Ability' of your own." },
       { "key": "EchoReveal_4", "value": "A 'Power-Up' type, by the looks of it. How unexpected!" },
       { "key": "EchoReveal_5", "value": "Power-Up abilities require certain conditions on the field to activate." },
       { "key": "EchoReveal_6", "value": "Once those conditions are met, you’ll be able to trigger your ability. Manually or automatically, depending on its design." },
