@@ -60,7 +60,7 @@
       { "key": "Tut_40", "value": "Why don't you give it a try now? Roll the dice and see what matches await." },
 
       { "key": "Tut_43", "value": "Excellent! A firm grasp of the rules and a gentle touch on the dice. Promising indeed." },
-      { "key": "Tut_44", "value": "Now, before we send you into your first official match, there’s just one more detail to cover." },
+      { "key": "Tut_44", "value": "Now, before we Continue the match, there’s just one more detail to cover." },
       { "key": "Tut_45", "value": "Some opponents, particularly high-ranking ones, may use 'special abilities'." },
       { "key": "Tut_46", "value": "Individuals can gain a 'special ability' at any point in their game career." },
       { "key": "Tut_47", "value": "These abilities allow a player to bend the rules slightly, affecting the cards, altering rolls, even affecting the board layout." },
@@ -68,18 +68,19 @@
       { "key": "Tut_49", "value": "Now, as a new contestant, your account has not yet been assigned any registered abilities." },
       { "key": "Tut_50", "value": "Should that ever change... we will, of course, be very surprised and happy for you." },
       { "key": "Tut_51", "value": "For now, your only objective is to roll, match, and outpace your opponent." },
-      { "key": "Tut_52", "value": "Good luck, dear guest. And remember: even losing is a form of progress. (For one of us, anyway.)" },
+      { "key": "Tut_52", "value": "Good luck, dear guest. I will now be your opponent to finish out this round." },
 
 
       { "key": "EchoReveal_1", "value": "*SYSTEM NOTICE: UNAUTHORIZED MOVE DETECTED*" },
-      { "key": "EchoReveal_2", "value": "—Apologies! Please continue playing as if nothing happened." },
+      { "key": "EchoReveal_2", "value": "Apologies! Please continue playing as if nothing happened." },
 
       { "key": "EchoReveal_3", "value": "Oh! It seems you've gained a... 'Special Ability' of your own." },
       { "key": "EchoReveal_4", "value": "A 'Power-Up' type, by the looks of it. How unexpected!" },
       { "key": "EchoReveal_5", "value": "Power-Up abilities require certain conditions on the field to activate." },
       { "key": "EchoReveal_6", "value": "Once those conditions are met, you’ll be able to trigger your ability. Manually or automatically, depending on its design." },
       { "key": "EchoReveal_7", "value": "In your case. It appears to be connected to what you rolled." },
-      { "key": "EchoReveal_8", "value": "Please continue rolling. For documentation purposes, of course." },
+      { "key": "EchoReveal_8", "value": "Please Give me a moment to analyse your ability. For documentation purposes, of course." },
+
       { "key": "EchoReveal_9", "value": "...Fascinating. No prior record of this effect exists in our archives." },
       { "key": "EchoReveal_10", "value": "Still, we at the Re-Roll Parlor celebrate innovation!" }
 
