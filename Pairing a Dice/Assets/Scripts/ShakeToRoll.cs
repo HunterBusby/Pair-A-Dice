@@ -1,5 +1,8 @@
+// ShakeToRoll.cs (only showing changes/additions)
+
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;   // 👈 add this
 
 [RequireComponent(typeof(Rigidbody))]
 public class ShakeToRoll : MonoBehaviour
@@ -21,15 +24,40 @@ public class ShakeToRoll : MonoBehaviour
     [Header("Events")]
     public UnityEvent onDiceRolled;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        mainCamera = Camera.main;
+        // When a new scene loads, clear the static cache so it gets rebuilt
+        SceneManager.sceneLoaded -= OnSceneLoaded; // avoid dupes if re-enabled
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private static void RefreshAllDice()
+    {
+        allDice = FindObjectsByType<ShakeToRoll>(FindObjectsSortMode.None);
+    }
+
+    private static void EnsureDiceList()
+    {
         if (allDice == null || allDice.Length == 0)
-        {
-            allDice = FindObjectsByType<ShakeToRoll>(FindObjectsSortMode.None);
-        }
+            RefreshAllDice();
+    }
+
+    private static void OnSceneLoaded(Scene s, LoadSceneMode mode)
+    {
+        // Fresh scene = fresh dice set
+        allDice = null;
+    }
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+        EnsureDiceList(); // ok to build now, and also rebuilt after scene loads
     }
 
     void Update()
@@ -43,7 +71,7 @@ public class ShakeToRoll : MonoBehaviour
 
             if (shakeIntensity >= shakeThreshold)
             {
-                RollAllDice();
+                RollAllDice();              // 👈 unchanged API
                 isShaking = false;
                 shakeIntensity = 0;
             }
@@ -54,7 +82,6 @@ public class ShakeToRoll : MonoBehaviour
         }
     }
 
-    // 🔹 Called externally from ShakeDiceManager
     public void StartShakingFromZone()
     {
         isShaking = true;
@@ -68,10 +95,17 @@ public class ShakeToRoll : MonoBehaviour
 
     private void RollAllDice()
     {
+        EnsureDiceList();
+
+        bool sawNull = false;
         foreach (ShakeToRoll die in allDice)
         {
-            die.RollDice();
+            if (!die) { sawNull = true; continue; } // destroyed component
+            die.RollDiceSafe();
         }
+
+        // If we saw any destroyed entries, rebuild for next time
+        if (sawNull) RefreshAllDice();
 
         onDiceRolled.Invoke();
 
@@ -81,17 +115,23 @@ public class ShakeToRoll : MonoBehaviour
         {
             foreach (ShakeToRoll die in allDice)
             {
+                if (!die) continue;
                 var detector = die.GetComponent<DiceFaceDetector>();
-                if (detector != null)
-                    detector.hasStoppedRolling = false;
+                if (detector != null) detector.hasStoppedRolling = false;
             }
 
+            // keep your existing string-based StartCoroutine
             manager.StartCoroutine("WaitForDiceToStop");
         }
     }
 
-    private void RollDice()
+    // 🔐 Safe wrapper with guards; keeps Unity 6 linearVelocity
+    private void RollDiceSafe()
     {
+        if (!this) return; // component destroyed
+        if (!rb) rb = GetComponent<Rigidbody>();
+        if (!rb) return;
+
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
@@ -106,22 +146,6 @@ public class ShakeToRoll : MonoBehaviour
         rb.AddTorque(rollTorque, ForceMode.Impulse);
     }
 
-
-    public void AdjustShakeThreshold(float amount)
-{
-    shakeThreshold += amount;
-    shakeThreshold = Mathf.Max(1f, shakeThreshold); // Prevent it from going below 1
-}
-
-
-    // Optional if you still want manual shaking by clicking directly on dice
-    private void OnMouseDown()
-    {
-        StartShakingFromZone();
-    }
-
-    private void OnMouseUp()
-    {
-        StopShakingFromZone();
-    }
+    private void OnMouseDown() { StartShakingFromZone(); }
+    private void OnMouseUp()   { StopShakingFromZone();  }
 }

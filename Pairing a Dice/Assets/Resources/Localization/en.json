@@ -97,14 +97,67 @@
       { "key": "EchoReveal_8", "value": "Please Give me a moment to analyse your ability. For documentation purposes, of course." },
 
       { "key": "EchoReveal_9", "value": "...Fascinating. No prior record of this effect exists in our archives." },
-      { "key": "EchoReveal_10", "value": "Still, we at the Re-Roll Parlor celebrate innovation!" }
+      { "key": "EchoReveal_10", "value": "Still, we at the Re-Roll Parlor celebrate innovation!" },
+
+      { "key": "FreeRoll_1", "value": "This is the 'Free play' parlour!" },
+      { "key": "FreeRoll_1", "value": "this way of playing is a little different from how you would normally play." },
+      { "key": "FreeRoll_2", "value": "The game will start out very easy. Low card number, slow AI, easy to roll." },
+      { "key": "FreeRoll_3", "value": "However..." },
+      { "key": "FreeRoll_4", "value": "For every time you win, you must make it harder on yourself." },
+      { "key": "FreeRoll_5", "value": "I will present you with ways to increase the difficulty. by picking a burden card." },
+      { "key": "FreeRoll_6", "value": "Whether that is increaseing the number of cards, making me smarter, or slowing down your rolls." },
+      { "key": "FreeRoll_7", "value": "We will also have some money exchange as well to make it more fun." }, 
+      { "key": "FreeRoll_8", "value": "The cards being delt in this game mode will be completely random" },
+      { "key": "FreeRoll_9", "value": "So, Hypothetically we could play a game with all 12's" },
+
+
+      { "key": "FreeRoll_1", "value": "Welcome to the Free Play Parlour!" },
+      { "key": "FreeRoll_2", "value": "This style of play is a little different from normal play." },
+      { "key": "FreeRoll_3", "value": "It begins simple: only a few cards, easy rolls, and a I'll go easy on you." },
+      { "key": "FreeRoll_4", "value": "But..." },
+      { "key": "FreeRoll_5", "value": "Each time you win, you’ll have to raise the stakes." },
+      { "key": "FreeRoll_6", "value": "I’ll offer you a set of 'Burden Cards'." },
+      { "key": "FreeRoll_7", "value": "They will present you with choices that make the game more difficult." },
+      { "key": "FreeRoll_8", "value": "Maybe it’s more cards, making it harder to roll, or letting me play faster." },
+      { "key": "FreeRoll_9", "value": "And to keep things lively, we’ll also wager a little coin. The more you risk, the greater the thrill." },
+      { "key": "FreeRoll_10", "value": "As a note, every card delt is random. No predetermined cards here!" },
+      { "key": "FreeRoll_11", "value": "So, hypothetically... you could be staring down a hand full of 12’s!" },
+      { "key": "FreeRoll_12", "value": "It adds to the thrill." },
+      { "key": "FreeRoll_13", "value": "Now if you are ready, Let's Wager this first game for 1 GoldPoint" },
+      { "key": "FreeRoll_14", "value": "Error Dialogue" },
+      { "key": "FreeRoll_15", "value": "Error Dialogue" },
+      { "key": "FreeRoll_16", "value": "Error Dialogue" },
+      { "key": "FreeRoll_17", "value": "Error Dialogue" },
+      { "key": "FreeRoll_18", "value": "Error Dialogue" },
+      { "key": "FreeRoll_19", "value": "Error Dialogue" },
+      
+
+      
+
+      
 
 
 
-    
 
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      { "key": "End of Line", "value": "Don't move Past ME!" }
+
     ]
   }  
