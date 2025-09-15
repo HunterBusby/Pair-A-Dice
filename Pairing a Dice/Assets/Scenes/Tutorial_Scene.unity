@@ -3099,10 +3099,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 666177904}
   - {fileID: 881709194}
-  - {fileID: 1966108902}
   - {fileID: 25389533}
+  - {fileID: 1966108902}
+  - {fileID: 666177904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8833,6 +8833,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77aad555adb64c24babe614ca49f9ca0, type: 2}
   - {fileID: 11400000, guid: 8214322335132b74ab2fc104e3ab0d8a, type: 2}
   - {fileID: 11400000, guid: 8ffc9182f6772a948ab2a0151efa5fa4, type: 2}
+  floatDataToReset: []
 --- !u!4 &1268623606
 Transform:
   m_ObjectHideFlags: 0
@@ -12360,7 +12361,7 @@ MonoBehaviour:
   useRandomCards: 0
   minCardValue: 2
   maxCardValue: 12
-  numCardsPerSide: 4
+  numCardsPerSide: {fileID: 0}
   onCardsSpawned:
     m_PersistentCalls:
       m_Calls: []
