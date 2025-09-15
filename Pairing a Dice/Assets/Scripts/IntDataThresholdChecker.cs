@@ -5,7 +5,7 @@ public class IntDataThresholdChecker : MonoBehaviour
 {
     [Header("Config")]
     public IntData trackedValue;     // Assign in Inspector
-    public int threshold = 5;
+    public float threshold = 5;
 
     [Tooltip("If enabled, sets IntData to 0 after the event fires.")]
     public bool resetOnThreshold = true;
@@ -50,5 +50,15 @@ public class IntDataThresholdChecker : MonoBehaviour
         {
             armed = true;
         }
+    }
+
+    public void SetThreshold(float value)
+    {
+        threshold = Mathf.Max(0.1f, value); // prevent zero/negative
+    }
+
+    public void AdjustThreshold(float delta)
+    {
+        threshold = Mathf.Max(0.1f, threshold + delta);
     }
 }

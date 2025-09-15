@@ -13,7 +13,7 @@ public class CardSpawner : MonoBehaviour
     public bool useRandomCards = false;
     public int minCardValue = 2;
     public int maxCardValue = 12;
-    public int numCardsPerSide = 4;
+    public IntData numCardsPerSide;
 
     private CardManager cardManager;
 
@@ -24,6 +24,17 @@ public class CardSpawner : MonoBehaviour
         cardManager = FindFirstObjectByType<CardManager>(); // ✅ Find CardManager
         // 🚫 No automatic card spawning at start
     }
+
+    private int ReadNumCardsPerSide()
+{
+    if (numCardsPerSide == null)
+    {
+        Debug.LogWarning("CardSpawner: numCardsPerSide (IntData) is not assigned. Using 0.");
+        return 1;
+    }
+    return Mathf.Max(0, numCardsPerSide.value);
+}
+
 
     // ✅ Call this function when the player clicks an item
     public void TriggerCardSpawn()
@@ -108,13 +119,16 @@ public class CardSpawner : MonoBehaviour
 
 
     private List<int> GenerateRandomCards()
+{
+    int count = ReadNumCardsPerSide();      // <-- now driven by IntData
+    List<int> randomCards = new List<int>(count);
+
+    for (int i = 0; i < count; i++)
     {
-        List<int> randomCards = new List<int>();
-        for (int i = 0; i < numCardsPerSide; i++)
-        {
-            int randomValue = Random.Range(minCardValue, maxCardValue + 1);
-            randomCards.Add(randomValue);
-        }
-        return randomCards;
+        int randomValue = Random.Range(minCardValue, maxCardValue + 1);
+        randomCards.Add(randomValue);
     }
+    return randomCards;
+}
+
 }

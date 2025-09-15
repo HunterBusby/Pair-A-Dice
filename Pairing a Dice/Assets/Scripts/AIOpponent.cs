@@ -4,7 +4,7 @@ using UnityEngine;
 public class AIOpponent : MonoBehaviour
 {
     [Header("AI Settings")]
-    public float rollInterval = 3.0f;         // Time between AI rolls
+    public float rollInterval = 3.0f; // Time between AI rolls
     [Range(0f, 1f)] public float mistakeChance = 0.2f; // AI error rate
 
     [Header("References")]
@@ -162,6 +162,27 @@ public class AIOpponent : MonoBehaviour
         return Random.value < mistakeChance;
     }
 
+    public void SetMistakeChance(float value)
+    {
+        mistakeChance = Mathf.Clamp01(value);
+    }
+
+    public void AdjustMistakeChance(float delta)
+    {
+        mistakeChance = Mathf.Clamp01(mistakeChance + delta);
+    }
+
+    
+    public void SetRollInterval(float value)
+    {
+        rollInterval = Mathf.Max(0.1f, value); // prevent zero/negative
+    }
+
+    public void AdjustRollInterval(float delta)
+    {
+        rollInterval = Mathf.Max(0.1f, rollInterval + delta);
+    }
+
     private MatchBehaviour FindCardByValue(int value)
     {
         foreach (Transform card in cardManager.enemyCards)
@@ -208,4 +229,6 @@ public class AIOpponent : MonoBehaviour
             }
         }
     }
+
+    
 }

@@ -2,26 +2,40 @@ using UnityEngine;
 
 public class GlobalResetHandler : MonoBehaviour
 {
-    public IntData[] intDataToReset; // ✅ Assign ScriptableObjects that need resetting
+    public IntData[] intDataToReset;
+
+    public FloatData[] floatDataToReset;
 
     void Awake()
     {
-        ResetAllValues();
+        ResetIntValues();
     }
 
     void OnApplicationQuit()
     {
-        ResetAllValues();
+        ResetIntValues();
     }
 
-    public void ResetAllValues()
+    public void ResetIntValues()
     {
         foreach (IntData data in intDataToReset)
         {
             if (data != null)
             {
-                data.SetValue(0); // ✅ Reset all assigned IntData assets
-                Debug.Log($"🔄 Reset {data.name} to 0.");
+                data.ResetToDefault(); // 👈 use per-asset default
+                Debug.Log($"🔄 Reset {data.name} to {data.defaultValue}.");
+            }
+        }
+    }
+
+    public void ResetAllValues()
+    {
+        foreach (FloatData data in floatDataToReset)
+        {
+            if (data != null)
+            {
+                data.ResetToDefault(); // 👈 use per-asset default
+                Debug.Log($"🔄 Reset {data.name} to {data.defaultValue}.");
             }
         }
     }

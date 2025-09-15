@@ -13,7 +13,7 @@ public class ShakeToRoll : MonoBehaviour
     private float shakeIntensity = 0f;
 
     [Header("Shake Settings")]
-    public float shakeThreshold = 8f;
+    public float shakeThreshold = 100f;
     public float shakeDecay = 2f;
     public float forceMultiplier = 5f;
     public float torqueMultiplier = 10f;
@@ -145,6 +145,29 @@ public class ShakeToRoll : MonoBehaviour
         rb.AddForce(rollForce, ForceMode.Impulse);
         rb.AddTorque(rollTorque, ForceMode.Impulse);
     }
+
+
+    public void AdjustShakeThreshold(float amount)
+    {
+        shakeThreshold += amount;
+        shakeThreshold = Mathf.Max(1f, shakeThreshold); // Prevent it from going below 1
+    }
+
+    public void AdjustShakeThresholdFromFloatData(FloatData data)
+    {
+        if (!data) return;
+        shakeThreshold += data.value;
+        shakeThreshold = Mathf.Max(1f, shakeThreshold);
+    }
+
+    public void SetShakeThresholdFromIntData(IntData data)
+    {
+        if (!data) return;
+        shakeThreshold = Mathf.Max(1f, data.value);
+    }
+
+
+
 
     private void OnMouseDown() { StartShakingFromZone(); }
     private void OnMouseUp()   { StopShakingFromZone();  }
