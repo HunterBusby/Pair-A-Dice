@@ -171,7 +171,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 11400000, guid: 34c02cf679dd7524ca3e58983c58a84a, type: 2}
         m_TargetAssemblyTypeName: IntData, Assembly-CSharp
-        m_MethodName: UpdateValue
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -183,7 +183,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 11400000, guid: eb02e7530cac1b3428a92208f218592e, type: 2}
         m_TargetAssemblyTypeName: IntData, Assembly-CSharp
-        m_MethodName: UpdateValue
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

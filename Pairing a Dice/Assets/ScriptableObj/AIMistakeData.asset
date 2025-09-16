@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AIMistakeData
   m_EditorClassIdentifier: 
   value: 90
-  defaultValue: 0
+  defaultValue: 90
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []

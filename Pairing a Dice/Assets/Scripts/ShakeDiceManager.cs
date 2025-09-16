@@ -16,6 +16,10 @@ public class ShakeDiceManager : MonoBehaviour
     private bool isCursorInZone = false;
     private bool hasInitiatedShake = false;
 
+    // 👇 Guard fields
+    private Coroutine waitRoutine;
+    private bool doublesHandledThisRoll = false;
+
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -89,6 +93,48 @@ public class ShakeDiceManager : MonoBehaviour
         }
     }
 
+    // 👇 Guarded starter
+    public void StartWaitForDiceToStopOnce()
+    {
+        if (waitRoutine != null) return; // already running
+        doublesHandledThisRoll = false;  // reset per roll
+        waitRoutine = StartCoroutine(WaitForDiceToStop());
+    }
+
+    private IEnumerator WaitForDiceToStop()
+    {
+        bool allDiceStopped = false;
+
+        while (!allDiceStopped)
+        {
+            allDiceStopped = true;
+
+            foreach (ShakeToRoll die in dice)
+            {
+                DiceFaceDetector detector = die.GetComponent<DiceFaceDetector>();
+                if (!detector.hasStoppedRolling)
+                {
+                    allDiceStopped = false;
+                    break;
+                }
+            }
+
+            yield return null;
+        }
+
+        // Once all dice have stopped
+        int sum = 0;
+        foreach (ShakeToRoll die in dice)
+        {
+            sum += die.GetComponent<DiceFaceDetector>().GetFaceUpValue();
+        }
+
+        NotifyRollComplete(sum);
+
+        // Clear guard
+        waitRoutine = null;
+    }
+
     public void NotifyRollComplete(int sum)
     {
         latestDiceSum = sum;
@@ -106,6 +152,9 @@ public class ShakeDiceManager : MonoBehaviour
         int v2 = dice[1].GetComponent<DiceFaceDetector>().GetFaceUpValue();
         if (v1 == v2)
         {
+            if (doublesHandledThisRoll) return; // 👈 debounce
+            doublesHandledThisRoll = true;
+
             Debug.Log("🎉 DOUBLES ROLLED!");
             onDoublesRolled.Invoke();
         }
@@ -121,36 +170,4 @@ public class ShakeDiceManager : MonoBehaviour
         latestDiceSum = 0;
         Debug.Log("🎲 Dice sum manually reset.");
     }
-
-    private IEnumerator WaitForDiceToStop()
-{
-    bool allDiceStopped = false;
-
-    while (!allDiceStopped)
-    {
-        allDiceStopped = true;
-
-        foreach (ShakeToRoll die in dice)
-        {
-            DiceFaceDetector detector = die.GetComponent<DiceFaceDetector>();
-            if (!detector.hasStoppedRolling)
-            {
-                allDiceStopped = false;
-                break;
-            }
-        }
-
-        yield return null;
-    }
-
-    // Once all dice have stopped
-    int sum = 0;
-    foreach (ShakeToRoll die in dice)
-    {
-        sum += die.GetComponent<DiceFaceDetector>().GetFaceUpValue();
-    }
-
-    NotifyRollComplete(sum);
-}
-
 }

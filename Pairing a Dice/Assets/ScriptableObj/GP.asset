@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GP
   m_EditorClassIdentifier: 
   value: 5
-  defaultValue: 0
+  defaultValue: 5
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -121,7 +121,8 @@ public class ShakeToRoll : MonoBehaviour
             }
 
             // keep your existing string-based StartCoroutine
-            manager.StartCoroutine("WaitForDiceToStop");
+            manager.StartWaitForDiceToStopOnce();
+
         }
     }
 

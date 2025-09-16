@@ -4035,6 +4035,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedValue: {fileID: 11400000, guid: 8214322335132b74ab2fc104e3ab0d8a, type: 2}
   threshold: 3
+  useThresholdData: 0
+  thresholdData: {fileID: 0}
   resetOnThreshold: 0
   rearmWhenBelowThreshold: 1
   onThresholdReached:
@@ -4078,6 +4080,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedValue: {fileID: 11400000, guid: 8ffc9182f6772a948ab2a0151efa5fa4, type: 2}
   threshold: 1
+  useThresholdData: 0
+  thresholdData: {fileID: 0}
   resetOnThreshold: 0
   rearmWhenBelowThreshold: 1
   onThresholdReached:
@@ -4133,6 +4137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedValue: {fileID: 11400000, guid: eb02e7530cac1b3428a92208f218592e, type: 2}
   threshold: 2
+  useThresholdData: 0
+  thresholdData: {fileID: 0}
   resetOnThreshold: 1
   rearmWhenBelowThreshold: 1
   onThresholdReached:
@@ -4315,6 +4321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedValue: {fileID: 11400000, guid: 77aad555adb64c24babe614ca49f9ca0, type: 2}
   threshold: 5
+  useThresholdData: 0
+  thresholdData: {fileID: 0}
   resetOnThreshold: 0
   rearmWhenBelowThreshold: 0
   onThresholdReached:
@@ -9556,6 +9564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedValue: {fileID: 11400000, guid: 77aad555adb64c24babe614ca49f9ca0, type: 2}
   threshold: 5
+  useThresholdData: 0
+  thresholdData: {fileID: 0}
   resetOnThreshold: 1
   rearmWhenBelowThreshold: 1
   onThresholdReached:
@@ -11743,7 +11753,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 11400000, guid: 77aad555adb64c24babe614ca49f9ca0, type: 2}
         m_TargetAssemblyTypeName: IntData, Assembly-CSharp
-        m_MethodName: UpdateValue
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13070,11 +13080,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3386584885289324557, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
       propertyPath: onDiceRolled.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: UpdateValue
+      value: Add
       objectReference: {fileID: 0}
     - target: {fileID: 3386584885289324557, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
       propertyPath: onDiceRolled.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: UpdateValue
+      value: Add
       objectReference: {fileID: 0}
     - target: {fileID: 3386584885289324557, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
       propertyPath: onDiceRolled.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
