@@ -94,37 +94,37 @@ public class ShakeToRoll : MonoBehaviour
     }
 
     private void RollAllDice()
+{
+    // Only talk to the manager’s declared dice set
+    var manager = FindObjectOfType<ShakeDiceManager>();
+    if (!manager) return;
+
+    // 1) Reset detectors for the exact dice the manager will wait on
+    foreach (var die in manager.dice)
     {
-        EnsureDiceList();
-
-        bool sawNull = false;
-        foreach (ShakeToRoll die in allDice)
+        if (!die) continue;
+        var detector = die.GetComponent<DiceFaceDetector>();
+        if (detector != null)
         {
-            if (!die) { sawNull = true; continue; } // destroyed component
-            die.RollDiceSafe();
-        }
-
-        // If we saw any destroyed entries, rebuild for next time
-        if (sawNull) RefreshAllDice();
-
-        onDiceRolled.Invoke();
-
-        // Reset detectors and trigger result collection
-        ShakeDiceManager manager = FindObjectOfType<ShakeDiceManager>();
-        if (manager != null)
-        {
-            foreach (ShakeToRoll die in allDice)
-            {
-                if (!die) continue;
-                var detector = die.GetComponent<DiceFaceDetector>();
-                if (detector != null) detector.hasStoppedRolling = false;
-            }
-
-            // keep your existing string-based StartCoroutine
-            manager.StartWaitForDiceToStopOnce();
-
+            detector.hasStoppedRolling = false;
+            // (optional) clear any internal flags that could carry over
+            var _ = detector; // add helper method if you like (see below)
         }
     }
+
+    // 2) Roll exactly the same dice set
+    foreach (var die in manager.dice)
+    {
+        if (!die) continue;
+        die.RollDiceSafe();
+    }
+
+    onDiceRolled?.Invoke();
+
+    // 3) Start the guarded waiter once
+    manager.StartWaitForDiceToStopOnce();
+}
+
 
     // 🔐 Safe wrapper with guards; keeps Unity 6 linearVelocity
     private void RollDiceSafe()

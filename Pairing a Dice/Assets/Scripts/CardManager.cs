@@ -44,41 +44,60 @@ public RobotArmController robotArm; // Assign this too
         return side.position + new Vector3(column * spacing, 0, -row * spacing);
     }
 
+
+    // --- spacing (card grid spacing) ---
+    public void SetSpacing(float value)
+    {
+        spacing = Mathf.Max(0f, value);
+        // If you want immediate visual update:
+        RepositionCards(playerCards, playerSide);
+        RepositionCards(enemyCards, enemySide);
+    }
+    public void AdjustSpacing(float delta)
+    {
+        SetSpacing(spacing + delta);
+    }
+    public void SetSpacingFromFloatData(FloatData data)
+    {
+        if (!data) return;
+        SetSpacing(data.value);
+    }
+
     public void TransferCard(Transform card, bool toEnemy, bool triggerRobotArm = false)
 
-{
-    if (isMoving.ContainsKey(card) && isMoving[card])
     {
-        Debug.Log("🚫 Cannot move card: " + card.name + " is still animating!");
-        return;
+        if (isMoving.ContainsKey(card) && isMoving[card])
+        {
+            Debug.Log("🚫 Cannot move card: " + card.name + " is still animating!");
+            return;
+        }
+        isMoving[card] = true; // Set immediately to ensure accurate proxy behavior
+
+
+        Transform targetSide = toEnemy ? enemySide : playerSide;
+        List<Transform> targetList = toEnemy ? enemyCards : playerCards;
+
+        playerCards.Remove(card);
+        enemyCards.Remove(card);
+        targetList.Add(card);
+
+        // 🎵 Update music based on current player card count
+        BossMusicManager musicManager = FindFirstObjectByType<BossMusicManager>();
+        if (musicManager != null)
+        {
+            musicManager.OnCardCountChanged(playerCards.Count);
+        }
+
+
+
+
+        // 🟢 Now start moving the actual card
+        StartCoroutine(MoveCard(card, targetSide, targetList));
+
+        CheckUnoCondition();
+        CheckWinCondition();
+        CheckForSixtyNine(targetList);
     }
-    isMoving[card] = true; // Set immediately to ensure accurate proxy behavior
-
-
-    Transform targetSide = toEnemy ? enemySide : playerSide;
-    List<Transform> targetList = toEnemy ? enemyCards : playerCards;
-
-    playerCards.Remove(card);
-    enemyCards.Remove(card);
-    targetList.Add(card);
-
-    // 🎵 Update music based on current player card count
-    BossMusicManager musicManager = FindFirstObjectByType<BossMusicManager>();
-    if (musicManager != null)
-    {
-        musicManager.OnCardCountChanged(playerCards.Count);
-    }
-
-    
-
-
-    // 🟢 Now start moving the actual card
-    StartCoroutine(MoveCard(card, targetSide, targetList));
-
-    CheckUnoCondition();
-    CheckWinCondition();
-    CheckForSixtyNine(targetList);
-}
 
 
 
