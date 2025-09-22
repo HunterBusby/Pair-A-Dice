@@ -1,28 +1,24 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class AnimStatesBehaviour : StateMachineBehaviour
 {
-    public UnityEvent onEnterEvent;
-    
-    public UnityEvent onUpdateEvent;
-    
-    public UnityEvent onExitEvent;
-    
+    [Tooltip("Unique key for THIS state (e.g., 'Entrance', 'Exit')")]
+    public string stateKey;
+
+    AnimStateRelay GetRelay(Animator animator) => animator ? animator.GetComponent<AnimStateRelay>() : null;
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        onEnterEvent.Invoke();
+        GetRelay(animator)?.InvokeEnter(stateKey);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        onUpdateEvent.Invoke();
+        GetRelay(animator)?.InvokeUpdate(stateKey);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        onExitEvent.Invoke();
+        GetRelay(animator)?.InvokeExit(stateKey);
     }
-
-
 }
