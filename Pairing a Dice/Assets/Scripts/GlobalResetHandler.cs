@@ -3,40 +3,39 @@ using UnityEngine;
 public class GlobalResetHandler : MonoBehaviour
 {
     public IntData[] intDataToReset;
-
     public FloatData[] floatDataToReset;
 
     void Awake()
     {
         ResetIntValues();
+        ResetFloatValues(); // ✅ add this
     }
 
     void OnApplicationQuit()
     {
         ResetIntValues();
+        ResetFloatValues(); // ✅ add this
     }
 
     public void ResetIntValues()
     {
-        foreach (IntData data in intDataToReset)
+        if (intDataToReset == null) return;
+        foreach (var data in intDataToReset)
         {
-            if (data != null)
-            {
-                data.ResetToDefault(); // 👈 use per-asset default
-                Debug.Log($"🔄 Reset {data.name} to {data.defaultValue}.");
-            }
+            if (data == null) continue;
+            data.ResetToDefault();
+            Debug.Log($"🔄 Reset {data.name} to {data.defaultValue}.");
         }
     }
 
-    public void ResetAllValues()
+    public void ResetFloatValues()
     {
-        foreach (FloatData data in floatDataToReset)
+        if (floatDataToReset == null) return;
+        foreach (var data in floatDataToReset)
         {
-            if (data != null)
-            {
-                data.ResetToDefault(); // 👈 use per-asset default
-                Debug.Log($"🔄 Reset {data.name} to {data.defaultValue}.");
-            }
+            if (data == null) continue;
+            data.ResetToDefault();
+            Debug.Log($"🔄 Reset {data.name} to {data.defaultValue}.");
         }
     }
 }

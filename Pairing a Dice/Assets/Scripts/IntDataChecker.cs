@@ -3,15 +3,21 @@ using UnityEngine.Events;
 
 public class IntDataChecker : MonoBehaviour
 {
-    [Header("Target Data (ScriptableObject)")]
-    public IntData currentValue;   // Drag your IntData asset here
+    [Header("Target Data (ScriptableObjects)")]
+    public IntData currentValue;          // ✅ existing int path (leave as-is on old objects)
+    public FloatData currentFloatValue;   // ✅ optional: assign to use float path
 
     [Header("Comparison Target")]
-    public int targetValue;
+    public int targetValue = 0;           // ✅ existing int target (used when no FloatData)
+    public float targetValueFloat = 0f;   // ✅ optional float target (used when FloatData assigned)
 
     [Header("Invoke Mode")]
     [Tooltip("If true, only the first matching branch fires (Equal > Greater > Less). If false, all matching events can fire (e.g., Equal and GreaterOrEqual).")]
     public bool fireOnlyOneEvent = true;
+
+    [Header("Float Equality")]
+    [Tooltip("Tolerance for float equality checks (ignored for int mode).")]
+    public float epsilon = 0.0001f;
 
     [Header("Events")]
     public UnityEvent onEqual;
@@ -21,58 +27,88 @@ public class IntDataChecker : MonoBehaviour
     public UnityEvent onLessOrEqual;
 
     /// <summary>
-    /// Call this from a Button/UnityEvent/Timeline/AnimationEvent/etc.
-    /// Reads currentValue.value and compares to targetValue.
+    /// Call this from a Button/UnityEvent/etc. Compares either:
+    ///  - FloatData vs targetValueFloat (if currentFloatValue is assigned), OR
+    ///  - IntData   vs targetValue      (fallback)
     /// </summary>
     public void Check()
     {
-        if (currentValue == null)
+        if (currentFloatValue != null)
         {
-            Debug.LogWarning($"{nameof(IntDataChecker)} on '{name}' has no IntData assigned.", this);
+            // Float mode
+            float v = currentFloatValue.value;
+            float t = targetValueFloat;
+
+            if (fireOnlyOneEvent)
+            {
+                if (Mathf.Abs(v - t) <= epsilon) { onEqual?.Invoke(); return; }
+                if (v > t) { onGreater?.Invoke(); onGreaterOrEqual?.Invoke(); return; }
+                // v < t
+                onLess?.Invoke(); onLessOrEqual?.Invoke(); return;
+            }
+
+            // Non-exclusive
+            if (Mathf.Abs(v - t) <= epsilon) onEqual?.Invoke();
+            if (v > t) onGreater?.Invoke();
+            if (v < t) onLess?.Invoke();
+            if (v >= t - epsilon) onGreaterOrEqual?.Invoke();
+            if (v <= t + epsilon) onLessOrEqual?.Invoke();
             return;
         }
 
-        int v = currentValue.value;
+        // Int mode (backward compatible)
+        if (currentValue == null)
+        {
+            Debug.LogWarning($"{nameof(IntDataChecker)} on '{name}' has no IntData or FloatData assigned.", this);
+            return;
+        }
+
+        int vi = currentValue.value;
+        int ti = targetValue;
 
         if (fireOnlyOneEvent)
         {
-            if (v == targetValue) { onEqual?.Invoke(); return; }
-            if (v >  targetValue) { onGreater?.Invoke(); onGreaterOrEqual?.Invoke(); return; }
-            // v < targetValue
-            onLess?.Invoke(); onLessOrEqual?.Invoke();
-            return;
+            if (vi == ti) { onEqual?.Invoke(); return; }
+            if (vi >  ti) { onGreater?.Invoke(); onGreaterOrEqual?.Invoke(); return; }
+            // vi < ti
+            onLess?.Invoke(); onLessOrEqual?.Invoke(); return;
         }
 
-        // Fire all matching events (non-exclusive)
-        if (v == targetValue) onEqual?.Invoke();
-        if (v >  targetValue) onGreater?.Invoke();
-        if (v <  targetValue) onLess?.Invoke();
-        if (v >= targetValue) onGreaterOrEqual?.Invoke();
-        if (v <= targetValue) onLessOrEqual?.Invoke();
+        // Non-exclusive
+        if (vi == ti) onEqual?.Invoke();
+        if (vi >  ti) onGreater?.Invoke();
+        if (vi <  ti) onLess?.Invoke();
+        if (vi >= ti) onGreaterOrEqual?.Invoke();
+        if (vi <= ti) onLessOrEqual?.Invoke();
     }
 
-    // ---------- Modify helpers (all UnityEvent-friendly, no Update) ----------
+    // ---------- Modify helpers (UnityEvent-friendly) ----------
 
-    /// <summary>Set the numeric target directly.</summary>
+    // Int targets (existing)
     public void SetTargetValue(int newTarget) => targetValue = newTarget;
-
-    /// <summary>Set the target from another IntData asset.</summary>
     public void SetTargetValue(IntData source)
     {
-        if (source == null) { Debug.LogWarning("SetTargetFromSO: source is null.", this); return; }
+        if (source == null) { Debug.LogWarning("SetTargetValue(IntData): source is null.", this); return; }
         targetValue = source.value;
     }
-
-    /// <summary>Increase the target by a raw int, then Check(). Pass negative to decrease.</summary>
-    public void UpdateTargetValue(int increaseBy)
+    public void UpdateTargetValue(int delta) => targetValue += delta;
+    public void UpdateTargetValue(IntData deltaSO)
     {
-        targetValue += increaseBy;
+        if (deltaSO == null) { Debug.LogWarning("UpdateTargetValue(IntData): deltaSO is null.", this); return; }
+        targetValue += deltaSO.value;
     }
 
-    /// <summary>Increase the target by another IntData's value, then Check().</summary>
-    public void UpdateTargetValue(IntData increaseBySO)
+    // Float targets (new)
+    public void SetTargetValueFloat(float newTarget) => targetValueFloat = newTarget;
+    public void SetTargetValue(FloatData source)
     {
-        if (increaseBySO == null) { Debug.LogWarning("IncreaseTargetValue(IntData): increaseBySO is null.", this); return; }
-        targetValue += increaseBySO.value;
+        if (source == null) { Debug.LogWarning("SetTargetValue(FloatData): source is null.", this); return; }
+        targetValueFloat = source.value;
+    }
+    public void UpdateTargetValueFloat(float delta) => targetValueFloat += delta;
+    public void UpdateTargetValue(FloatData deltaSO)
+    {
+        if (deltaSO == null) { Debug.LogWarning("UpdateTargetValue(FloatData): deltaSO is null.", this); return; }
+        targetValueFloat += deltaSO.value;
     }
 }
