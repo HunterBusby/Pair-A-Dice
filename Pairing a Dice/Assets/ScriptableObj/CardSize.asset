@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deaf02b0932a8634a9252780cc097856, type: 3}
   m_Name: CardSize
   m_EditorClassIdentifier: 
-  value: 0
-  defaultValue: 0
+  value: 1
+  defaultValue: 1
