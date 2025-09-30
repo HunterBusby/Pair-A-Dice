@@ -63,6 +63,14 @@ public RobotArmController robotArm; // Assign this too
         SetSpacing(data.value);
     }
 
+    public void AdjustMaxCardsPerRow(int delta)
+    {
+        maxCardsPerRow = Mathf.Max(1, maxCardsPerRow + delta);
+        // If you want immediate visual update:
+        RepositionCards(playerCards, playerSide);
+        RepositionCards(enemyCards, enemySide);
+    }
+
     public void TransferCard(Transform card, bool toEnemy, bool triggerRobotArm = false)
 
     {
