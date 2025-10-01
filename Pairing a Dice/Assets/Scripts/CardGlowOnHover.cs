@@ -10,6 +10,9 @@ public class CardGlowOnHover : MonoBehaviour
     public float idleGlowIntensity = 0f;
     public float hoverGlowIntensity = 5f;
 
+    // Track the last-applied intensity so color changes keep the same brightness
+    private float _currentGlowIntensity = 0f;
+
     private void Start()
     {
         rend = GetComponent<Renderer>();
@@ -32,6 +35,7 @@ public class CardGlowOnHover : MonoBehaviour
 
     void SetGlow(float intensity)
     {
+        _currentGlowIntensity = intensity;
         Color finalColor = glowColor * intensity;
         mat.SetColor("_EmissionColor", finalColor);
     }
@@ -46,4 +50,22 @@ public class CardGlowOnHover : MonoBehaviour
         Start();
     }
 
+    // ✅ NEW: change glowColor via hex string, then re-apply current intensity
+    public void SetGlowColorFromHex(string hex)
+    {
+        if (string.IsNullOrWhiteSpace(hex)) return;
+        if (hex[0] != '#') hex = "#" + hex;
+
+        Color parsed;
+        if (ColorUtility.TryParseHtmlString(hex, out parsed))
+        {
+            glowColor = parsed;
+            // Re-apply using the last intensity that was set
+            SetGlow(_currentGlowIntensity);
+        }
+        else
+        {
+            Debug.LogWarning($"[CardGlowOnHover] Invalid hex '{hex}' on {name}.");
+        }
+    }
 }

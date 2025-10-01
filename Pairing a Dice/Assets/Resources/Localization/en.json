@@ -112,18 +112,19 @@
 
 
       { "key": "FreeRoll_1", "value": "Welcome to the Free Play Parlour!" },
-      { "key": "FreeRoll_2", "value": "This style of play is a little different from normal play." },
-      { "key": "FreeRoll_3", "value": "It begins simple: only a few cards, effortless rolls, and a I'll go easy on you." },
-      { "key": "FreeRoll_4", "value": "But..." },
-      { "key": "FreeRoll_5", "value": "Each time you win, you’ll have to raise the stakes." },
-      { "key": "FreeRoll_6", "value": "I’ll offer you a set of 'Burden Cards'." },
+      { "key": "FreeRoll_2", "value": "With everycard randomized, begin an easy game of low bets." },
+      { "key": "FreeRoll_3", "value": "But after each round if you wish to increase the bet, you must increase difficulty." },
+      { "key": "FreeRoll_4", "value": "Raise the stakes to raise the reward." },
+      { "key": "FreeRoll_5", "value": "Now if you are ready, Let's Wager this first game for 1 GoldPoint" },
+
+      { "key": "FreeRoll_6", "value": "Are you sure you want to stop playing? You'll have to start at round 1 if you come back." },
       { "key": "FreeRoll_7", "value": "They will present you with choices that make the game more difficult." },
       { "key": "FreeRoll_8", "value": "Maybe it’s more cards, making it harder to roll, or letting me play faster." },
       { "key": "FreeRoll_9", "value": "And to keep things lively, we’ll also wager a little coin. The more you risk, the greater the reward." },
       { "key": "FreeRoll_10", "value": "As a note, every card delt is random. No predetermined cards here!" },
       { "key": "FreeRoll_11", "value": "So, hypothetically... you could be staring down a hand full of 12’s!" },
       { "key": "FreeRoll_12", "value": "It adds to the thrill." },
-      { "key": "FreeRoll_13", "value": "Now if you are ready, Let's Wager this first game for 1 GoldPoint" },
+      { "key": "FreeRoll_13", "value": "" },
 
       { "key": "FreeRoll_14", "value": "Looks like you WON! Congratulations!" },
       { "key": "FreeRoll_15", "value": "Here are the coins you WON!" },
