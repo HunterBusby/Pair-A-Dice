@@ -44,13 +44,20 @@ public class CardGlowOnHover : MonoBehaviour
     {
         SetGlow(isHovering ? hoverGlowIntensity : idleGlowIntensity);
     }
-    
+
+    public void SetHoverGlowIntensity(float value)
+    {
+        hoverGlowIntensity = Mathf.Max(0, value);
+    }
+
+
     public void rerunStart() // ✅ Public method to re-run Start logic (bb)
     {
         Start();
     }
 
-    // ✅ NEW: change glowColor via hex string, then re-apply current intensity
+    // ✅ NEW behavior: store the hex color only; do NOT apply to the material here.
+    // The material updates the next time SetGlow(...) is called (e.g., on hover).
     public void SetGlowColorFromHex(string hex)
     {
         if (string.IsNullOrWhiteSpace(hex)) return;
@@ -60,8 +67,8 @@ public class CardGlowOnHover : MonoBehaviour
         if (ColorUtility.TryParseHtmlString(hex, out parsed))
         {
             glowColor = parsed;
-            // Re-apply using the last intensity that was set
-            SetGlow(_currentGlowIntensity);
+            // intentionally NOT calling SetGlow(...) here
+            // effect will appear on next hover or external glow trigger
         }
         else
         {

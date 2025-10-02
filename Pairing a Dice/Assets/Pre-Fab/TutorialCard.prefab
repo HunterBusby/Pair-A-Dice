@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4214a5170f0a8b42b50890b4632360d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 0, g: 1, b: 1, a: 1}
+  glowColor: {r: 0.9849528, g: 1, b: 0.7971698, a: 1}
   idleGlowIntensity: 0
   hoverGlowIntensity: 1
 --- !u!114 &-7593685395512815496

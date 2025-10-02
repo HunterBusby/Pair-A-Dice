@@ -695,10 +695,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2058612340221831700, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+      propertyPath: glowColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2058612340221831700, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+      propertyPath: glowColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2058612340221831700, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+      propertyPath: glowColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 444008676733629224, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
       propertyPath: brandonMachine
       value: 
       objectReference: {fileID: 2086225658}
+    - target: {fileID: 2189734519564495783, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3386584885289324557, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
       propertyPath: shakeThreshold
       value: 200
@@ -818,7 +834,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6457091236113718039, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 2141172151}
   m_SourcePrefab: {fileID: 100100000, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
 --- !u!1001 &64197395
 PrefabInstance:
@@ -6484,18 +6503,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1087779309}
-        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
-        m_MethodName: Check
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1087779310}
         m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
         m_MethodName: Check
         m_Mode: 1
@@ -16254,7 +16261,6 @@ GameObject:
   - component: {fileID: 1087779308}
   - component: {fileID: 1087779309}
   - component: {fileID: 1087779310}
-  - component: {fileID: 1087779311}
   - component: {fileID: 1087779312}
   m_Layer: 0
   m_Name: FreePlayChecks
@@ -16446,51 +16452,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onLessOrEqual:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1087779311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087779306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13ff7bf678efcc44bb889b82bc533384, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentValue: {fileID: 11400000, guid: 7647fc7dbf2c7b54f92e3492260a9a20, type: 2}
-  currentFloatValue: {fileID: 0}
-  targetValue: 8
-  targetValueFloat: 0
-  fireOnlyOneEvent: 1
-  epsilon: 0.1
-  onEqual:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1495386829}
-        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
-        m_MethodName: AdjustMaxCardsPerRow
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onGreater:
-    m_PersistentCalls:
-      m_Calls: []
-  onLess:
-    m_PersistentCalls:
-      m_Calls: []
-  onGreaterOrEqual:
-    m_PersistentCalls:
-      m_Calls: []
   onLessOrEqual:
     m_PersistentCalls:
       m_Calls: []
@@ -18933,7 +18894,7 @@ MonoBehaviour:
           m_StringArgument: TakeCards
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1087779311}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
         m_MethodName: Check
         m_Mode: 1
@@ -18957,7 +18918,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2141172143}
         m_TargetAssemblyTypeName: ShakeToRoll, Assembly-CSharp
         m_MethodName: SetShakeThresholdFromIntData
         m_Mode: 2
@@ -30319,17 +30280,44 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224cd24c4711a464a93d4c49bcb76e0e, type: 3}
+--- !u!1 &2141172142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6457091236113718039, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+  m_PrefabInstance: {fileID: 59884109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2141172143 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3386584885289324557, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
   m_PrefabInstance: {fileID: 59884109}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2141172142}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b68a6ecc512e7bb4cba592e30360e812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &2141172151
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141172142}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8617694227250801518, guid: 805ba9092f6afb64da0f17d03fcebdb7, type: 3}
 --- !u!1 &2142325431
 GameObject:
   m_ObjectHideFlags: 0
@@ -30602,7 +30590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2189734519564495783, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3386584885289324557, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
       propertyPath: shakeDecay
@@ -30800,7 +30788,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
