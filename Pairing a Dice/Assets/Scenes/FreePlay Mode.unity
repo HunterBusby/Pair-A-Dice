@@ -695,18 +695,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -2058612340221831700, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
-      propertyPath: glowColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -2058612340221831700, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
-      propertyPath: glowColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -2058612340221831700, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
-      propertyPath: glowColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 444008676733629224, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
       propertyPath: brandonMachine
       value: 
