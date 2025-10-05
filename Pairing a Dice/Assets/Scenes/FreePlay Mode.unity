@@ -12728,6 +12728,1287 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666177903}
   m_CullTransparentMesh: 1
+--- !u!1 &674137907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 674137908}
+  - component: {fileID: 674137912}
+  - component: {fileID: 674137911}
+  - component: {fileID: 674137910}
+  - component: {fileID: 674137909}
+  - component: {fileID: 674137913}
+  m_Layer: 0
+  m_Name: DiceSkinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &674137908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674137907}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1625480466}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &674137909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674137907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ff7bf678efcc44bb889b82bc533384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: {fileID: 11400000, guid: 01aa837b2d8a6c2408f6e429b8525364, type: 2}
+  currentFloatValue: {fileID: 0}
+  targetValue: 1
+  targetValueFloat: 0
+  fireOnlyOneEvent: 1
+  epsilon: 0.1
+  onEqual:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ffff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ffff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: ffff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177023}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: a6b966264e3aed4498191f08aae05b5e, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: ffff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172152}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: a6b966264e3aed4498191f08aae05b5e, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: ffff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: ffff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ffff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: ffff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: ffff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: ffff00
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGreater:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ff0018
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ff0018
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: ff0018
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177023}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 10da5c130947ddb41b2a9fdb11751fda, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 50
+          m_StringArgument: ff0018
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172152}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 10da5c130947ddb41b2a9fdb11751fda, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 50
+          m_StringArgument: ff0018
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ff0018
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: ff0018
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 50
+          m_StringArgument: ff0018
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 50
+          m_StringArgument: ff0018
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 50
+          m_StringArgument: ff0018
+          m_BoolArgument: 0
+        m_CallState: 2
+  onLess:
+    m_PersistentCalls:
+      m_Calls: []
+  onGreaterOrEqual:
+    m_PersistentCalls:
+      m_Calls: []
+  onLessOrEqual:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &674137910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674137907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ff7bf678efcc44bb889b82bc533384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: {fileID: 11400000, guid: 989c1f43762092f4d84deacba8b0890b, type: 2}
+  currentFloatValue: {fileID: 0}
+  targetValue: 1
+  targetValueFloat: 0
+  fireOnlyOneEvent: 1
+  epsilon: 0.1
+  onEqual:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 007700
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177023}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: a47cee4307b8fce489c25713f8620b23, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172152}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: a47cee4307b8fce489c25713f8620b23, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 007700
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGreater:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 0060fa
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 7
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177023}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 9e9ec2375a77d2644b1ccd2aeeb795cd, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 7
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172152}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 9e9ec2375a77d2644b1ccd2aeeb795cd, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 7
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 7
+          m_StringArgument: 0060fa
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 7
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 7
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 7
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onLess:
+    m_PersistentCalls:
+      m_Calls: []
+  onGreaterOrEqual:
+    m_PersistentCalls:
+      m_Calls: []
+  onLessOrEqual:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &674137911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674137907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ff7bf678efcc44bb889b82bc533384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: {fileID: 11400000, guid: f409b93e6b7dea54eb51b07b5343403d, type: 2}
+  currentFloatValue: {fileID: 0}
+  targetValue: 1
+  targetValueFloat: 0
+  fireOnlyOneEvent: 1
+  epsilon: 0.1
+  onEqual:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 0016ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 5
+          m_StringArgument: 0016ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 0016ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177023}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 3444de050127e304a85bb91c8780e9c4, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 0016ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172152}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 3444de050127e304a85bb91c8780e9c4, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 0016ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 0016ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 0016ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 5
+          m_StringArgument: 0016ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 5
+          m_StringArgument: 0016ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 5
+          m_StringArgument: 0016ff
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGreater:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 20
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ff00ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177023}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 8877c63354037b248bf5462d7aab617c, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172152}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 8877c63354037b248bf5462d7aab617c, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: ff00ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: ff00ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 20
+          m_StringArgument: ff00ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: ff00ff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: ff00ff
+          m_BoolArgument: 0
+        m_CallState: 2
+  onLess:
+    m_PersistentCalls:
+      m_Calls: []
+  onGreaterOrEqual:
+    m_PersistentCalls:
+      m_Calls: []
+  onLessOrEqual:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &674137912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674137907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ff7bf678efcc44bb889b82bc533384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: {fileID: 11400000, guid: eae3902a432b10144ab640bb8c4c32ad, type: 2}
+  currentFloatValue: {fileID: 0}
+  targetValue: 1
+  targetValueFloat: 0
+  fireOnlyOneEvent: 1
+  epsilon: 0.1
+  onEqual:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ff0000
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177023}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 3564d4e23f281754c9d734fa3b32d169, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172152}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 3564d4e23f281754c9d734fa3b32d169, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ff0000
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGreater:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: f4ff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177023}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 79b7321b4c85c794893ecde88dd011f6, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: f4ff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172152}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 79b7321b4c85c794893ecde88dd011f6, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: f4ff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: f4ff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: f4ff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: f4ff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: f4ff00
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: f4ff00
+          m_BoolArgument: 0
+        m_CallState: 2
+  onLess:
+    m_PersistentCalls:
+      m_Calls: []
+  onGreaterOrEqual:
+    m_PersistentCalls:
+      m_Calls: []
+  onLessOrEqual:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &674137913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674137907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ff7bf678efcc44bb889b82bc533384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: {fileID: 11400000, guid: 8d6a2bad46f30e94390efa1356bbc8c1, type: 2}
+  currentFloatValue: {fileID: 0}
+  targetValue: 1
+  targetValueFloat: 0
+  fireOnlyOneEvent: 1
+  epsilon: 0.1
+  onEqual:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ffffff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.25
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177023}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 640fef8d515fb0740b0066cf9cd072e9, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.25
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172152}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_sharedMaterial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 640fef8d515fb0740b0066cf9cd072e9, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.25
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetGlowColorFromHex
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.25
+          m_StringArgument: ffffff
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetIdleGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: SetHoverGlowIntensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.25
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1403346998424177022}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.25
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141172153}
+        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
+        m_MethodName: rerunStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.25
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGreater:
+    m_PersistentCalls:
+      m_Calls: []
+  onLess:
+    m_PersistentCalls:
+      m_Calls: []
+  onGreaterOrEqual:
+    m_PersistentCalls:
+      m_Calls: []
+  onLessOrEqual:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &692507561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ff6e223fb7e83fc408325ecf37c1dbd2, type: 3}
@@ -17011,6 +18292,116 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50.936, y: 0, z: 0}
+--- !u!1 &1105808219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1105808220}
+  - component: {fileID: 1105808221}
+  m_Layer: 0
+  m_Name: AwakeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1105808220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105808219}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1625480466}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1105808221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105808219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15d4d7232d127442b9e3aa335311554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timing: 0
+  delay: 0
+  onlyOnce: 1
+  OnTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 674137912}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 674137911}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 674137910}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 674137909}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 674137913}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1105954544
 GameObject:
   m_ObjectHideFlags: 0
@@ -21266,6 +22657,8 @@ Transform:
   - {fileID: 1495386828}
   - {fileID: 1870403701}
   - {fileID: 1502500647}
+  - {fileID: 674137908}
+  - {fileID: 1105808220}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1635289998
@@ -24741,28 +26134,64 @@ MonoBehaviour:
   mouseDownEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4799938028094569154, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_sharedMaterial
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 9e9ec2375a77d2644b1ccd2aeeb795cd, type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: -2058612340221831700, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
-        m_TargetAssemblyTypeName: CardGlowOnHover, Assembly-CSharp
-        m_MethodName: SetInitialHex
-        m_Mode: 5
+      - m_Target: {fileID: 674137912}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 00FFFF
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 674137911}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 674137910}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 674137909}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 674137913}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   mouseUpEvent:
@@ -30306,6 +31735,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8617694227250801518, guid: 805ba9092f6afb64da0f17d03fcebdb7, type: 3}
+--- !u!23 &2141172152 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4799938028094569154, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+  m_PrefabInstance: {fileID: 59884109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2141172153 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2058612340221831700, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+  m_PrefabInstance: {fileID: 59884109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141172142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4214a5170f0a8b42b50890b4632360d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2142325431
 GameObject:
   m_ObjectHideFlags: 0
@@ -30748,6 +32193,22 @@ PrefabInstance:
       insertIndex: 5
       addedObject: {fileID: 7621356966785790711}
   m_SourcePrefab: {fileID: 100100000, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+--- !u!114 &1403346998424177022 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2058612340221831700, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+  m_PrefabInstance: {fileID: 1403346998424177021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256545143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4214a5170f0a8b42b50890b4632360d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!23 &1403346998424177023 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4799938028094569154, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
+  m_PrefabInstance: {fileID: 1403346998424177021}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7621356966785790704 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3386584885289324557, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
