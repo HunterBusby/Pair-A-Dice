@@ -1975,9 +1975,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4214a5170f0a8b42b50890b4632360d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 0, g: 0.3764706, b: 0.98039216, a: 1}
-  idleGlowIntensity: 1
-  hoverGlowIntensity: 7
+  glowColor: {r: 1, g: 1, b: 1, a: 1}
+  idleGlowIntensity: 0
+  hoverGlowIntensity: 0.25
 --- !u!114 &384141450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5951530860964016466, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
@@ -8542,10 +8542,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meterData: {fileID: 11400000, guid: 77aad555adb64c24babe614ca49f9ca0, type: 2}
+  maxDoublesNeeded: {fileID: 0}
   meterObject: {fileID: 1501717176}
   maxRotationSpeed: 500
   minRotationSpeed: 30
-  maxDoublesNeeded: 5
 --- !u!4 &1501717176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cbf184d2744c74b48a72ac2391b1a2fb, type: 3}
@@ -9958,12 +9958,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 949494279715576173, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1598131855177676984, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 9e9ec2375a77d2644b1ccd2aeeb795cd, type: 2}
+      objectReference: {fileID: 2100000, guid: 640fef8d515fb0740b0066cf9cd072e9, type: 2}
     - target: {fileID: 5951530860964016466, guid: 211f6b6a3cbe83c488da3ed9a13c4199, type: 3}
       propertyPath: brandonMachine
       value: 
@@ -11793,7 +11793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6457091236113718039, guid: 7b1c12c1959fa16429f753ac15184140, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

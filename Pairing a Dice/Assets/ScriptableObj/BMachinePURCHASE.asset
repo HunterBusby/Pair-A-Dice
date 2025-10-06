@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 516a8920f1fa56d409bf3b8cc06f8699, type: 3}
-  m_Name: GP
+  m_Name: BMachinePURCHASE
   m_EditorClassIdentifier: 
   saveKey: 
-  value: 99975
-  defaultValue: 5
+  value: 0
+  defaultValue: 0
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []

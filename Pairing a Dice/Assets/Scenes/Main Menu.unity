@@ -819,6 +819,7 @@ GameObject:
   - component: {fileID: 1400093609}
   - component: {fileID: 1400093608}
   - component: {fileID: 1400093607}
+  - component: {fileID: 1400093610}
   m_Layer: 0
   m_Name: e
   m_TagString: Untagged
@@ -929,6 +930,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 26.223, y: 0, z: 0}
+--- !u!114 &1400093610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400093606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49d374ea5811264998b32cf48e2d104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  registry: {fileID: 11400000, guid: d73b102c612e5d3418162babeb782843, type: 2}
+  gameId: Pair-a-Dice
+  saveVersion: 1
+  defaultSlot: 0
 --- !u!114 &1538245306 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8764738053381410258, guid: 6d7ffe68a3151f7408c9bf40973882f7, type: 3}
