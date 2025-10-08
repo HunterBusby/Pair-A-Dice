@@ -830,6 +830,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1474451991}
+        m_TargetAssemblyTypeName: DataSaver, Assembly-CSharp
+        m_MethodName: SaveAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &58693415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19661,7 +19673,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1105808220}
   - component: {fileID: 1105808221}
-  - component: {fileID: 1105808222}
   m_Layer: 0
   m_Name: AwakeManager
   m_TagString: Untagged
@@ -19702,6 +19713,30 @@ MonoBehaviour:
   OnTriggered:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1474451991}
+        m_TargetAssemblyTypeName: DataSaver, Assembly-CSharp
+        m_MethodName: LoadAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 674137914}
+        m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
+        m_MethodName: Check
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 674137912}
         m_TargetAssemblyTypeName: IntDataChecker, Assembly-CSharp
         m_MethodName: Check
@@ -19774,22 +19809,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1105808222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105808219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49d374ea5811264998b32cf48e2d104, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  registry: {fileID: 11400000, guid: d73b102c612e5d3418162babeb782843, type: 2}
-  gameId: Pair-a-Dice
-  saveVersion: 1
-  defaultSlot: 0
 --- !u!1 &1105954544
 GameObject:
   m_ObjectHideFlags: 0
@@ -22859,6 +22878,71 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1474451989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1474451990}
+  - component: {fileID: 1474451991}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1474451990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474451989}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.321239, y: 5.970687, z: -8.329215}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1625480466}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1474451991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474451989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fae97d7469d898468066e718ecfa4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DataSaver
+  ints:
+  - {fileID: 11400000, guid: 1600063e7eae4d54d8080b45407d59f8, type: 2}
+  - {fileID: 11400000, guid: 0711a76fe51f559489c39d8fe032ee6b, type: 2}
+  - {fileID: 11400000, guid: cd3f2868bf070534499922d90e8ca53c, type: 2}
+  - {fileID: 11400000, guid: 15974f320e8efcf439e9c092039b56be, type: 2}
+  - {fileID: 11400000, guid: ac0986fe0fec88345b6887f8c1f70cdf, type: 2}
+  - {fileID: 11400000, guid: e6c9b333fa879eb4983541a1142aaea4, type: 2}
+  - {fileID: 11400000, guid: 98429342f30de2d4e8526b02592a7998, type: 2}
+  - {fileID: 11400000, guid: 27a579de69cea8c4ba6f9bfed52745a6, type: 2}
+  - {fileID: 11400000, guid: ac0986fe0fec88345b6887f8c1f70cdf, type: 2}
+  - {fileID: 11400000, guid: 175efef263411b647bb62e7ca1044a4b, type: 2}
+  - {fileID: 11400000, guid: eae3902a432b10144ab640bb8c4c32ad, type: 2}
+  - {fileID: 11400000, guid: f409b93e6b7dea54eb51b07b5343403d, type: 2}
+  - {fileID: 11400000, guid: 989c1f43762092f4d84deacba8b0890b, type: 2}
+  - {fileID: 11400000, guid: 01aa837b2d8a6c2408f6e429b8525364, type: 2}
+  - {fileID: 11400000, guid: 8d6a2bad46f30e94390efa1356bbc8c1, type: 2}
+  - {fileID: 11400000, guid: 21fb274551cb0b34ca326c001b663f08, type: 2}
+  floats: []
+  autoLoadOnStart: 1
+  autoSaveOnQuit: 1
+  autoSaveOnPause: 0
 --- !u!1001 &1478942840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24288,6 +24372,7 @@ Transform:
   - {fileID: 1105808220}
   - {fileID: 2856821141309834843}
   - {fileID: 519546076}
+  - {fileID: 1474451990}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1635289998
