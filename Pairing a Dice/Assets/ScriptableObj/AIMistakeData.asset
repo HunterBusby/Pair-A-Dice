@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516a8920f1fa56d409bf3b8cc06f8699, type: 3}
   m_Name: AIMistakeData
   m_EditorClassIdentifier: 
-  value: 75
-  defaultValue: 75
+  saveKey: 
+  value: 60
+  defaultValue: 60
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []

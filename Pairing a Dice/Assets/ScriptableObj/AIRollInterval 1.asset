@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deaf02b0932a8634a9252780cc097856, type: 3}
   m_Name: AIRollInterval 1
   m_EditorClassIdentifier: 
+  saveKey: 
   value: 3
   defaultValue: 3
+  onValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
